@@ -33,6 +33,21 @@ docker-compose up
 ```
 Once the container finish starting up, you can visit `http://localhost` to check the website.
 
+### Change the hosts on the local computer
+
+```
+# KiahStore domain
+127.0.0.1       www.localhost
+127.0.0.1       admin.localhost
+127.0.0.1       ks.localhost
+127.0.0.1       ks.my
+127.0.0.1       test.ks.my
+127.0.0.1       test2.ks.my
+127.0.0.1       ks2.my
+127.0.0.1       test.ks2.my
+127.0.0.1       test2.ks2.my
+```
+By changing the host, we can test multiple domain/subdomain locally.
 
 ### How to run Artisan
 
