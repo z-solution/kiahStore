@@ -1,7 +1,7 @@
 version: '2'
 services:
   php:
-    image: jguyomard/laravel-php:7.3
+    build: .
     volumes:
       - ./:/var/www/
     environment:
