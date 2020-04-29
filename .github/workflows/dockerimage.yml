@@ -34,18 +34,18 @@ jobs:
     - run: docker build . --file dockerfile --tag 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
     - run: docker push 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
 
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: ls -a via ssh
-  #       uses: bjoe88/ssh-action@master
-  #       with:
-  #         command: |
-  #           eval $(aws ecr get-login --no-include-email --region ap-southeast-1)
-  #           docker image pull 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
-  #           docker service update --image 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest kodkraf_backend --force
-  #         sha8: ${{ github.sha }}
-  #         host: ${{ secrets.HOST }}
-  #         user: ${{ secrets. SSH_USER}}
-  #         key: ${{ secrets.SSH_PRIVATE_KEY}}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: ls -a via ssh
+        uses: bjoe88/ssh-action@master
+        with:
+          command: |
+            eval $(aws ecr get-login --no-include-email --region ap-southeast-1)
+            docker image pull 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
+            docker service update --image 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest kodkraf_backend --force
+          sha8: ${{ github.sha }}
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets. SSH_USER}}
+          key: ${{ secrets.SSH_PRIVATE_KEY}}

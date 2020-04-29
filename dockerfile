@@ -46,6 +46,6 @@ COPY composer.lock /var/www/composer.lock
 COPY database /var/www/database
 RUN composer install --no-dev --no-scripts
 
-COPY . /usr/src/app
+COPY . /var/www
 
 EXPOSE 80
