@@ -44,7 +44,7 @@ jobs:
           command: |
             eval $(aws ecr get-login --no-include-email --region ap-southeast-1)
             docker image pull 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
-            docker service update --image 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest kodkraf_backend --force
+            docker service update --image 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest kiahstore --force
           sha8: ${{ github.sha }}
           host: ${{ secrets.HOST }}
           user: ${{ secrets. SSH_USER}}
