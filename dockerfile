@@ -48,4 +48,6 @@ RUN composer install --no-dev --no-scripts
 
 COPY . /var/www
 
+RUN chown -R www-data:www-data /var/www
+
 EXPOSE 80
