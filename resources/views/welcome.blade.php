@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    KiahStore. It is almost alive.
                 </div>
 
                 <div class="links">
