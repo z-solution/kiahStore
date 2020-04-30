@@ -60,3 +60,7 @@ docker-compose exec php php artisan migrate
 
 docker-compose exec php $yourCommandHere
 ```
+
+# How to Access PHPMYADMIN
+
+PHPMYADMIN can be access at `http://localhost:3300`
