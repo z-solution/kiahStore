@@ -1,7 +1,7 @@
 version: '2'
 services:
   php:
-    image: jguyomard/laravel-php:7.3
+    build: .
     volumes:
       - ./:/var/www/
     environment:
@@ -33,6 +33,16 @@ services:
     image: redis:4.0-alpine
     command: redis-server --appendonly yes
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 3300:80
+    environment:
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: homestead
+      MYSQL_ROOT_PASSWORD: homestead
+      PMA_HOST: mysql
+      PMA_ABSOLUTE_URI: http://localhost:3300
 volumes:
   mysqldata:
   pgsqldata:
