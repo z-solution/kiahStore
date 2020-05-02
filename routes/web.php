@@ -61,9 +61,9 @@ Route::group(
         Route::get('/', function () {
             return view('welcome');
         });
-        Route::get('/login', function () {
-            return "shop owner login";
-        });
+        // Route::get('/login', function () {
+        //     return "shop owner login";
+        // });
     }
 );
 
@@ -94,3 +94,7 @@ Route::group(
 );
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
