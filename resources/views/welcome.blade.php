@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    KiahStore. It is almost alive.
+                    KiahStore. It is almost alive. Zohair joined in 
                 </div>
 
                 <div class="links">
