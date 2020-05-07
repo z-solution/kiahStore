@@ -10882,3 +10882,7 @@ a.text-dark:focus {
   }
 }
 
+.nav-item a {
+  color: white !important;
+}
+

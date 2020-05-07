@@ -64,6 +64,11 @@ Route::group(
         // Route::get('/login', function () {
         //     return "shop owner login";
         // });
+        Route::get('/signUp', 'MainSiteController@signUp')->name('signUp');
+        Route::post('/signUp', 'MainSiteController@store');
+        // Route::get('/signUp', function() {
+        //     return view('signUp');
+        // });
     }
 );
 

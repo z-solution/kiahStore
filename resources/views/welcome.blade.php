@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container">
+        @if(\Session::has('success'))
+            <div class="alert alert-success">
+               <p>{{\Session::get('success') }}</p>
+            </div>
+        @endif
         <!--Carousel Wrapper-->
         <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
             <!--Slides-->
@@ -45,7 +49,6 @@
         <section class="text-center my-5">
           <!-- Grid row -->
             <div class="row">
-
                 <!-- Grid column -->
                 <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
                   <!-- Card -->
