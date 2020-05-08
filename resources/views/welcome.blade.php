@@ -45,148 +45,32 @@
             </ol>
         </div>
         <!--/.Carousel Wrapper-->
-
-        <section class="text-center my-5">
-          <!-- Grid row -->
-            <div class="row">
-                <!-- Grid column -->
-                <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
-                  <!-- Card -->
-                    <div class="card align-items-center">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                          <img src="{{ asset('img/blue.jpg') }}" class="card-img-top" alt="">
-                          <a>
-                            <div class="mask rgba-white-slight"></div>
-                          </a>
-                        </div>
-                        <!-- Card image -->
-                        <!-- Card content -->
-                        <div class="card-body text-center">
-                          <!-- Category & Title -->
-                          <a href="" class="grey-text">
-                            <h5>Shirt</h5>
-                          </a>
-                          <h5>
-                            <strong>
-                              <a href="" class="dark-grey-text">Denim shirt
-                                <span class="badge badge-pill badge-danger">NEW</span>
-                              </a>
-                            </strong>
-                          </h5>
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>120$</strong>
-                          </h4>
-                        </div>
-                        <!-- Card content -->
-                    </div>
-                  <!-- Card -->
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
-                  <!-- Card -->
-                    <div class="card align-items-center">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                          <img src="{{ asset('img/grey.jpg') }}" class="card-img-top" alt="">
-                          <a>
-                            <div class="mask rgba-white-slight"></div>
-                          </a>
-                        </div>
-                        <!-- Card image -->
-                        <!-- Card content -->
-                        <div class="card-body text-center">
-                          <!-- Category & Title -->
-                          <a href="" class="grey-text">
-                            <h5>Sport wear</h5>
-                          </a>
-                          <h5>
-                            <strong>
-                              <a href="" class="dark-grey-text">Sweatshirt</a>
-                            </strong>
-                          </h5>
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>139$</strong>
-                          </h4>
-                        </div>
-                        <!-- Card content -->
-                    </div>
-                  <!-- Card -->
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-lg-3 col-md-6 mb-md-0 mb-4">
-                  <!-- Card -->
-                    <div class="card align-items-center">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                          <img src="{{ asset('img/red.jpg') }}" class="card-img-top" alt="">
-                          <a>
-                            <div class="mask rgba-white-slight"></div>
-                          </a>
-                        </div>
-                        <!-- Card image -->
-                        <!-- Card content -->
-                        <div class="card-body text-center">
-                          <!-- Category & Title -->
-                          <a href="" class="grey-text">
-                            <h5>Sport wear</h5>
-                          </a>
-                          <h5>
-                            <strong>
-                              <a href="" class="dark-grey-text">Grey blouse
-                                <span class="badge badge-pill badge-primary">BEST</span>
-                              </a>
-                            </strong>
-                          </h5>
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>99$</strong>
-                          </h4>
-                        </div>
-                        <!-- Card content -->
-                    </div>
-                   <!-- Card -->
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-lg-3 col-md-6">
-                  <!-- Card -->
-                    <div class="card align-items-center">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                          <img src="{{ asset('img/coat.jpg') }}" class="card-img-top" alt="">
-                          <a>
-                            <div class="mask rgba-white-slight"></div>
-                          </a>
-                        </div>
-                        <!-- Card image -->
-                        <!-- Card content -->
-                        <div class="card-body text-center">
-                          <!-- Category & Title -->
-                          <a href="" class="grey-text">
-                            <h5>Outwear</h5>
-                          </a>
-                          <h5>
-                            <strong>
-                              <a href="" class="dark-grey-text">Black jacket</a>
-                            </strong>
-                          </h5>
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>219$</strong>
-                          </h4>
-                        </div>
-                        <!-- Card content -->
-                    </div>
-                    <!-- Card -->
-                </div>
-                <!-- Grid column -->
+        <div class="card-deck mt-4">
+          <div class="card">
+            <img class="card-img-top" src="{{ asset('img/f1.jpg') }}"  alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title font-weight-bold">Feature 1</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
-          <!-- Grid row -->
-        </section>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{{ asset('img/f2.jpg') }}"  alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title font-weight-bold">Feature 2</h4>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content. just added extra text to make it the paragraph a bit longer and at the same time keep them all aligned.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{{ asset('img/f3.png') }}"  alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title font-weight-bold">Feature 3</h4>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
     </div>
 @endsection 
 

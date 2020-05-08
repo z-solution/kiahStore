@@ -64,8 +64,8 @@ Route::group(
         // Route::get('/login', function () {
         //     return "shop owner login";
         // });
-        Route::get('/signUp', 'MainSiteController@signUp')->name('signUp');
-        Route::post('/signUp', 'MainSiteController@store');
+        Route::get('/shopOwnerSignUp', 'MainSiteController@signUp')->name('shopOwnerSignUp');
+        Route::post('/shopOwnerSignUp', 'MainSiteController@store');
         // Route::get('/signUp', function() {
         //     return view('signUp');
         // });
@@ -90,8 +90,14 @@ Route::group(
     function () {
         // Shop frontend
         Route::get('/', function () {
-            return 'This will be the shop';
+            return view('/shop/index');
         });
+        Route::get('/customerSignUp', function(){
+            return view('/shop/customerSignUp');
+        });
+
+        // Route::post('/customerSignUp', 'ShopController@store');
+
         Route::get('/login', function () {
             return "customer login";
         });

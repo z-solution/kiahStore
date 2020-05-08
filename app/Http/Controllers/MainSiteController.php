@@ -9,7 +9,7 @@ use Hash;
 class MainSiteController extends Controller
 {
     public function signUp(){
-    	return view('signUp');
+    	return view('shopOwnerSignUp');
     }
 
 

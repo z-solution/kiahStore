@@ -23,9 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #800000">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'KiahStore') }}
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}"> Shop Name </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -34,13 +32,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Feature</a>
+                            <a class="nav-link" href="#">Shop Owner</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Price</a>
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/shopOwnerSignUp">Shop Owner SignUp</a>
+                            <a class="nav-link" href="/customerSignUp">Customer SignUp</a>
                         </li>
 
                     </ul>
@@ -53,11 +51,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
+                           <!--  @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif -->
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -89,7 +87,7 @@
     <!-- Footer -->
     <footer class="page-footer font-small" style="background-color: #800000">
       <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/"> KiahStore </a>
+        <a href="https://mdbootstrap.com/"> ShopName </a>
       </div>
     </footer>
 </body>
