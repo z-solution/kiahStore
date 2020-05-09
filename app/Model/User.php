@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\model;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -36,4 +35,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the shop for this user as shop owner.
+     */
+    public function shopAsShopOwner()
+    {
+        return $this->belongsTo('App\Model\Shop', 'owner_shop_id');
+    }
+
+    /**
+     * Get the shop for this user as customer.
+     */
+    public function shopAsCustomer()
+    {
+        return $this->belongsTo('App\Model\Shop', 'customer_shop_id');
+    }
+
+    /**
+     * Get the carts for the shop.
+     */
+    public function carts()
+    {
+        return $this->hasMany('App\Model\Cart');
+    }
+
+    /**
+     * Get the orders for the shop.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Model\Order');
+    }
 }
