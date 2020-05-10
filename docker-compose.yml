@@ -1,6 +1,6 @@
 version: '2'
 services:
-  php:
+  kiahonline:
     build: .
     volumes:
       - ./:/var/www/
@@ -14,7 +14,7 @@ services:
     command: sh -c "php artisan migrate && php-fpm"
   
 
-  nginx:
+  kiahonline-nginx:
     build: 
       context: ./
       dockerfile: ./dockerfile-nginx
@@ -50,4 +50,3 @@ services:
       PMA_ABSOLUTE_URI: http://localhost:3300
 volumes:
   mysqldata:
-  pgsqldata:
