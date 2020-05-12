@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 | and manage system.
 |
 */
+
 Route::group(
     [
         'domain' => '{subdomain}.' . config('app.domain'),
@@ -61,14 +62,9 @@ Route::group(
         Route::get('/', function () {
             return view('welcome');
         });
-        // Route::get('/login', function () {
-        //     return "shop owner login";
-        // });
-        Route::get('/shopOwnerSignUp', 'MainSiteController@signUp')->name('shopOwnerSignUp');
-        Route::post('/shopOwnerSignUp', 'MainSiteController@store');
-        // Route::get('/signUp', function() {
-        //     return view('signUp');
-        // });
+        // Registration Routes...
+        Route::get('register', 'Auth\ShopOwnerRegisterController@showRegistrationForm')->name('register');
+        Route::post('register', 'Auth\ShopOwnerRegisterController@register');
     }
 );
 
@@ -92,7 +88,7 @@ Route::group(
         Route::get('/', function () {
             return view('/shop/index');
         });
-        Route::get('/customerSignUp', function(){
+        Route::get('/customerSignUp', function () {
             return view('/shop/customerSignUp');
         });
 
@@ -110,9 +106,6 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-Route::get('register', 'Auth\ShopOwnerRegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\ShopOwnerRegisterController@register');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\model\User;
+use App\model\Shop;
+
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -47,7 +50,7 @@ class ShopOwnerRegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+    	return view('auth.shopOwnerSignUp');
     }
 
     /**
@@ -58,9 +61,13 @@ class ShopOwnerRegisterController extends Controller
      */
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
+        $data = $request->all();
+        $this->validator($data)->validate();
+        $shop = $this->createShop($data);
+        $data['ownerShopId'] = $shop->id;
+        $user = $this->createShopOwner($data);
+        event($shop);
+        event(new Registered($user));
 
         $this->guard()->login($user);
 
@@ -115,27 +122,43 @@ class ShopOwnerRegisterController extends Controller
             'email' => [
                 'required', 'string', 'email', 'max:255',
                 Rule::unique('users')->where(function ($query) use ($data) {
-                    return $query->where('email', $data['name'])
-                        ->where('owner_shop_id', 1);
+                    return $query->where('email', $data['email'])
+                        ->where('type', User::SHOPOWNERTYPE);
                 }),
             ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'shopName' => [
+                'required', 'string',
+                Rule::unique('shops', 'name'),
+            ],
         ]);
     }
 
+    /**
+     * Create a new shop instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function createShop(array $data)
+    {
+        return Shop::create([
+            'name' => $data['shopName'],
+        ]);
+    }
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function createShopOwner(array $data)
     {
         return User::createShopOwner([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'owner_shop_id' => 0,
+            'owner_shop_id' => $data['ownerShopId'],
             'customer_shop_id' => 0,
         ]);
     }

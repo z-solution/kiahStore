@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     static public function createShopOwner(array $data)
     {
-        $data['type'] = User::CUSTOMERTYPE;
+        $data['type'] = User::SHOPOWNERTYPE;
         return User::create($data);
     }
 }
