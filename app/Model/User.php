@@ -9,13 +9,16 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ADMINTYPE = 0;
+    const SHOPOWNERTYPE = 1;
+    const CUSTOMERTYPE = 2;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'type', 'owner_shop_id', 'customer_shop_id',
     ];
 
     /**
@@ -66,5 +69,11 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany('App\Model\Order');
+    }
+
+    static public function createShopOwner(array $data)
+    {
+        $data['type'] = User::CUSTOMERTYPE;
+        return User::create($data);
     }
 }
