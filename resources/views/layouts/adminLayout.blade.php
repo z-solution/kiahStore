@@ -22,9 +22,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #800000">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #000066">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"> Shop Name </a>
+                <a class="navbar-brand" href="{{ url('/') }}"> Dashboard </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,13 +33,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Shop Owner</a>
+                            <a class="nav-link" href="/product">Product</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="/order">Order</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/customerSignUp">Customer SignUp</a>
+                            <a class="nav-link" href="/coupon">Coupon</a>
                         </li>
 
                     </ul>
@@ -49,9 +49,9 @@
                         <!-- Authentication Links -->
                         
                         @guest
-                            <li class="nav-item">
+                           <!--  <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
+                            </li> -->
                            <!--  @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -86,9 +86,9 @@
         </main>
     </div>
     <!-- Footer -->
-    <footer class="page-footer font-small" style="background-color: #800000">
-      <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/"> ShopName </a>
+    <footer class="page-footer font-small" style="background-color: #000066">
+      <div class="footer-copyright text-dark text-center py-3">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/"> Store Name </a>
       </div>
     </footer>
 </body>
