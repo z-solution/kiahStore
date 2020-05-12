@@ -10886,3 +10886,15 @@ a.text-dark:focus {
   color: white !important;
 }
 
+.footer-placeholder {
+  height: 55px;
+  width: 100%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #800000;
+}
+

@@ -18,6 +18,8 @@ services:
     build: 
       context: ./
       dockerfile: ./dockerfile-nginx
+    volumes:
+      - ./public:/var/www/public
 
   reverse_proxy:
     build: ./nginx
