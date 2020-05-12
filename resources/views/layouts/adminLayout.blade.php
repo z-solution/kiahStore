@@ -91,5 +91,6 @@
         <a href="https://mdbootstrap.com/"> Store Name </a>
       </div>
     </footer>
+    @yield('scripts')
 </body>
 </html>
