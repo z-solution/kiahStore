@@ -110,5 +110,12 @@ Route::group(
         Route::get('login', 'Auth\LoginController@customerOwnerLoginForm')->name('login');
         Route::post('login', 'Auth\LoginController@login');
         Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+        Route::get('/register', function () {
+            return 'shop register get';
+        })->name('register');
+        Route::post('/register', function () {
+            return 'shop register get';
+        });
     }
 );

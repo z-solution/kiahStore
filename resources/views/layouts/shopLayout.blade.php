@@ -51,13 +51,13 @@
 
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('shop-sitelogin', 'zxccasd') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('shop-sitelogin') }}">{{ __('Login') }}</a>
                         </li>
-                        <!--  @if (Route::has('register'))
+                         @if (Route::has('shop-siteregister'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('shop-siteregister') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif -->
+                            @endif
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
