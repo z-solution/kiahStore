@@ -34,7 +34,17 @@ Route::group(
     ],
     function () {
         Route::get('/', function () {
-            return "this will be an admin site";
+            return view('/admin/index');
+        });
+        Route::get('/product', function(){
+            return view('/admin/product');
+        });
+        Route::get('/order', function () {
+            return view('/admin/order');
+        });
+
+        Route::get('/coupon', function () {
+            return view('/admin/coupon');
         });
     }
 );
