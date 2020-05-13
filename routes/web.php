@@ -33,18 +33,9 @@ Route::group(
     ],
     function () {
         Route::get('/', function () {
-            return view('/admin/index');
+            return "admin page ";
         });
-        Route::get('/product', function(){
-            return view('/admin/product');
-        });
-        Route::get('/order', function () {
-            return view('/admin/order');
-        });
-
-        Route::get('/coupon', function () {
-            return view('/admin/coupon');
-        });
+        
     }
 );
 
@@ -79,6 +70,20 @@ Route::group(
         // Route::get('/signUp', function() {
         //     return view('signUp');
         // });
+
+        Route::get('/dashboard', function () {
+            return view('/admin/index');
+        });
+        Route::get('/product', function(){
+            return view('/admin/product');
+        });
+        Route::get('/order', function () {
+            return view('/admin/order');
+        });
+
+        Route::get('/coupon', function () {
+            return view('/admin/coupon');
+        });
     }
 );
 
