@@ -52,13 +52,15 @@ By changing the host, we can test multiple domain/subdomain locally.
 ### How to run Artisan
 
 ```
-docker-compose exec php composer install
+docker-compose exec kiahstore composer install
 
-docker-compose exec php php artisan key:generate
+docker-compose exec kiahstore php artisan key:generate
 
-docker-compose exec php php artisan migrate
+docker-compose exec kiahstore php artisan migrate
 
-docker-compose exec php $yourCommandHere
+docker-compose exec kiahstore php artisan route
+
+docker-compose exec kiahstore $yourCommandHere
 ```
 
 # How to Access PHPMYADMIN
