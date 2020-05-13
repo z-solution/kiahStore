@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="container">
-      <div class="card">
- space-on-couppon
-        <div class="card-header mb-2">Coupon Page</div>
         <table id="example" class="table table-bordered table-sm mt-4">
           <thead class="text-center">
             <tr>
@@ -32,9 +29,8 @@
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
-@endsection 
+@endsection
 @section('scripts')
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
@@ -77,5 +73,5 @@
               });
           });
   </script>
-@endsection
+@endsection 
 

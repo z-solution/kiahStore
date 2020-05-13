@@ -1,24 +1,29 @@
 version: '2'
 services:
-  php:
+  kiahstore:
     build: .
     volumes:
       - ./:/var/www/
+      
     environment:
       - "DB_HOST=mysql"
       - "DB_DATABASE=homestead"
       - "DB_USERNAME=homestead"
       - "DB_PASSWORD=homestead"
       - "REDIS_HOST=redis"
+    command: sh -c "php artisan migrate && php-fpm"
+  
 
-  nginx:
-    image: jguyomard/laravel-nginx:1.13
-    volumes_from:
-      - php
+  kiahstore-nginx:
+    build: 
+      context: ./
+      dockerfile: ./dockerfile-nginx
+
+  reverse_proxy:
+    build: ./nginx
     ports:
       - 80:80
       - 443:443
-
   mysql:
     image: mysql:5.7
     volumes:
@@ -45,4 +50,3 @@ services:
       PMA_ABSOLUTE_URI: http://localhost:3300
 volumes:
   mysqldata:
-  pgsqldata:

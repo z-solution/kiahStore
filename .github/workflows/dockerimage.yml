@@ -29,6 +29,8 @@ jobs:
     - run: eval $(aws ecr get-login --no-include-email --region ap-southeast-1)
     - run: docker build . --file dockerfile --tag 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
     - run: docker push 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
+    - run: docker build . --file dockerfile-nginx --tag 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore-nginx:latest
+    - run: docker push 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore-nginx:latest
 
   deploy:
     needs: build
@@ -41,6 +43,8 @@ jobs:
             eval $(aws ecr get-login --no-include-email --region ap-southeast-1)
             docker image pull 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
             docker service update --image 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest kiahstore --force
+            docker image pull 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore-nginx:latest
+            docker service update --image 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore-nginx:latest kiahstore-nginx --force
           sha8: ${{ github.sha }}
           host: ${{ secrets.HOST }}
           user: ${{ secrets. SSH_USER}}

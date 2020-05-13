@@ -32,17 +32,6 @@
                 <span class="sr-only">Next</span>
               </a>
             <!--/.Controls-->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-thumb" data-slide-to="0" class="active">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(88).jpg" width="100">
-                </li>
-                <li data-target="#carousel-thumb" data-slide-to="1">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(121).jpg" width="100">
-                </li>
-                <li data-target="#carousel-thumb" data-slide-to="2">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(31).jpg" width="100">
-                </li>
-            </ol>
         </div>
         <!--/.Carousel Wrapper-->
 
