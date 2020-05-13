@@ -21,6 +21,15 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function showShopOwnerLoginForm()
+    {
+        return view('auth.shopOwnerLogin');
+    }
+    public function customerOwnerLoginForm()
+    {
+        return view('auth.customerLogin');
+    }
+
     /**
      * Where to redirect users after login.
      *

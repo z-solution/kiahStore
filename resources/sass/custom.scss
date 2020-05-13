@@ -1,5 +1,12 @@
-.nav-item a {
-  color: white !important;
+.navbar-dark .navbar-nav .nav-item {
+  a.nav-link {
+    color: white !important;
+  }
+  &.user-menu {
+    a {
+      color: black;
+    }
+  }
 }
 
 .footer-placeholder {

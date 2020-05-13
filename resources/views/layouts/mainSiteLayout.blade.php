@@ -41,10 +41,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Price</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/shopOwnerSignUp">Shop Owner SignUp</a>
-                        </li>
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -53,26 +49,26 @@
 
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main-sitelogin', app('request')->route('subdomain')) }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('main-sitelogin', app('request')->route('subdomain') ?? '') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('main-siteregister'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main-siteregister', app('request')->route('subdomain') ) }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('main-siteregister', app('request')->route('subdomain') ?? '' ) }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown user-menu">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </div>

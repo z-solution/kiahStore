@@ -65,19 +65,19 @@ Route::group(
 
 
         // Authentication Routes...
-        Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+        Route::get('login', 'Auth\LoginController@showShopOwnerLoginForm')->name('login');
         Route::post('login', 'Auth\LoginController@login');
-        Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
         // Registration Routes...
         Route::get('/register', 'Auth\ShopOwnerRegisterController@showRegistrationForm')->name('register');
         Route::post('/register', 'Auth\ShopOwnerRegisterController@register');
 
-        // Password Reset Routes...
-        Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-        Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+        // // Password Reset Routes...
+        // Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        // Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+        // Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+        // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
         Route::get('/home', 'HomeController@index')->name('home');
     }
@@ -107,10 +107,8 @@ Route::group(
             return view('/shop/customerSignUp');
         });
 
-        // Route::post('/customerSignUp', 'ShopController@store');
-
-        Route::get('/login', function () {
-            return "customer login";
-        });
+        Route::get('login', 'Auth\LoginController@customerOwnerLoginForm')->name('login');
+        Route::post('login', 'Auth\LoginController@login');
+        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     }
 );

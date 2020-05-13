@@ -10882,8 +10882,12 @@ a.text-dark:focus {
   }
 }
 
-.nav-item a {
+.navbar-dark .navbar-nav .nav-item a.nav-link {
   color: white !important;
+}
+
+.navbar-dark .navbar-nav .nav-item.user-menu a {
+  color: black;
 }
 
 .footer-placeholder {
