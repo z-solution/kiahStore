@@ -44,7 +44,7 @@ WORKDIR /var/www
 COPY composer.json /var/www/composer.json
 COPY composer.lock /var/www/composer.lock
 COPY database /var/www/database
-RUN composer install --no-dev --no-scripts
+RUN composer install
 
 COPY . /var/www
 
