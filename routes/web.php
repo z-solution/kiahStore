@@ -64,27 +64,31 @@ Route::group(
             return view('welcome');
         });
 
-        // Route::get('/login', function () {
-        //     return "shop owner login";
-        // });
         // Route::get('/shopOwnerSignUp', 'MainSiteController@signUp')->name('shopOwnerSignUp');
         // Route::post('/shopOwnerSignUp', 'MainSiteController@store');
-        // Route::get('/signUp', function() {
-        //     return view('signUp');
-        // });
+    
 
         Route::get('/home', function () {
-            return view('/admin/index');
+            return view('/shopOwner/index');
         });
         Route::get('/product', function(){
-            return view('/admin/product');
+            return view('/shopOwner/product');
         });
         Route::get('/order', function () {
-            return view('/admin/order');
+            return view('/shopOwner/order');
         });
 
         Route::get('/coupon', function () {
-            return view('/admin/coupon');
+            return view('/shopOwner/coupon');
+        });
+        Route::get('/productDetails', function () {
+            return view('/shopOwner/productDetails');
+        });
+        Route::get('/orderDetails', function () {
+            return view('/shopOwner/orderDetails');
+        });
+        Route::get('/couponCRUD', function () {
+            return view('/shopOwner/couponCRUD');
         });
 
 

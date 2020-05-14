@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #000066">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"> Dashboard </a>
+                <a class="navbar-brand" href="{{ url('/home') }}"> Dashboard </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -86,7 +86,10 @@
         </main>
     </div>
     <!-- Footer -->
-    <footer class="page-footer font-small" style="background-color: #000066">
+    <div class="footer-placeholder">
+
+    </div>
+    <footer class="page-footer font-small" id="shopOwner-footer">
       <div class="footer-copyright text-dark text-center py-3">© 2020 Copyright:
         <a href="https://mdbootstrap.com/"> Store Name </a>
       </div>

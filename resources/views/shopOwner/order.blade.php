@@ -1,56 +1,36 @@
-@extends('layouts.adminLayout')
+@extends('layouts.shopOwnerLayout')
 
 @section('content')
     <div class="container">
-       <div class="card-deck mb-4">
-          <div class="card">
-            <div class="card-header text-center">
-              <b>Total Orders</b>
-            </div>
-            <div class="card-body text-center">
-              <h4 class="card-text">99</h4>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header text-center">
-              <b>Total Sales</b>
-            </div>
-            <div class="card-body text-center">
-              <p class="card-text">MYR</p>
-              <h4 class="card-text">1300</h4>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header text-center">
-              <b>Total Customers</b>
-            </div>
-            <div class="card-body text-center">
-              <h4 class="card-text">96</h4>
-            </div>
-          </div>
-        </div>
-
         <table id="example" class="table table-bordered table-sm mt-4">
-          <thead>
+          <thead class="text-center thead thead-dark">
             <tr>
-              <th>Latest Orders</th>
+              <th>Order list</th>
+              <th>Customer</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td> Order1 </td>
+              <td> <img src="#" class="rounded mx-auto d-block" /> product1 </td>
+              <td>Bjoe Cool</td>
+              <td>MYR 500</td>
+              <td>Pending</td>
+              <td> <a href="/orderDetails" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
             </tr>
             <tr>
-              <td> Order2 </td>
-            </tr>
-            <tr>
-              <td> Order3 </td>
+              <td> <img src="#" class="rounded mx-auto d-block" /> product2 </td>
+              <td>Zahir Boom</td>
+              <td>MYR 400</td>
+              <td>Pending</td>
+              <td> <a href="#" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
             </tr>
           </tbody>
         </table>
-
     </div>
-@endsection 
+@endsection
 @section('scripts')
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
@@ -93,5 +73,5 @@
               });
           });
   </script>
-@endsection
+@endsection 
 
