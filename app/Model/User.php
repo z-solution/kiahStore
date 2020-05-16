@@ -76,4 +76,10 @@ class User extends Authenticatable
         $data['type'] = User::SHOPOWNERTYPE;
         return User::create($data);
     }
+
+    static public function createAdmin(array $data)
+    {
+        $data['type'] = User::ADMINTYPE;
+        return User::create($data);
+    }
 }

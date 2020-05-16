@@ -36,7 +36,11 @@ Route::group(
         Route::get('/', function () {
             return "admin page ";
         });
-        
+
+        // Authentication Routes...
+        Route::get('login', 'Auth\AdminLoginController@AdminOwnerLoginForm')->name('login');
+        Route::post('login', 'Auth\AdminLoginController@login');
+        Route::post('logout', 'Auth\AdminLoginController@logout')->name('logout');
     }
 );
 
