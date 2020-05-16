@@ -34,7 +34,10 @@ Route::group(
     ],
     function () {
         Route::get('/', function () {
-            return "admin page ";
+            return view('admin2.index');
+        });
+        Route::get('/dashboard', function () {
+            return 'Admin Dashboard';
         });
 
         // Authentication Routes...
@@ -117,7 +120,7 @@ Route::group(
             return view('/shop/customerSignUp');
         });
 
-        Route::get('login', 'Auth\CustomerLoginController@customerOwnerLoginForm')->name('login');
+        Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');
         Route::post('logout', 'Auth\CustomerLoginController@logout')->name('logout');
 
