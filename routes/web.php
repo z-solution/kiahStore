@@ -70,26 +70,26 @@ Route::group(
 
         Route::get('/home', function () {
             return view('/shopOwner/index');
-        });
+        })->name('home');
         Route::get('/product', function(){
             return view('/shopOwner/product');
-        });
+        })->name('product');
         Route::get('/order', function () {
             return view('/shopOwner/order');
-        });
+        })->name('order');
 
         Route::get('/coupon', function () {
             return view('/shopOwner/coupon');
-        });
+        })->name('coupon');
         Route::get('/productDetails', function () {
             return view('/shopOwner/productDetails');
-        });
+        })->name('productDetails');
         Route::get('/orderDetails', function () {
             return view('/shopOwner/orderDetails');
-        });
+        })->name('orderDetails');
         Route::get('/couponCRUD', function () {
             return view('/shopOwner/couponCRUD');
-        });
+        })->name('couponCRUD');
 
 
         // Authentication Routes...

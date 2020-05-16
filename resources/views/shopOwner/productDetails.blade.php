@@ -7,10 +7,10 @@
             <div class="card">
               <!-- <div class="card-header bg-secondary text-light">Product details Page</div> -->
                 <div class="card-body">
-                    <form method="POST" action="/customerSignUp" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('main-siteproductDetails', app('request')->route('subdomain') ?? '')}}" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group mb-4">
-                            <img src="#" class="rounded mx-auto d-block" style="width: 60px; height: 60px;" />
+                            <img src="#" class="rounded mx-auto d-block" id="product-image" />
                         </div>
                          <div class="form-group">
                             <label for="user-name">Product Name</label>

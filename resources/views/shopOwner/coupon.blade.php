@@ -20,7 +20,7 @@
               <td>Bjoe Cool</td>
               <td>MYR 500</td>
               <td>Pending</td>
-              <td> <a href="/couponCRUD" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
+              <td> <a href="{{route('main-sitecouponCRUD', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
             </tr>
             <tr>
               <td> <img src="#" class="rounded mx-auto d-block" /> product2 </td>
