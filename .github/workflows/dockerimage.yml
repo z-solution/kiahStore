@@ -27,6 +27,10 @@ jobs:
     - name: get aws
       uses: chrislennon/action-aws-cli@v1.1
     - run: eval $(aws ecr get-login --no-include-email --region ap-southeast-1)
+    - name: npm install, build prod
+      run: |
+        npm i
+        npm run prod
     - run: docker build . --file dockerfile --tag 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
     - run: docker push 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore:latest
     - run: docker build . --file dockerfile-nginx --tag 972869063867.dkr.ecr.ap-southeast-1.amazonaws.com/kiahstore-nginx:latest

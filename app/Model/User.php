@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -74,6 +74,12 @@ class User extends Authenticatable
     static public function createShopOwner(array $data)
     {
         $data['type'] = User::SHOPOWNERTYPE;
+        return User::create($data);
+    }
+
+    static public function createCustomer(array $data)
+    {
+        $data['type'] = User::CUSTOMERTYPE;
         return User::create($data);
     }
 }

@@ -11,7 +11,7 @@ services:
       - "DB_USERNAME=homestead"
       - "DB_PASSWORD=homestead"
       - "REDIS_HOST=redis"
-    command: sh -c "php artisan migrate && php-fpm"
+    command: sh -c "composer install && php artisan migrate && php-fpm"
   
 
   kiahstore-nginx:

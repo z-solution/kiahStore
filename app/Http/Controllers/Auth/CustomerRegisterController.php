@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Model\User;
-use App\Model\Shop;
+use App\model\User;
+use App\model\Shop;
 
 
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -17,7 +17,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class ShopOwnerRegisterController extends Controller
+class CustomerRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +34,13 @@ class ShopOwnerRegisterController extends Controller
     use RegistersUsers;
 
     /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -48,9 +55,9 @@ class ShopOwnerRegisterController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm(Request $request)
     {
-    	return view('auth.shopOwnerSignUp');
+        return view('auth.customerSignUp');
     }
 
     /**
@@ -62,11 +69,10 @@ class ShopOwnerRegisterController extends Controller
     public function register(Request $request)
     {
         $data = $request->all();
+        $shop = $request->middlewareShop;
+        $data['customerShopId'] = $shop->id;
         $this->validator($data)->validate();
-        $shop = $this->createShop($data);
-        $data['ownerShopId'] = $shop->id;
-        $user = $this->createShopOwner($data);
-        event($shop);
+        $user = $this->createCustomer($data);
         event(new Registered($user));
 
         $this->guard()->login($user);
@@ -74,12 +80,19 @@ class ShopOwnerRegisterController extends Controller
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
-
         return $request->wantsJson()
             ? new Response('', 201)
             : redirect($this->redirectPath());
     }
 
+    public function redirectPath()
+    {
+        if (method_exists($this, 'redirectTo')) {
+            return $this->redirectTo();
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+    }
     /**
      * Get the guard to be used during registration.
      *
@@ -102,12 +115,6 @@ class ShopOwnerRegisterController extends Controller
         //
     }
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Get a validator for an incoming registration request.
@@ -123,43 +130,28 @@ class ShopOwnerRegisterController extends Controller
                 'required', 'string', 'email', 'max:255',
                 Rule::unique('users')->where(function ($query) use ($data) {
                     return $query->where('email', $data['email'])
-                        ->where('type', User::SHOPOWNERTYPE);
+                        ->where('type', User::CUSTOMERTYPE)
+                        ->where('customer_shop_id', $data['customerShopId']);
                 }),
             ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'shopName' => [
-                'required', 'string',
-                Rule::unique('shops', 'name'),
-            ],
         ]);
     }
 
-    /**
-     * Create a new shop instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function createShop(array $data)
-    {
-        return Shop::create([
-            'name' => $data['shopName'],
-        ]);
-    }
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function createShopOwner(array $data)
+    protected function createCustomer(array $data)
     {
-        return User::createShopOwner([
+        return User::createCustomer([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'owner_shop_id' => $data['ownerShopId'],
-            'customer_shop_id' => 0,
+            'owner_shop_id' => 0,
+            'customer_shop_id' => $data['customerShopId'],
         ]);
     }
 }

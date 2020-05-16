@@ -42,7 +42,7 @@ RUN apk add --no-cache --virtual .build-deps \
 WORKDIR /var/www
 
 COPY composer.json /var/www/composer.json
-COPY composer.lock /var/www/composer.lock
+# COPY composer.lock /var/www/composer.lock
 COPY database /var/www/database
 RUN composer install --no-dev --no-scripts
 
