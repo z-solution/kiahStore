@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\model\Shop;
+
 use Closure;
 
 class IsShopSite
@@ -17,7 +19,12 @@ class IsShopSite
     {
         $domain = $request->getHttpHost();
         $adomain = explode('.', $domain);
-        $subdomains = array_slice($adomain, 0, count($adomain) - 2 );
-        return $next($request);
+        $subdomains = array_slice($adomain, 0, count($adomain) == 2 ? -1 : -2);
+        $shop = Shop::where('name', $subdomains[0])->first();
+        if ($shop != null) {
+            $request->merge(['middlewareShop' => $shop]);
+            return $next($request);
+        }
+        abort(404);
     }
 }
