@@ -1,4 +1,4 @@
-@extends('layouts.adminLayout')
+@extends('layouts.shopOwnerLayout')
 
 @section('content')
     <div class="container">
@@ -31,7 +31,7 @@
         </div>
 
         <table id="example" class="table table-bordered table-sm mt-4">
-          <thead>
+          <thead class="thead thead-dark">
             <tr>
               <th>Latest Orders</th>
             </tr>

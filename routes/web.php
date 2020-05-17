@@ -65,18 +65,36 @@ Route::group(
         });
 
         Route::get('/home', function () {
-            return view('/admin/index');
-        });
+            return view('/shopOwner/index');
+        })->name('home');
+
         Route::get('/product', function(){
-            return view('/admin/product');
-        });
+            return view('/shopOwner/product');
+        })->name('product');
+
         Route::get('/order', function () {
-            return view('/admin/order');
-        });
+            return view('/shopOwner/order');
+        })->name('order');
 
         Route::get('/coupon', function () {
-            return view('/admin/coupon');
-        });
+            return view('/shopOwner/coupon');
+        })->name('coupon');
+
+        Route::get('/productDetails', function () {
+            return view('/shopOwner/productDetails');
+        })->name('productDetails');
+
+        Route::get('/orderDetails', function () {
+            return view('/shopOwner/orderDetails');
+        })->name('orderDetails');
+
+        Route::get('/couponCRUD', function () {
+            return view('/shopOwner/couponCRUD');
+        })->name('couponCRUD');
+
+        Route::get('/addProduct', function () {
+            return view('/shopOwner/addProduct');
+        })->name('addProduct');
 
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');

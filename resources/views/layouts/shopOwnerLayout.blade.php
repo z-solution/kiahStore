@@ -22,9 +22,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #000066">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" id="navbar-color">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"> Dashboard </a>
+                <a class="navbar-brand" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}"> Dashboard </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,13 +33,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/product">Product</a>
+                            <a class="nav-link" href="{{ route('main-siteproduct', app('request')->route('subdomain') ?? '')}}">Product</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/order">Order</a>
+                            <a class="nav-link" href="{{ route('main-siteorder', app('request')->route('subdomain') ?? '')}}">Order</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/coupon">Coupon</a>
+                            <a class="nav-link" href="{{ route('main-sitecoupon', app('request')->route('subdomain') ?? '')}}">Coupon</a>
                         </li>
 
                     </ul>
@@ -49,14 +49,7 @@
                         <!-- Authentication Links -->
                         
                         @guest
-                           <!--  <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li> -->
-                           <!--  @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif -->
+                           
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -86,6 +79,9 @@
         </main>
     </div>
     <!-- Footer -->
+    <div class="footer-placeholder">
+
+    </div>
     <footer class="page-footer font-small" style="background-color: #000066">
       <div class="footer-copyright text-dark text-center py-3">© 2020 Copyright:
         <a href="https://mdbootstrap.com/"> Store Name </a>

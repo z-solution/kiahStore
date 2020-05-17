@@ -1,11 +1,9 @@
-@extends('layouts.adminLayout')
+@extends('layouts.shopOwnerLayout')
 
 @section('content')
     <div class="container">
-      <div class="card">
-        <div class="card-header mb-2">Coupon Page</div>
         <table id="example" class="table table-bordered table-sm mt-4">
-          <thead class="text-center">
+          <thead class="text-center thead thead-dark">
             <tr>
               <th>Order list</th>
               <th>Customer</th>
@@ -20,7 +18,7 @@
               <td>Bjoe Cool</td>
               <td>MYR 500</td>
               <td>Pending</td>
-              <td> <a href="#" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
+              <td> <a href="{{route('main-siteorderDetails', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
             </tr>
             <tr>
               <td> <img src="#" class="rounded mx-auto d-block" /> product2 </td>
@@ -31,9 +29,8 @@
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
-@endsection 
+@endsection
 @section('scripts')
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
@@ -76,5 +73,5 @@
               });
           });
   </script>
-@endsection
+@endsection 
 

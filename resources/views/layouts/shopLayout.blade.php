@@ -87,7 +87,10 @@
         </main>
     </div>
     <!-- Footer -->
-    <footer class="page-footer font-small" style="background-color: #800000">
+    <div class="footer-placeholder">
+
+    </div>
+    <footer class="page-footer font-small">
         <div class="footer-copyright text-center py-3">© 2020 Copyright:
             <a href="https://mdbootstrap.com/"> ShopName </a>
         </div>
