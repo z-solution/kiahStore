@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class CustomerLoginController extends Controller
 {
@@ -19,8 +21,16 @@ class CustomerLoginController extends Controller
     */
 
     use AuthenticatesUsers;
+      
+    protected function credentials(Request $request)
+    {
+        $data = $request->only($this->username(), 'password');
+        $data['type'] = User::CUSTOMERTYPE;
+        $data['customer_shop_id'] = $request->middlewareShop->id;
+        return $data;
+    }
 
-    public function customerOwnerLoginForm()
+    public function customerLoginForm()
     {
         return view('auth.customerLogin');
     }
