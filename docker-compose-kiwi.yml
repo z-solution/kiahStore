@@ -1,5 +1,4 @@
 version: '2'
-
 services:
     db:
         container_name: kiwi_db
@@ -14,7 +13,6 @@ services:
             MYSQL_PASSWORD: kiwi
             MYSQL_CHARSET: utf8mb4
             MYSQL_COLLATION: utf8mb4_unicode_ci
-
     web:
         container_name: kiwi_web
         depends_on:
@@ -32,7 +30,6 @@ services:
             KIWI_DB_NAME: kiwi
             KIWI_DB_USER: kiwi
             KIWI_DB_PASSWORD: kiwi
-
 volumes:
     db_data:
     uploads:

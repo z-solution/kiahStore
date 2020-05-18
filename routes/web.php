@@ -34,15 +34,14 @@ Route::group(
     ],
     function () {
         Route::get('/', function () {
-            return view('admin2.index');
-        });
+            return view('admin.index');
+        })->name('login');
         Route::get('/dashboard', function () {
-            return 'Admin Dashboard';
-        });
+            return view('admin.dashboard');
+        })->middleware('adminAuth');
 
         // Authentication Routes...
-        Route::get('login', 'Auth\AdminLoginController@AdminOwnerLoginForm')->name('login');
-        Route::post('login', 'Auth\AdminLoginController@login');
+        Route::post('/', 'Auth\AdminLoginController@login');
         Route::post('logout', 'Auth\AdminLoginController@logout')->name('logout');
     }
 );
@@ -73,35 +72,35 @@ Route::group(
 
         Route::get('/home', function () {
             return view('/shopOwner/index');
-        })->name('home');
+        })->name('home')->middleware('shopOwnerAuth');
 
         Route::get('/product', function(){
             return view('/shopOwner/product');
-        })->name('product');
+        })->name('product')->middleware('shopOwnerAuth');
 
         Route::get('/order', function () {
             return view('/shopOwner/order');
-        })->name('order');
+        })->name('order')->middleware('shopOwnerAuth');
 
         Route::get('/coupon', function () {
             return view('/shopOwner/coupon');
-        })->name('coupon');
+        })->name('coupon')->middleware('shopOwnerAuth');
 
         Route::get('/productDetails', function () {
             return view('/shopOwner/productDetails');
-        })->name('productDetails');
+        })->name('productDetails')->middleware('shopOwnerAuth');
 
         Route::get('/orderDetails', function () {
             return view('/shopOwner/orderDetails');
-        })->name('orderDetails');
+        })->name('orderDetails')->middleware('shopOwnerAuth');
 
         Route::get('/couponCRUD', function () {
             return view('/shopOwner/couponCRUD');
-        })->name('couponCRUD');
+        })->name('couponCRUD')->middleware('shopOwnerAuth');
 
         Route::get('/addProduct', function () {
             return view('/shopOwner/addProduct');
-        })->name('addProduct');
+        })->name('addProduct')->middleware('shopOwnerAuth');
 
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');
@@ -137,6 +136,9 @@ Route::group(
         Route::get('/customerSignUp', function () {
             return view('/shop/customerSignUp');
         });
+        Route::get('/profile', function() {
+            return 'Customer profile';
+        })->name('customerProfile')->middleware('customerAuth');
 
         Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');
