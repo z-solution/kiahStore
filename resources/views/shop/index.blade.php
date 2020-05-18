@@ -39,38 +39,40 @@
           <!-- Grid row -->
             <div class="row">
                 <!-- Grid column -->
-                <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
-                  <!-- Card -->
-                    <div class="card align-items-center">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                          <img src="{{ asset('img/blue.jpg') }}" class="card-img-top" alt="">
-                          <a>
-                            <div class="mask rgba-white-slight"></div>
-                          </a>
-                        </div>
-                        <!-- Card image -->
-                        <!-- Card content -->
-                        <div class="card-body text-center">
-                          <!-- Category & Title -->
-                          <a href="" class="grey-text">
-                            <h5>Shirt</h5>
-                          </a>
-                          <h5>
-                            <strong>
-                              <a href="" class="dark-grey-text">Denim shirt
-                                <span class="badge badge-pill badge-danger">NEW</span>
-                              </a>
-                            </strong>
-                          </h5>
-                          <h4 class="font-weight-bold blue-text">
-                            <strong>120$</strong>
-                          </h4>
-                        </div>
-                        <!-- Card content -->
-                    </div>
-                  <!-- Card -->
-                </div>
+                <a href="/productDetails">
+                  <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+                    <!-- Card -->
+                      <div class="card align-items-center">
+                          <!-- Card image -->
+                          <div class="view overlay">
+                            <img src="{{ asset('img/blue.jpg') }}" class="card-img-top" alt="">
+                            <a>
+                              <div class="mask rgba-white-slight"></div>
+                            </a>
+                          </div>
+                          <!-- Card image -->
+                          <!-- Card content -->
+                          <div class="card-body text-center">
+                            <!-- Category & Title -->
+                            <a href="" class="grey-text">
+                              <h5>Shirt</h5>
+                            </a>
+                            <h5>
+                              <strong>
+                                <a href="/productDetails" class="dark-grey-text">Denim shirt
+                                  <span class="badge badge-pill badge-danger">NEW</span>
+                                </a>
+                              </strong>
+                            </h5>
+                            <h4 class="font-weight-bold blue-text">
+                              <strong>120$</strong>
+                            </h4>
+                          </div>
+                          <!-- Card content -->
+                      </div>
+                    <!-- Card -->
+                  </div>
+                </a>
                 <!-- Grid column -->
 
                 <!-- Grid column -->

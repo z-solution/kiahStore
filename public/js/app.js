@@ -49940,8 +49940,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/muhammadazizolaminuddin/Documents/code/kiahStore/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/muhammadazizolaminuddin/Documents/code/kiahStore/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/zahirzohair/kiahStore/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/zahirzohair/kiahStore/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

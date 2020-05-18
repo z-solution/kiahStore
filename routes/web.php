@@ -127,9 +127,11 @@ Route::group(
         Route::get('/', function () {
             return view('/shop/index');
         });
-        Route::get('/customerSignUp', function () {
-            return view('/shop/customerSignUp');
+
+        Route::get('/productDetails', function () {
+            return view('/shop/productDetails');
         });
+        
 
         Route::get('login', 'Auth\CustomerLoginController@customerOwnerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');

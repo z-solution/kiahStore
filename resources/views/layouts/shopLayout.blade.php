@@ -40,10 +40,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/customerSignUp">Customer SignUp</a>
-                        </li>
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -95,6 +91,7 @@
             <a href="https://mdbootstrap.com/"> ShopName </a>
         </div>
     </footer>
+    @yield('scripts')
 </body>
 
 </html>
