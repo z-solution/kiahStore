@@ -40,7 +40,7 @@ class ShopOwnerRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('shopOwnerGuest');
     }
 
     /**
@@ -107,7 +107,7 @@ class ShopOwnerRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::SHOPOWNERHOME;
 
     /**
      * Get a validator for an incoming registration request.

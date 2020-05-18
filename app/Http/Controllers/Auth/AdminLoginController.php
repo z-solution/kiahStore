@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminLoginController extends Controller
 {
@@ -21,7 +23,7 @@ class AdminLoginController extends Controller
     */
 
     use AuthenticatesUsers;
-    
+
     protected function credentials(Request $request)
     {
         $data = $request->only($this->username(), 'password');
@@ -32,7 +34,7 @@ class AdminLoginController extends Controller
 
     public function adminLoginForm()
     {
-        return view('auth.adminLogin');
+        return view('admin.index');
     }
 
     /**
@@ -40,7 +42,7 @@ class AdminLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = RouteServiceProvider::ADMINHOME;
 
     /**
      * Create a new controller instance.
@@ -49,6 +51,6 @@ class AdminLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('adminGuest')->except('logout');
     }
 }

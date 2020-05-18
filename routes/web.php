@@ -33,12 +33,10 @@ Route::group(
         ],
     ],
     function () {
-        Route::get('/', function () {
-            return view('admin.index');
-        })->name('login');
+        Route::get('/', 'Auth\AdminLoginController@adminLoginForm')->name('login');
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
-        })->middleware('adminAuth');
+        })->middleware('adminAuth')->name('dashboard');
 
         // Authentication Routes...
         Route::post('/', 'Auth\AdminLoginController@login');
@@ -74,7 +72,7 @@ Route::group(
             return view('/shopOwner/index');
         })->name('home')->middleware('shopOwnerAuth');
 
-        Route::get('/product', function(){
+        Route::get('/product', function () {
             return view('/shopOwner/product');
         })->name('product')->middleware('shopOwnerAuth');
 
@@ -125,7 +123,7 @@ Route::group(
 
 Route::group(
     [
-        'middleware' => 'shop-site',
+        'middleware' => 'shopSite',
         'as' => 'shop-site'
     ],
     function () {
@@ -136,7 +134,7 @@ Route::group(
         Route::get('/customerSignUp', function () {
             return view('/shop/customerSignUp');
         });
-        Route::get('/profile', function() {
+        Route::get('/profile', function () {
             return 'Customer profile';
         })->name('customerProfile')->middleware('customerAuth');
 
