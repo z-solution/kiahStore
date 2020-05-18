@@ -18,6 +18,8 @@ services:
     build: 
       context: ./
       dockerfile: ./dockerfile-nginx
+    depends_on:
+        - "kiahstore"
     volumes:
       - ./public:/var/www/public
 
@@ -26,6 +28,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    depends_on:
+      - "kiahstore-nginx"
   mysql:
     image: mysql:5.7
     volumes:

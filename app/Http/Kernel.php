@@ -54,17 +54,21 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'adminAuth' => \App\Http\Middleware\AdminAuthenticate::class,
+        'shopOwnerAuth' => \App\Http\Middleware\ShopOwnerAuthenticate::class,
+        'customerAuth' => \App\Http\Middleware\CustomerAuthenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'shopOwnerGuest' => \App\Http\Middleware\ShopOwnerRedirectIfAuthenticated::class,
+        'customerGuest' => \App\Http\Middleware\CustomerRedirectIfAuthenticated::class,
+        'adminGuest' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'main-site' => IsMainSite::class,
-        'shop-site' => IsShopSite::class,
+        'mainSite' => IsMainSite::class,
+        'shopSite' => IsShopSite::class,
     ];
 }

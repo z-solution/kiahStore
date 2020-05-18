@@ -40,7 +40,7 @@ class ShopOwnerLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::SHOPOWNERHOME;
 
     /**
      * Create a new controller instance.
@@ -49,6 +49,6 @@ class ShopOwnerLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('shopOwnerGuest')->except('logout');
     }
 }
