@@ -87,4 +87,16 @@ class User extends Authenticatable
         $data['type'] = User::CUSTOMERTYPE;
         return User::create($data);
     }
+
+    static public function countShopOwner() {
+        return User::where('type', User::SHOPOWNERTYPE)->count();
+    }
+    
+    static public function countAdmin() {
+        return User::where('type', User::ADMINTYPE)->count();
+    }
+
+    static public function countCustomer() {
+        return User::where('type', User::CUSTOMERTYPE)->count();
+    }
 }

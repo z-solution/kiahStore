@@ -34,9 +34,19 @@ Route::group(
     ],
     function () {
         Route::get('/', 'Auth\AdminLoginController@adminLoginForm')->name('login');
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->middleware('adminAuth')->name('dashboard');
+        Route::get('/dashboard', 'AdminSiteController@dashboard')->middleware('adminAuth')->name('dashboard');
+
+        Route::get('/shop-owner', function () {
+            return 'page shop owner listing';
+        })->middleware('adminAuth')->name('shop-owner');
+        
+        Route::get('/user', function () {
+            return 'page user listing';
+        })->middleware('adminAuth')->name('user');
+        
+        Route::get('/setting', function () {
+            return 'page setting listing';
+        })->middleware('adminAuth')->name('setting');
 
         // Authentication Routes...
         Route::post('/', 'Auth\AdminLoginController@login');
