@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\shopOwner;
+use App\Model\Order;
+use App\Model\User;
+use Auth;
 use Hash;
 
-class MainSiteController extends Controller
+class ShopOwnerController extends Controller
 {
-    public function signUp(){
-    	return view('shopOwnerSignUp');
+    public function index(){
+
+        $orderCount = Order::where('shop_id', Auth::user()->id );
+        $customerCount = User::where('customer_shop_id', Auth::user()->owner_shop_id );
+        $salesCount = Order::where('shop_id', Auth::user()->id);
+    	return view('shopOwner.index', compact(['orderCount', 'customerCount', 'salesCount']));
     }
 
 
 	/**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

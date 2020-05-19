@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |-------------------------------------
-| Main Site Admin Route Group
+| Main Site Admin Route GroupΩ
 |-------------------------------------
 |
 | This will group all the main site admin. Login, manage user 
@@ -78,9 +78,11 @@ Route::group(
             return view('welcome');
         });
 
-        Route::get('/home', function () {
-            return view('/shopOwner/index');
-        })->name('home')->middleware('shopOwnerAuth');
+        Route::get('/home', 'ShopOwnerController@index')->middleware('shopOwnerAuth')->name('home');
+
+        // Route::get('/home', function () {
+        //     return view('/shopOwner/index');
+        // })->name('home')->middleware('shopOwnerAuth');
 
         Route::get('/product', function () {
             return view('/shopOwner/product');
