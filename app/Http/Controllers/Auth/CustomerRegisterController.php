@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\model\User;
-use App\model\Shop;
+use App\Model\User;
+use App\Model\Shop;
 
 
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -47,7 +47,7 @@ class CustomerRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('customerGuest');
     }
 
     /**

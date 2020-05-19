@@ -7,8 +7,9 @@ use App\Model\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CustomerLoginController extends Controller
+class AdminLoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -22,18 +23,18 @@ class CustomerLoginController extends Controller
     */
 
     use AuthenticatesUsers;
-      
+
     protected function credentials(Request $request)
     {
         $data = $request->only($this->username(), 'password');
-        $data['type'] = User::CUSTOMERTYPE;
-        $data['customer_shop_id'] = $request->middlewareShop->id;
+        $data['type'] = User::ADMINTYPE;
         return $data;
     }
 
-    public function customerLoginForm()
+
+    public function adminLoginForm()
     {
-        return view('auth.customerLogin');
+        return view('admin.index');
     }
 
     /**
@@ -41,7 +42,7 @@ class CustomerLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::CUSTOMERHOME;
+    protected $redirectTo = RouteServiceProvider::ADMINHOME;
 
     /**
      * Create a new controller instance.
@@ -50,6 +51,6 @@ class CustomerLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('customerGuest')->except('logout');
+        $this->middleware('adminGuest')->except('logout');
     }
 }

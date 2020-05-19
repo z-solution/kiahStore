@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class ShopOwnerLoginController extends Controller
 {
@@ -20,6 +22,13 @@ class ShopOwnerLoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    
+    protected function credentials(Request $request)
+    {
+        $data = $request->only($this->username(), 'password');
+        $data['type'] = User::SHOPOWNERTYPE;
+        return $data;
+    }
 
     public function showShopOwnerLoginForm()
     {
@@ -31,7 +40,7 @@ class ShopOwnerLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::SHOPOWNERHOME;
 
     /**
      * Create a new controller instance.
@@ -40,6 +49,6 @@ class ShopOwnerLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('shopOwnerGuest')->except('logout');
     }
 }

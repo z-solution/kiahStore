@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\model\Shop;
+use App\Model\Shop;
 
 use Closure;
 
