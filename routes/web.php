@@ -33,17 +33,14 @@ Route::group(
         ],
     ],
     function () {
-        Route::get('/', 'Auth\AdminLoginController@adminLoginForm')->name('login');
-        Route::get('/dashboard', 'AdminSiteController@dashboard')->middleware('adminAuth')->name('dashboard');
+        Route::get('/', 'Auth\AdminLoginController@getAdminLoginForm')->name('login');
+        Route::get('/dashboard', 'AdminSiteController@getDashboard')->middleware('adminAuth')->name('dashboard');
+        Route::get('/shop-owner', 'AdminSiteController@getShowOwner')->middleware('adminAuth')->name('shop-owner');
 
-        Route::get('/shop-owner', function () {
-            return 'page shop owner listing';
-        })->middleware('adminAuth')->name('shop-owner');
-        
         Route::get('/user', function () {
             return 'page user listing';
         })->middleware('adminAuth')->name('user');
-        
+
         Route::get('/setting', function () {
             return 'page setting listing';
         })->middleware('adminAuth')->name('setting');
@@ -146,11 +143,11 @@ Route::group(
             return view('/shop/productDetails');
         });
 
-    
+
         Route::get('/profile', function () {
             return 'Customer profile';
         })->name('customerProfile')->middleware('customerAuth');
-        
+
 
         Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');

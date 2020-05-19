@@ -20,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -84,7 +85,7 @@
 
     </div>
     <footer class="page-footer font-small" style="background-color: #000066">
-        <div class="footer-copyright text-dark text-center py-3">© 2020 Copyright:
+        <div class="footer-copyright text-white text-center py-3">© 2020 Copyright:
             Kiah Store
         </div>
     </footer>

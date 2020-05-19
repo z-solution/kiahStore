@@ -10925,3 +10925,19 @@ html {
   text-align: center;
 }
 
+.container.shop-owner table th:nth-child(1) {
+  width: 30px;
+}
+
+.container.shop-owner table th:nth-child(3) {
+  width: 100px;
+}
+
+.container.shop-owner table th:nth-child(4) {
+  width: 110px;
+}
+
+.container.shop-owner table th:nth-child(5) {
+  width: 140px;
+}
+
