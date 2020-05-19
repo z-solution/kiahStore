@@ -141,12 +141,16 @@ Route::group(
         Route::get('/', function () {
             return view('/shop/index');
         });
-        Route::get('/customerSignUp', function () {
-            return view('/shop/customerSignUp');
+
+        Route::get('/productDetails', function () {
+            return view('/shop/productDetails');
         });
+
+    
         Route::get('/profile', function () {
             return 'Customer profile';
         })->name('customerProfile')->middleware('customerAuth');
+        
 
         Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');
