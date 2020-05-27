@@ -32,7 +32,8 @@
                   <td>Unavailable</td>
                   @endif
                 <td>
-                  <a href="{{route('main-siteProductDetails/'.$product->id, app('request')->route('subdomain') ?? '' )}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a>
+
+                  <a href="{{route('main-siteproductDetails',[ app('request')->route('subdomain') ?? '', $product->id ])}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a>
 
                     <form method="POST" class="delete_form" action="#">
                     {{csrf_field()}}
@@ -115,7 +116,11 @@
                       return false;
                   }
               });
+              setTimeout(function(){
+                $("div.alert").remove();
+            }, 3000 ); // 3 secs
           });
+
   </script>
 @endsection 
 

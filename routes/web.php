@@ -78,21 +78,14 @@ Route::group(
             return view('welcome');
         });
 
-        // Route::get('/home', function () {
-        //     return view('/shopOwner/index');
-        // })->name('home')->middleware('shopOwnerAuth');
+    
         Route::get('/home', 'ShopOwnerController@index')->middleware('shopOwnerAuth')->name('home');
-
-        // Route::get('/product', function () {
-        //     return view('/shopOwner/product');
-        // })->name('product')->middleware('shopOwnerAuth');
         
         Route::get('/product', 'ShopOwnerController@display')->middleware('shopOwnerAuth')->name('product');
 
-        // Route::get('/productDetails', function () {
-        //     return view('/shopOwner/productDetails');
-        // })->name('productDetails')->middleware('shopOwnerAuth');
         Route::get('/productDetails/{id}', 'ShopOwnerController@edit')->middleware('shopOwnerAuth')->name('productDetails');
+
+        Route::patch('/productDetails/{id}', 'ShopOwnerController@update')->middleware('shopOwnerAuth')->name('productDetails');
 
 
         Route::get('/order', function () {
@@ -148,13 +141,16 @@ Route::group(
     ],
     function () {
         // Shop frontend
-        Route::get('/', function () {
-            return view('/shop/index');
-        });
+        // Route::get('/', function () {
+        //     return view('/shop/index');
+        // });
+        Route::get('/', 'ShopSiteController@index')->name('home');
 
-        Route::get('/productDetails', function () {
-            return view('/shop/productDetails');
-        });
+        // Route::get('/itemDetails', function () {
+        //     return view('/shop/productDetails');
+        // });
+
+        Route::get('/itemDetails/{id}', 'ShopSiteController@displayDetails')->name('itemDetails');
 
     
         Route::get('/profile', function () {

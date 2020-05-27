@@ -11,7 +11,7 @@ class InventoryVariant extends Model
      */
     public function inventory()
     {
-        return $this->belongsTo('App\Model\Inventory1');
+        return $this->belongsTo('App\Model\Inventory');
     }
 
     /**

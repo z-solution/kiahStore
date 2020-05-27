@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Order;
 use App\Model\User;
-use App\Model\Inventory1;
+use App\Model\Inventory;
 use App\Model\Shop;
 use Auth;
 use Hash;
@@ -21,7 +21,7 @@ class ShopOwnerController extends Controller
     }
 
     public function display(){
-        $products = Inventory1::all();
+        $products = Inventory::all();
 
         return view('shopOwner.product', compact('products'));
     }
@@ -42,7 +42,7 @@ class ShopOwnerController extends Controller
             'dimension' => 'required'
         ]);
 
-        $inventory = new Inventory1();
+        $inventory = new Inventory();
         $inventory->shop_id = Auth::user()->owner_shop_id;
         $inventory->name = request('product_name');
         $inventory->description = request('description');
@@ -65,31 +65,23 @@ class ShopOwnerController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name'            => 'required',
-            'name'            => 'required',
-            'summary'         => 'required',
-            'actual_time_out' => 'required',
-            'actual_time_in'  => 'required',
-            'mileage'         => 'required',
-            'items_removed'   => 'required',
-            'notes'           => 'required',
+            'product_name'    => 'required',
+            'description'     => 'required',
+            'price'           => 'required',
+            'quantity'        => 'required',
+            'status'         => 'required',
         ]);
-        $log = Log::find($id);
-        $log->car->name         = $request->get('name');
-        $log->user->name        = $request->get('name');
-        $log->summary           = $request->get('summary');
-        $log->start_date        = $request->get('start_date');
-        $log->end_date          = $request->get('end_date');
-        $log->location          = $request->get('location');
-        $log->actual_time_out   = $request->get('actual_time_out');
-        $log->actual_time_in    = $request->get('actual_time_in');
-        $log->mileage           = $request->get('mileage');
-        $log->gas_refill_needed = $request->get('gas_refill_needed');
-        $log->items_removed     = $request->get('items_removed');
-        $log->notes             = $request->get('notes');
 
-        $log->save();
-        return redirect('/checkinoutLog')->with('success', 'Data updated');
+        $product = Inventory::find($id);
+        
+        $product->name          = $request->get('product_name');
+        $product->description   = $request->get('description');
+        $product->price         = $request->get('price');
+        $product->quantity      = $request->get('quantity');
+        $product->status        = $request->get('status');
+
+        $product->save();
+        return redirect('/product')->with('success', 'Data updated');
     }
 }
 

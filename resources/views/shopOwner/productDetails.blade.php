@@ -7,7 +7,7 @@
             <div class="card">
               <!-- <div class="card-header bg-secondary text-light">Product details Page</div> -->
                 <div class="card-body">
-                    <form method="POST" action="{{route('main-siteproductDetails', app('request')->route('subdomain') ?? '')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('main-siteproductDetails',[ app('request')->route('subdomain') ?? '', $product->id ])}}" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="PATCH" />
                         
@@ -16,23 +16,23 @@
                         </div>
                          <div class="form-group">
                             <label for="user-name">Product Name</label>
-                            <input type="text" class="form-control" name="product_name" value="">
+                            <input type="text" class="form-control" name="product_name" value="{{$product->name}}">
                           </div>
                           <div class="form-group">
                             <label for="user-email">Description</label>
-                            <input type="text" class="form-control" name="description" value="">
+                            <input type="text" class="form-control" name="description" value="{{$product->description}}">
                           </div>
                           <div class="form-group">
                             <label for="user-email">Price</label>
-                            <input type="number" class="form-control" name="price" value="">
+                            <input type="number" class="form-control" name="price" value="{{$product->price}}">
                           </div>
                           <div class="form-group">
                             <label for="user-email">Quantity</label>
-                            <input type="number" class="form-control" name="quantity" value="">
+                            <input type="number" class="form-control" name="quantity" value="{{$product->quantity}}">
                           </div>
                           <div class="form-group">
                             <label for="user-email">Status</label>
-                            <input type="number" class="form-control" name="status" value="">
+                            <input type="number" class="form-control" name="status" value="{{$product->status}}">
                           </div>
                           <!-- <div class="form-group">
                             <label for="user-password">SKU</label>
