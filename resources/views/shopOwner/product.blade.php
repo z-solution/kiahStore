@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
       <div class="card">
+            @if(\Session::has('success'))
+                <div class="alert alert-success">
+                   <p>{{\Session::get('success') }}</p>
+                </div>
+            @endif
           <div class="card-header mb-2">Product Page
             <a href="{{route('main-siteaddProduct', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-right">Add New Product</a>
           </div>
@@ -16,12 +21,18 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($products as $product)
               <tr>
-                <td> <img src="#" class="rounded mx-auto d-block" /> product1 </td>
-                <td>3</td>
-                <td>Enabled</td>
+                <td> <img src="#" class="rounded mx-auto d-block" /> {{$product->name}} </td>
+                <td>{{$product->quantity}}</td>
+
+                @if($product->status == 1)
+                  <td>Available</td>
+                  @else 
+                  <td>Unavailable</td>
+                  @endif
                 <td>
-                  <a href="{{route('main-siteproductDetails', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="{{route('main-siteProductDetails/'.$product->id, app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a>
 
                     <form method="POST" class="delete_form" action="#">
                     {{csrf_field()}}
@@ -30,7 +41,8 @@
                     </form>
                 </td>
               </tr>
-              <tr>
+              @endforeach
+              <!-- <tr>
                 <td> <img src="#" class="rounded mx-auto d-block" /> product2 </td>
                 <td>4</td>
                 <td>Enabled</td>
@@ -57,7 +69,7 @@
                     <button type="submit" class="btn btn-danger ml-2"><i class="fa fa-trash"></i> Delete</button>
                     </form>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>

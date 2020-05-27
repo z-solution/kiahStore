@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |-------------------------------------
-| Main Site Admin Route GroupΩ
+| Main Site Admin Route Group
 |-------------------------------------
 |
 | This will group all the main site admin. Login, manage user 
@@ -78,15 +78,23 @@ Route::group(
             return view('welcome');
         });
 
-        Route::get('/home', 'ShopOwnerController@index')->middleware('shopOwnerAuth')->name('home');
-
         // Route::get('/home', function () {
         //     return view('/shopOwner/index');
         // })->name('home')->middleware('shopOwnerAuth');
+        Route::get('/home', 'ShopOwnerController@index')->middleware('shopOwnerAuth')->name('home');
 
-        Route::get('/product', function () {
-            return view('/shopOwner/product');
-        })->name('product')->middleware('shopOwnerAuth');
+        // Route::get('/product', function () {
+        //     return view('/shopOwner/product');
+        // })->name('product')->middleware('shopOwnerAuth');
+        
+        Route::get('/product', 'ShopOwnerController@display')->middleware('shopOwnerAuth')->name('product');
+
+        // Route::get('/productDetails', function () {
+        //     return view('/shopOwner/productDetails');
+        // })->name('productDetails')->middleware('shopOwnerAuth');
+        Route::get('/productDetails/{id}', 'ShopOwnerController@edit')->middleware('shopOwnerAuth')->name('productDetails');
+
+        // Route::patch('/productDetails/{id}', 'ShopOwnerController@update')->middleware('shopOwnerAuth')->name('productDetails');
 
         Route::get('/order', function () {
             return view('/shopOwner/order');
@@ -96,9 +104,7 @@ Route::group(
             return view('/shopOwner/coupon');
         })->name('coupon')->middleware('shopOwnerAuth');
 
-        Route::get('/productDetails', function () {
-            return view('/shopOwner/productDetails');
-        })->name('productDetails')->middleware('shopOwnerAuth');
+        
 
         Route::get('/orderDetails', function () {
             return view('/shopOwner/orderDetails');
@@ -111,6 +117,9 @@ Route::group(
         Route::get('/addProduct', function () {
             return view('/shopOwner/addProduct');
         })->name('addProduct')->middleware('shopOwnerAuth');
+
+        Route::post('/addProduct', 'ShopOwnerController@store')->middleware('shopOwnerAuth')->name('addProduct');
+
 
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');

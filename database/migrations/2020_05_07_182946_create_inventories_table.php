@@ -19,6 +19,8 @@ class CreateInventoriesTable extends Migration
             $table->string('name');
             $table->longText('description');
             $table->float('price');
+            $table->integer('quantity');
+            $table->integer('status');
             $table->string('dimension');
 			$table->softDeletes();
             $table->timestamps();
