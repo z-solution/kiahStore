@@ -29,7 +29,7 @@ class Shop extends Model
      */
     public function inventories()
     {
-        return $this->hasMany('App\Model\Inventory');
+        return $this->hasMany('App\Model\Inventory1');
     }
 
     /**

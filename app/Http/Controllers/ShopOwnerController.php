@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Order;
 use App\Model\User;
-use App\Model\Inventory;
+use App\Model\Inventory1;
 use App\Model\Shop;
 use Auth;
 use Hash;
@@ -21,7 +21,7 @@ class ShopOwnerController extends Controller
     }
 
     public function display(){
-        $products = Inventory::all();
+        $products = Inventory1::all();
 
         return view('shopOwner.product', compact('products'));
     }
@@ -42,7 +42,7 @@ class ShopOwnerController extends Controller
             'dimension' => 'required'
         ]);
 
-        $inventory = new Inventory();
+        $inventory = new Inventory1();
         $inventory->shop_id = Auth::user()->owner_shop_id;
         $inventory->name = request('product_name');
         $inventory->description = request('description');

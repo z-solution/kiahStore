@@ -94,7 +94,6 @@ Route::group(
         // })->name('productDetails')->middleware('shopOwnerAuth');
         Route::get('/productDetails/{id}', 'ShopOwnerController@edit')->middleware('shopOwnerAuth')->name('productDetails');
 
-        // Route::patch('/productDetails/{id}', 'ShopOwnerController@update')->middleware('shopOwnerAuth')->name('productDetails');
 
         Route::get('/order', function () {
             return view('/shopOwner/order');
