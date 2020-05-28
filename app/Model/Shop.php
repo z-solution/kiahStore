@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
+    const STATUS = ['pending' => 0,'Approve' => 1];
 
     /**
      * The attributes that are mass assignable.

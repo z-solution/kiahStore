@@ -36,6 +36,7 @@ Route::group(
         Route::get('/', 'Auth\AdminLoginController@getAdminLoginForm')->name('login');
         Route::get('/dashboard', 'AdminSiteController@getDashboard')->middleware('adminAuth')->name('dashboard');
         Route::get('/shop-owner', 'AdminSiteController@getShowOwner')->middleware('adminAuth')->name('shop-owner');
+        Route::post('/shop-owner/{id}/approve', 'AdminSiteController@postApprove')->middleware('adminAuth')->name('shop-owner-approve');
 
         Route::get('/user', function () {
             return 'page user listing';
@@ -137,7 +138,7 @@ Route::group(
         // Shop frontend
         Route::get('/', function () {
             return view('/shop/index');
-        });
+        })->name('dashboard');
 
         Route::get('/productDetails', function () {
             return view('/shop/productDetails');

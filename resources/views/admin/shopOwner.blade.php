@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container shop-owner">
+  
+  @if(\Session::has('success'))
+    <div class="alert alert-success">
+       <p>{{\Session::get('success') }}</p>
+    </div>
+  @endif
   <table id="shop-owner-table" class="table table-bordered table-sm mt-4">
     <thead class="thead thead-dark">
       <tr>
@@ -13,36 +19,24 @@
       </tr>
     </thead>
     <tbody>
+      
+    @foreach($shopOwners as $shopOwner)
       <tr>
-        <td>2</td>
-        <td>JomFun</td>
-        <td>Approve</td>
+        <td>{{$shopOwner->id}}</td>
+        <td>{{$shopOwner->name}}</td>
+        <td>{{ array_flip($shopStatus)[$shopOwner->status]}}</td>
         <td>12 May 2020</td>
         <td>
-          <button>Enable</button>
-          <button>Disable</button>
+          @if($shopOwner->status == 0)
+          <form method="POST" class="delete_form" action="{{route('main-admin-siteshop-owner-approve', [app('request')->route('subdomain') ?? '', $shopOwner->id])}}">
+            {{csrf_field()}}
+            <input type="hidden" name="_method" value="POST" />
+            <button type="submit" class="btn btn-primary ml-2"><i class="fa fa-check"></i> Approve</button>
+          </form>
+          @endif
         </td>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>123</td>
-        <td>Approve</td>
-        <td>12 May 2020</td>
-        <td>
-          <button>Enable</button>
-          <button>Disable</button>
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>abc</td>
-        <td>Approve</td>
-        <td>12 May 2020</td>
-        <td>
-          <button>Enable</button>
-          <button>Disable</button>
-        </td>
-      </tr>
+      @endforeach
     </tbody>
   </table>
 </div>
