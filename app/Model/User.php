@@ -99,4 +99,8 @@ class User extends Authenticatable
     static public function countCustomer() {
         return User::where('type', User::CUSTOMERTYPE)->count();
     }
+
+    static public function getCustomer() {
+        return User::where('type', User::CUSTOMERTYPE)->get();
+    }
 }

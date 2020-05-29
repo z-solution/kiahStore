@@ -37,6 +37,7 @@ Route::group(
         Route::get('/dashboard', 'AdminSiteController@getDashboard')->middleware('adminAuth')->name('dashboard');
         Route::get('/shop-owner', 'AdminSiteController@getShowOwner')->middleware('adminAuth')->name('shop-owner');
         Route::post('/shop-owner/{id}/approve', 'AdminSiteController@postApprove')->middleware('adminAuth')->name('shop-owner-approve');
+        Route::get('/customer', 'AdminSiteController@getCustomer')->middleware('adminAuth')->name('customer');
 
         Route::get('/user', function () {
             return 'page user listing';
