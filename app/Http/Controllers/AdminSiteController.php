@@ -31,10 +31,15 @@ class AdminSiteController extends Controller
         return redirect('/shop-owner')->with('success', 'Shop has been approved');
     }
 
-    
     public function getCustomer()
     {
         $customers = User::getCustomer();
         return view('admin.customer', compact('customers'));
+    }
+
+    
+    public function getSetting()
+    {
+        return view('admin.setting');
     }
 }

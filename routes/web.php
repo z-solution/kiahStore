@@ -38,15 +38,7 @@ Route::group(
         Route::get('/shop-owner', 'AdminSiteController@getShowOwner')->middleware('adminAuth')->name('shop-owner');
         Route::post('/shop-owner/{id}/approve', 'AdminSiteController@postApprove')->middleware('adminAuth')->name('shop-owner-approve');
         Route::get('/customer', 'AdminSiteController@getCustomer')->middleware('adminAuth')->name('customer');
-
-        Route::get('/user', function () {
-            return 'page user listing';
-        })->middleware('adminAuth')->name('user');
-
-        Route::get('/setting', function () {
-            return 'page setting listing';
-        })->middleware('adminAuth')->name('setting');
-
+        Route::get('/setting', 'AdminSiteController@getSetting')->middleware('adminAuth')->name('setting');
         // Authentication Routes...
         Route::post('/', 'Auth\AdminLoginController@login');
         Route::post('logout', 'Auth\AdminLoginController@logout')->name('logout');
@@ -157,5 +149,25 @@ Route::group(
 
         Route::get('/register', 'Auth\CustomerRegisterController@showRegistrationForm')->name('register');
         Route::post('/register', 'Auth\CustomerRegisterController@register');
+    }
+);
+/*
+|-------------------------------------
+| Shop Site Route Group for Not Approve and Maintainer Mood
+|-------------------------------------
+|
+| This will used as a based for shop when the shop still not approve or in maintainer mood.
+|
+*/
+
+Route::group(
+    [
+        'middleware' => 'shopSiteNotApproved',
+        'as' => 'shop-site'
+    ],
+    function () {
+        Route::get('/{any}', function () {
+            return 'no shop 404';
+        })->where('any', '.*');
     }
 );

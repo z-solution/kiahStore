@@ -3,11 +3,10 @@
 namespace App\Http\Middleware;
 
 use App\Model\Shop;
-use App\Model\System;
 
 use Closure;
 
-class IsShopSite
+class IsShopSiteNotApproved
 {
     /**
      * Handle an incoming request.
@@ -22,7 +21,7 @@ class IsShopSite
         $adomain = explode('.', $domain);
         $subdomains = array_slice($adomain, 0, count($adomain) == 2 ? -1 : -2);
         $shop = Shop::where('name', $subdomains[0])->first();
-        if ($shop != null  && $shop->isApproved() && !System::IsShopMaintainerMood()) {
+        if ($shop != null && !$shop->isApproved()) {
             $request->merge(['middlewareShop' => $shop]);
             return $next($request);
         }

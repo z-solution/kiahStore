@@ -68,4 +68,8 @@ class Shop extends Model
 
         return $shop;
     }
+
+    public function isApproved() {
+        return $this->status == 1;
+    }
 }
