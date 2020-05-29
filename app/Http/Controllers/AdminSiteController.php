@@ -27,10 +27,14 @@ class AdminSiteController extends Controller
 
     public function postApprove(Request $request, $subdomain, $id)
     {
-        $shop = Shop::find($id);
-        $shop->status = Shop::STATUS['Approve'];
-        $shop->save();
+        Shop::approveShop($id);
+        return redirect('/shop-owner')->with('success', 'Shop has been approved');
+    }
 
-        return redirect('/shop-owner')->with('success', 'Shop has been approve');
+    
+    public function getCustomer()
+    {
+        $customers = User::getCustomer();
+        return view('admin.customer', compact('customers'));
     }
 }

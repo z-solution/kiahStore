@@ -57,4 +57,15 @@ class Shop extends Model
     {
         return $this->hasOne('App\Model\User', 'owner_shop_id');
     }
+
+    /**
+     * Approve the shop.
+     */
+    static public function approveShop($id) {
+        $shop = Shop::find($id);
+        $shop->status = Shop::STATUS['Approve'];
+        $shop->save();
+
+        return $shop;
+    }
 }
