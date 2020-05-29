@@ -33,10 +33,10 @@
                           <div>
                           <div class="form-group">
                             <label for="product">Product Status:</label>
-                            <select class="form-control" id="sel1">
-                              <option>Available</option>
-                              <option>Out of Stock</option>
-                              <option>Pending</option>
+                            <select class="form-control" name="status">
+                              <option value="1">Available</option>
+                              <option value="0">Out of Stock</option>
+                              <option value="2">Pending</option>
                             </select>
                           </div>
                           <!-- <div class="form-group">

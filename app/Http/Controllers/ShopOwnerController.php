@@ -36,19 +36,21 @@ class ShopOwnerController extends Controller
     {
          $this->validate($request, [
             'product_name' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'dimension' => 'required'
+            'description'  => 'required',
+            'price'        => 'required',
+            'quantity'     => 'required',
+            'dimension'    => 'required',
+            'status'       => 'required'
         ]);
 
         $inventory = new Inventory();
+        
         $inventory->shop_id = Auth::user()->owner_shop_id;
         $inventory->name = request('product_name');
         $inventory->description = request('description');
         $inventory->price = request('price');
         $inventory->quantity = request('quantity');
-        $inventory->status = 1;
+        $inventory->status = request('status');
         $inventory->dimension = request('dimension');
         
 

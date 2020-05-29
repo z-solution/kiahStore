@@ -28,11 +28,14 @@
 
                 @if($product->status == 1)
                   <td>Available</td>
-                  @else 
-                  <td>Unavailable</td>
-                  @endif
-                <td>
+                  @elseif($product->status == 0)
+                  <td>Out of Stock</td>
+                  @else
+                  <td>Pending</td>
+                @endif 
+                
 
+                <td>
                   <a href="{{route('main-siteproductDetails',[ app('request')->route('subdomain') ?? '', $product->id ])}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a>
 
                     <form method="POST" class="delete_form" action="#">
