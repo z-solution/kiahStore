@@ -30,9 +30,25 @@
                             <label for="user-email">Quantity</label>
                             <input type="number" class="form-control" name="quantity" value="{{$product->quantity}}">
                           </div>
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <label for="user-email">Status</label>
                             <input type="number" class="form-control" name="status" value="{{$product->status}}">
+                          </div> -->
+                          <div class="form-group">
+                            <label for="product">Product Status:</label>
+                            <select class="form-control" name="status">
+                              @if($product->status == 1)
+                                <option>Available</option>
+                                @elseif($product->status == 0)
+                                <option>Out of Stock</option>
+                                @else
+                                <option>Pending</option>
+                              @endif 
+                              
+                              <option value="1">Available</option>
+                              <option value="0">Out of Stock</option>
+                              <option value="2">Pending</option>
+                            </select>
                           </div>
                           <!-- <div class="form-group">
                             <label for="user-password">SKU</label>
