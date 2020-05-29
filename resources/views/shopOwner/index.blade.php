@@ -17,7 +17,7 @@
             </div>
             <div class="card-body text-center">
               <p class="card-text">MYR</p>
-              <h4 class="card-text">{{$salesCount->sum('total_price')}}</h4>
+              <h4 class="card-text">{{$salesCount}}</h4>
             </div>
           </div>
           <div class="card">
@@ -25,7 +25,7 @@
               <b>Total Customers</b>
             </div>
             <div class="card-body text-center">
-              <h4 class="card-text">{{$customerCount->count()}}</h4>
+              <h4 class="card-text">{{$customerCount}}</h4>
             </div>
           </div>
         </div>

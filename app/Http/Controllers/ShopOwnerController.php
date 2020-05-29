@@ -14,9 +14,12 @@ class ShopOwnerController extends Controller
 {
     public function index(){
 
-        $orderCount = Order::where('shop_id', Auth::user()->id );
-        $customerCount = User::where('customer_shop_id', Auth::user()->owner_shop_id );
-        $salesCount = Order::where('shop_id', Auth::user()->id);
+        $orderCount = Order::where('shop_id', Auth::user()->id)
+                            ->whereBetween('created_at', [now()->subDays(30), now()]);
+        $customerCount = User::where('customer_shop_id', Auth::user()->owner_shop_id )->count();
+        $salesCount = Order::where('shop_id', Auth::user()->id)
+                            ->whereBetween('created_at', [now()->subDays(30), now()])->sum('total_price');
+
     	return view('shopOwner.index', compact(['orderCount', 'customerCount', 'salesCount']));
     }
 
@@ -44,7 +47,7 @@ class ShopOwnerController extends Controller
         ]);
 
         $inventory = new Inventory();
-        
+
         $inventory->shop_id = Auth::user()->owner_shop_id;
         $inventory->name = request('product_name');
         $inventory->description = request('description');
