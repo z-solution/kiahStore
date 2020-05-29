@@ -69,7 +69,7 @@ class ShopOwnerController extends Controller
             'description'     => 'required',
             'price'           => 'required',
             'quantity'        => 'required',
-            'status'         => 'required',
+            'status'          => 'required',
         ]);
 
         $product = Inventory::find($id);

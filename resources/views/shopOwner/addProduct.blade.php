@@ -28,12 +28,17 @@
                           </div>
                           <div class="form-group">
                             <label for="user-email">Dimension</label>
-                            <input type="number" class="form-control" name="dimension" placeholder="Enter the dimension">
+                            <input type="string" class="form-control" name="dimension" placeholder="Enter the dimension">
                           </div>
-                          <!-- <div class="form-group">
-                            <label for="user-email">Quantity</label>
-                            <input type="number" class="form-control" name="quantity" placeholder="Enter the quantity">
-                          </div> -->
+                          <div>
+                          <div class="form-group">
+                            <label for="product">Product Status:</label>
+                            <select class="form-control" id="sel1">
+                              <option>Available</option>
+                              <option>Out of Stock</option>
+                              <option>Pending</option>
+                            </select>
+                          </div>
                           <!-- <div class="form-group">
                             <label for="user-password">SKU</label>
                             <input type="number" class="form-control" name="sku" placeholder="SKU">

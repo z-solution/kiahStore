@@ -56,12 +56,12 @@
                             <!-- Card content -->
                             <div class="card-body text-center">
                               <!-- Category & Title -->
-                              <a href="" class="grey-text">
+                              {{-- <a href="{{route('shop-siteitemDetails',[$item->id ])}}" class="grey-text">
                                 <h5>Shirt</h5>
-                              </a>
+                              </a> --}}
                               <h5>
                                 <strong>
-                                  <a href="/productDetails" class="dark-grey-text">
+                                  <a href="{{route('shop-siteitemDetails',[$item->id ])}}" class="dark-grey-text">
                                     {{$item->name}}
                                     {{--<span class="badge badge-pill badge-danger">NEW</span>--}}
                                   </a>
