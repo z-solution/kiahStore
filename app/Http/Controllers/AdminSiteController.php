@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Model\Shop;
+use App\Model\System;
 use App\Model\User;
 use Illuminate\Http\Request;
-use App\shopOwner;
-use Hash;
 
 class AdminSiteController extends Controller
 {
@@ -40,6 +39,18 @@ class AdminSiteController extends Controller
     
     public function getSetting()
     {
-        return view('admin.setting');
+        $shopMaintainerMood = System::where('name', System::SYSTEMSHOPMAINTAINERMOOD)->first();
+        return view('admin.setting', compact( 'shopMaintainerMood'));
+    }
+    public function postSetting(Request $request)
+    {
+        $system = System::where('name', request('name'))->first();
+        if($system == null) {
+            $system = new System();
+            $system->name = request('name');
+        }
+        $system->value = request('value');
+        $system->save();
+        return redirect('/setting')->with('success', request('desc_name') . ' has been ' . request('desc_value'));
     }
 }

@@ -39,6 +39,9 @@ Route::group(
         Route::post('/shop-owner/{id}/approve', 'AdminSiteController@postApprove')->middleware('adminAuth')->name('shop-owner-approve');
         Route::get('/customer', 'AdminSiteController@getCustomer')->middleware('adminAuth')->name('customer');
         Route::get('/setting', 'AdminSiteController@getSetting')->middleware('adminAuth')->name('setting');
+        Route::post('/post', 'AdminSiteController@postSetting')->middleware('adminAuth')->name('post-setting');
+
+
         // Authentication Routes...
         Route::post('/', 'Auth\AdminLoginController@login');
         Route::post('logout', 'Auth\AdminLoginController@logout')->name('logout');
