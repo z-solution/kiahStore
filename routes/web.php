@@ -33,20 +33,14 @@ Route::group(
         ],
     ],
     function () {
-        Route::get('/', 'Auth\AdminLoginController@adminLoginForm')->name('login');
-        Route::get('/dashboard', 'AdminSiteController@dashboard')->middleware('adminAuth')->name('dashboard');
+        Route::get('/', 'Auth\AdminLoginController@getAdminLoginForm')->name('login');
+        Route::get('/dashboard', 'AdminSiteController@getDashboard')->middleware('adminAuth')->name('dashboard');
+        Route::get('/shop-owner', 'AdminSiteController@getShowOwner')->middleware('adminAuth')->name('shop-owner');
+        Route::post('/shop-owner/{id}/approve', 'AdminSiteController@postApprove')->middleware('adminAuth')->name('shop-owner-approve');
+        Route::get('/customer', 'AdminSiteController@getCustomer')->middleware('adminAuth')->name('customer');
+        Route::get('/setting', 'AdminSiteController@getSetting')->middleware('adminAuth')->name('setting');
+        Route::post('/post', 'AdminSiteController@postSetting')->middleware('adminAuth')->name('post-setting');
 
-        Route::get('/shop-owner', function () {
-            return 'page shop owner listing';
-        })->middleware('adminAuth')->name('shop-owner');
-        
-        Route::get('/user', function () {
-            return 'page user listing';
-        })->middleware('adminAuth')->name('user');
-        
-        Route::get('/setting', function () {
-            return 'page setting listing';
-        })->middleware('adminAuth')->name('setting');
 
         // Authentication Routes...
         Route::post('/', 'Auth\AdminLoginController@login');
@@ -141,22 +135,13 @@ Route::group(
     ],
     function () {
         // Shop frontend
-        // Route::get('/', function () {
-        //     return view('/shop/index');
-        // });
-        Route::get('/', 'ShopSiteController@index')->name('home');
-
-        // Route::get('/itemDetails', function () {
-        //     return view('/shop/productDetails');
-        // });
-
+        Route::get('/', 'ShopSiteController@index')->name('home')->name('dashboard');
         Route::get('/itemDetails/{id}', 'ShopSiteController@displayDetails')->name('itemDetails');
 
-    
         Route::get('/profile', function () {
             return 'Customer profile';
         })->name('customerProfile')->middleware('customerAuth');
-        
+
 
         Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');
@@ -164,5 +149,25 @@ Route::group(
 
         Route::get('/register', 'Auth\CustomerRegisterController@showRegistrationForm')->name('register');
         Route::post('/register', 'Auth\CustomerRegisterController@register');
+    }
+);
+/*
+|-------------------------------------
+| Shop Site Route Group for Not Approve and Maintainer Mood
+|-------------------------------------
+|
+| This will used as a based for shop when the shop still not approve or in maintainer mood.
+|
+*/
+
+Route::group(
+    [
+        'middleware' => 'shopSiteNotApproved',
+        'as' => 'shop-site'
+    ],
+    function () {
+        Route::get('/{any}', function () {
+            return 'no shop 404';
+        })->where('any', '.*');
     }
 );

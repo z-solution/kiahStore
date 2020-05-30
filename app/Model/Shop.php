@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
+    const STATUS = ['pending' => 0,'Approve' => 1];
 
     /**
      * The attributes that are mass assignable.
@@ -55,5 +56,20 @@ class Shop extends Model
     public function userAsShopOwner()
     {
         return $this->hasOne('App\Model\User', 'owner_shop_id');
+    }
+
+    /**
+     * Approve the shop.
+     */
+    static public function approveShop($id) {
+        $shop = Shop::find($id);
+        $shop->status = Shop::STATUS['Approve'];
+        $shop->save();
+
+        return $shop;
+    }
+
+    public function isApproved() {
+        return $this->status == 1;
     }
 }

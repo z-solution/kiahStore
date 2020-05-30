@@ -20,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -38,7 +39,7 @@
                             <a class="nav-link" href="{{ route('main-admin-siteshop-owner', app('request')->route('subdomain') ?? '')}}">Shop Owner</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main-admin-siteuser', app('request')->route('subdomain') ?? '')}}">User</a>
+                            <a class="nav-link" href="{{ route('main-admin-sitecustomer', app('request')->route('subdomain') ?? '')}}">User</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('main-admin-sitesetting', app('request')->route('subdomain') ?? '')}}">Setting</a>
@@ -84,7 +85,7 @@
 
     </div>
     <footer class="page-footer font-small" style="background-color: #000066">
-        <div class="footer-copyright text-dark text-center py-3">© 2020 Copyright:
+        <div class="footer-copyright text-white text-center py-3">© 2020 Copyright:
             Kiah Store
         </div>
     </footer>

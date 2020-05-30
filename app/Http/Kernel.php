@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\IsShopSite;
 use App\Http\Middleware\IsMainSite;
+use App\Http\Middleware\IsShopSiteNotApproved;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -70,5 +71,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'mainSite' => IsMainSite::class,
         'shopSite' => IsShopSite::class,
+        'shopSiteNotApproved' => IsShopSiteNotApproved::class,
     ];
 }

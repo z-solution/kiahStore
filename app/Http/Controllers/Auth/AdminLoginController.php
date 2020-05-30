@@ -32,7 +32,7 @@ class AdminLoginController extends Controller
     }
 
 
-    public function adminLoginForm()
+    public function getAdminLoginForm()
     {
         return view('admin.index');
     }
