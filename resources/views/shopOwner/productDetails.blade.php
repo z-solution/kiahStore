@@ -30,10 +30,6 @@
                             <label for="user-email">Quantity</label>
                             <input type="number" class="form-control" name="quantity" value="{{$product->quantity}}">
                           </div>
-                          <!-- <div class="form-group">
-                            <label for="user-email">Status</label>
-                            <input type="number" class="form-control" name="status" value="{{$product->status}}">
-                          </div> -->
                           <div class="form-group">
                             <label for="product">Product Status:</label>
                             <select class="form-control" name="status">

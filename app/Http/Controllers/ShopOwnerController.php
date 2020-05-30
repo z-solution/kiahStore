@@ -24,6 +24,7 @@ class ShopOwnerController extends Controller
     }
 
     public function display(){
+        
         $products = Inventory::all();
 
         return view('shopOwner.product', compact('products'));
@@ -48,13 +49,13 @@ class ShopOwnerController extends Controller
 
         $inventory = new Inventory();
 
-        $inventory->shop_id = Auth::user()->owner_shop_id;
-        $inventory->name = request('product_name');
+        $inventory->shop_id     = Auth::user()->owner_shop_id;
+        $inventory->name        = request('product_name');
         $inventory->description = request('description');
-        $inventory->price = request('price');
-        $inventory->quantity = request('quantity');
-        $inventory->status = request('status');
-        $inventory->dimension = request('dimension');
+        $inventory->price       = request('price');
+        $inventory->quantity    = request('quantity');
+        $inventory->status      = request('status');
+        $inventory->dimension   = request('dimension');
         
 
         $inventory->save();
@@ -63,6 +64,7 @@ class ShopOwnerController extends Controller
     }
 
     public function edit($id){
+
         $product = Inventory::find($id);
         return view('shopOwner.productDetails', compact('product', 'id'));
     }
