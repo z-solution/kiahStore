@@ -19,7 +19,7 @@
         </aside>
         <aside class="col-sm-7">
           <article class="card-body p-5">
-            <h3 class="title mb-3">Denim shirt</h3>
+            <h3 class="title mb-3">{{$product->name}}</h3>
 
             <div class="rating">
               <div class="stars">
@@ -32,15 +32,13 @@
             </div>
 
             <p class="price-detail-wrap"> 
-              <span class="price h3 text-warning"> 
-                <span class="currency">US $</span><span class="num">120</span>
+              <span class="price h3 text-primary"> 
+                <span class="currency">MYR </span><span class="num">{{$product->price}}</span>
               </span>  
             </p> <!-- price-detail-wrap .// -->
             <dl class="item-property">
               <dt>Description</dt>
-              <dd><p>Here goes description consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco </p></dd>
+              <dd><p>{{$product->description}} </p></dd>
             </dl>
             
             <dl class="param param-feature">
