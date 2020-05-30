@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{route('main-siteaddProduct', app('request')->route('subdomain') ?? '')}}" enctype="multipart/form-data">
                         {{csrf_field()}}
-
+                        
                          <div class="form-group">
                             <label for="user-name">Product Name</label>
                             <input type="text" class="form-control" name="product_name" placeholder="Product name">
@@ -27,9 +27,22 @@
                             <input type="number" class="form-control" name="quantity" placeholder="Enter the quantity">
                           </div>
                           <div class="form-group">
+                            <label for="user-email">Dimension</label>
+                            <input type="string" class="form-control" name="dimension" placeholder="Enter the dimension">
+                          </div>
+                          <div>
+                          <div class="form-group">
+                            <label for="product">Product Status:</label>
+                            <select class="form-control" name="status">
+                              <option value="1">Available</option>
+                              <option value="0">Out of Stock</option>
+                              <option value="2">Pending</option>
+                            </select>
+                          </div>
+                          <!-- <div class="form-group">
                             <label for="user-password">SKU</label>
                             <input type="number" class="form-control" name="sku" placeholder="SKU">
-                          </div>
+                          </div> -->
                           <div class="form-group">
                           		<input type="file" id="myFile" name="image-file">
                       	  </div>

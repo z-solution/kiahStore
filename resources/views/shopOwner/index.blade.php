@@ -8,7 +8,7 @@
               <b>Total Orders</b>
             </div>
             <div class="card-body text-center">
-              <h4 class="card-text">99</h4>
+              <h4 class="card-text">{{$orderCount->count()}}</h4>
             </div>
           </div>
           <div class="card">
@@ -17,7 +17,7 @@
             </div>
             <div class="card-body text-center">
               <p class="card-text">MYR</p>
-              <h4 class="card-text">1300</h4>
+              <h4 class="card-text">{{$salesCount}}</h4>
             </div>
           </div>
           <div class="card">
@@ -25,7 +25,7 @@
               <b>Total Customers</b>
             </div>
             <div class="card-body text-center">
-              <h4 class="card-text">96</h4>
+              <h4 class="card-text">{{$customerCount}}</h4>
             </div>
           </div>
         </div>
@@ -37,15 +37,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> Order1 </td>
-            </tr>
-            <tr>
-              <td> Order2 </td>
-            </tr>
-            <tr>
-              <td> Order3 </td>
-            </tr>
+            
+            @foreach($orderCount->get() as $order)
+              <tr>
+                <td> {{$order}} </td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
 
