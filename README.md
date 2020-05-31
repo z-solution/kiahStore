@@ -54,7 +54,7 @@ By changing the host, we can test multiple domain/subdomain locally.
 ```
 docker-compose exec kiahstore composer install
 
-docker-compose exec kiahstore php artisan make:model system -m
+docker-compose exec kiahstore php artisan make:model attachment -m
 
 docker-compose exec kiahstore php artisan migrate
 

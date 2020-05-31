@@ -21,4 +21,13 @@ class Inventory extends Model
     {
         return $this->hasMany('App\Model\InventoryVariant');
     }
+
+    /**
+     * Get the attachment image for the inventory.
+     */
+    public function attachment()
+    {
+        return $this->hasMany('App\Model\Attachment');
+    }
+
 }
