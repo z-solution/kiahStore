@@ -5,7 +5,7 @@
         <table id="example" class="table table-bordered table-sm mt-4">
           <thead class="text-center thead thead-dark">
             <tr>
-              <th>Order list</th>
+              <th>ID / Order list</th>
               <th>Customer</th>
               <th>Total</th>
               <th>Status</th>
@@ -13,20 +13,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> <img src="#" class="rounded mx-auto d-block" /> product1 </td>
-              <td>Bjoe Cool</td>
-              <td>MYR 500</td>
-              <td>Pending</td>
-              <td> <a href="{{route('main-siteorderDetails', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
-            </tr>
-            <tr>
-              <td> <img src="#" class="rounded mx-auto d-block" /> product2 </td>
-              <td>Zahir Boom</td>
-              <td>MYR 400</td>
-              <td>Pending</td>
-              <td> <a href="#" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
-            </tr>
+            @foreach($orders as $order)
+              <tr>
+                @if ($order->inventory)
+                 <td> <img src="#" class="rounded mx-auto d-block" />{{$order->inventory->name}}</td>
+                 @else
+                 <td>{{$order->id}}</td>
+                @endif
+                <td>Dontknow now</td>
+                <td>{{$order->total_price}}</td>
+                <td>{{$order->status}}</td>
+                <td> <a href="{{route('main-siteorderDetails',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
     </div>

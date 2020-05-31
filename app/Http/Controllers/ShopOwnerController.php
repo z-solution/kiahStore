@@ -30,6 +30,22 @@ class ShopOwnerController extends Controller
         return view('shopOwner.product', compact('products'));
     }
 
+    public function list(){
+        $orders = Order::all();
+        // dd($orders);
+
+        return view('shopOwner.order', compact('orders'));
+    }
+
+
+    public function show($id){
+        $orders = Order::all();
+
+        $order = Order::find($id);
+        return view('shopOwner.orderDetails', compact('order', 'orders', 'id'));
+    }
+
+
 	/**
      * Store a newly created resource in storage
      *
@@ -89,6 +105,20 @@ class ShopOwnerController extends Controller
 
         $product->save();
         return redirect('/product')->with('success', 'Data updated');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+
+        $product = Inventory::find($id);
+         
+        $product->delete();
+        return redirect('/product')->with('success', 'Data Deleted');
     }
 }
 

@@ -8,25 +8,19 @@
               <div class="card-body">
                 <div class="mb-4">
                   <h4><u> Order Details </u></h4>
-                  <h5>Order Id: 12</h5>
-                  <h5>Date: 22 April 2020</h5>
-                  <h5># of items: 3</h5>
+                  <h5>Order Id: {{$order->id}}</h5>
+                  <h5>Date: {{$order->created_at}}</h5>
+                  <h5># of items: dontknow Yet</h5>
                 </div> 
 
                 <div>
                   <h4><u> Payment Address </u></h4>
-                  <p>No 5, Jalan Selasih 5,
-                      Teman Selasih Fasa 1,
-                      68100 Batu Caves,
-                      Selangor</p>
+                  <p>{{$order->blling_address_id}}</p>
                 </div> 
 
                 <div>
                   <h4><u> Shipping Address </u></h4>
-                  <p>No 5, Jalan Selasih 5,
-                      Teman Selasih Fasa 1,
-                      68100 Batu Caves,
-                      Selangor</p>
+                  <p>{{$order->shipping_address_id}}</p>
                 </div>
 
                 <table class="table table-bordered table-sm mt-4">
@@ -39,21 +33,18 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td> product1 </td>
-                        <td>3</td>
-                        <td>MYR 50.00</td>
-                        <td>MYR 150.00</td>
-                      </tr>
-                      <tr>
-                        <td> product2 </td>
-                        <td>2</td>
-                        <td>MYR 50.00</td>
-                        <td>MYR 100.00</td>
-                      </tr>
+                      {{-- @foreach($order->inventory() as $item) --}}
+                      @foreach($orders as $item)
+                        <tr>
+                          <td>{{$item->id}}</td>
+                          <td># of items:</td>
+                          <td>MYR{{$item->total_price}}</td>
+                          <td>MYR # of items: * {{$item->total_price}} </td>
+                        </tr>
+                      @endforeach
                       <tr>
                         <td colspan="3" class="text-right"><b>Sub total</b></td>
-                        <td>MYR 250.00</td>
+                        <td>MYR {{$item->sum('total_price')}}</td>
                       </tr>
                       <tr>
                         <td colspan="3" class="text-right"><b>Shipping Rate</b></td>
@@ -61,7 +52,7 @@
                       </tr>
                       <tr>
                         <td colspan="3" class="text-right"><b>Total</b></td>
-                        <td> MYR 260.00</td>
+                        <td> MYR {{$item->sum('total_price')+ 10}}</td>
                       </tr>
                     </tbody>
                   </table>

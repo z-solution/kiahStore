@@ -21,4 +21,10 @@ class Order extends Model
     {
         return $this->belongsTo('App\Model\Address', 'shipping_address_id');
     }
+
+    // 
+    public function inventory()
+    {
+        return $this->belongsTo('App\Model\Inventory', 'inventory_id');
+    }
 }

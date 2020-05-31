@@ -3,7 +3,9 @@
 @section('content')
     <div class="container">
       <div class="card">
-        <div class="card-header mb-2">Coupon Page</div>
+        <div class="card-header mb-2">Coupon Page
+          <a href="{{route('main-sitecreateCoupon', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Coupon</a>
+        </div>
         <table id="example" class="table table-bordered table-sm mt-4">
           <thead class="text-center thead thead-dark">
             <tr>
