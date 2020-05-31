@@ -40,7 +40,8 @@ class AdminSiteController extends Controller
     public function getSetting()
     {
         $shopMaintainerMood = System::where('name', System::SYSTEMSHOPMAINTAINERMOOD)->first();
-        return view('admin.setting', compact( 'shopMaintainerMood'));
+        $systemShopMaintainerMood = System::SYSTEMSHOPMAINTAINERMOOD;
+        return view('admin.setting', compact( 'shopMaintainerMood', 'systemShopMaintainerMood'));
     }
     public function postSetting(Request $request)
     {
