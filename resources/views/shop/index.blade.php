@@ -1,7 +1,7 @@
 @extends('layouts.shopLayout')
 
 @section('content')
-    <div class="container">
+    <div class="container shop-site">
         @if(\Session::has('success'))
             <div class="alert alert-success">
                <p>{{\Session::get('success') }}</p>
@@ -37,7 +37,6 @@
 
         <section class="text-center my-5">
           <!-- Grid row -->
-            
               <div class="row">
                 @foreach($items as $item)
                   <!-- Grid column -->
@@ -47,7 +46,7 @@
                         <div class="card align-items-center">
                             <!-- Card image -->
                             <div class="view overlay">
-                              <img src="{{ asset('img/blue.jpg') }}" class="card-img-top" alt="">
+                              <img src="{{ $item->getFirstAttachmentFilename() }}" class="product-image card-img-top" alt="">
                               <a>
                                 <div class="mask rgba-white-slight"></div>
                               </a>

@@ -12,7 +12,7 @@ class ShopSiteController extends Controller {
 
     public function index(){
 
-    	$items = Inventory::all();
+    	$items = Inventory::with('attachment')->get();
 
         return view('shop.index', compact('items'));
     }

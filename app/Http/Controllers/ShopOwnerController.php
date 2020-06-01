@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Order;
 use App\Model\User;
 use App\Model\Inventory;
+use App\Model\Attachment;
 use App\Model\Shop;
 use App\Model\OrderItem;
 use Auth;
@@ -26,8 +27,7 @@ class ShopOwnerController extends Controller
 
     public function display(){
         
-        $products = Inventory::where('shop_id', Auth::user()->owner_shop_id);
-        // dd($products->get());
+        $products = Inventory::with('attachment')->get();
 
         return view('shopOwner.product', compact('products'));
     }
@@ -82,7 +82,16 @@ class ShopOwnerController extends Controller
         
 
         $inventory->save();
-
+        if ($request->hasFile('image-file')) {
+            $path = $request->file('image-file')->store('public');
+            $attachment = new Attachment();
+            $attachment->inventory_id = $inventory->id;
+            $attachment->user_id = Auth::user()->id;
+            $attachment->shop_id = Auth::user()->owner_shop_id;
+            $attachment->type = 'image';
+            $attachment->filename = str_replace("public/","storage/",$path);
+            $attachment->save();
+        }
         return redirect('/product')->with('success', 'New product added');
     }
 
@@ -128,5 +137,3 @@ class ShopOwnerController extends Controller
         return redirect('/product')->with('success', 'Data Deleted');
     }
 }
-
-

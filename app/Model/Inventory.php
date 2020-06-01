@@ -21,4 +21,23 @@ class Inventory extends Model
     {
         return $this->hasMany('App\Model\InventoryVariant');
     }
+
+    /**
+     * Get the attachment image for the inventory.
+     */
+    public function attachment()
+    {
+        return $this->hasMany('App\Model\Attachment');
+    }
+
+    /**
+     * Get the first attachment filename for this inventory. If does not exist, returnd default image.
+     */
+    public function getFirstAttachmentFilename() {
+        if($this->attachment && count($this->attachment)) {
+            return '/' . $this->attachment[0]->filename;
+        }
+        return '/img/default_product.png';
+    }
+
 }

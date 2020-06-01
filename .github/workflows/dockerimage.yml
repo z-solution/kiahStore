@@ -40,7 +40,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: ls -a via ssh
+      - name: Docker pull and deploy
         uses: bjoe88/ssh-action@master
         with:
           command: |

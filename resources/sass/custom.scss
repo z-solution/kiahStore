@@ -71,9 +71,16 @@ footer {
     text-align: center; 
 }
 
+.container.product {
+  #product-image {
+    width: 40px;
+    height: 40px;
+  }
+}
 
-
-
-
-
-  
+.container.shop-site {
+  .product-image {
+    max-width: 253px;
+    max-height: 253px;
+  }
+}
