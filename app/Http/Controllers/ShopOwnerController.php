@@ -25,7 +25,7 @@ class ShopOwnerController extends Controller
 
     public function display(){
         
-        $products = Inventory::all();
+        $products = Inventory::with('attachment')->get();
 
         return view('shopOwner.product', compact('products'));
     }
@@ -59,7 +59,10 @@ class ShopOwnerController extends Controller
         
 
         $inventory->save();
-
+        if ($request->hasFile('image-file')) {
+            $path = $request->file('image-file')->store('public');
+            dd($path);
+        }
         return redirect('/product')->with('success', 'New product added');
     }
 
@@ -91,5 +94,3 @@ class ShopOwnerController extends Controller
         return redirect('/product')->with('success', 'Data updated');
     }
 }
-
-
