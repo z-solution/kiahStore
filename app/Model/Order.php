@@ -22,9 +22,20 @@ class Order extends Model
         return $this->belongsTo('App\Model\Address', 'shipping_address_id');
     }
 
-    // 
-    public function inventory()
+    /**
+     * Get the customers for this order.
+     */
+    public function customer()
     {
-        return $this->belongsTo('App\Model\Inventory', 'inventory_id');
+        return $this->belongsTo('App\Model\User', 'user_id');
     }
+
+    /**
+     * Get the order items for this order.
+     */
+    public function orderItem()
+    {
+        return $this->hasMany('App\Model\OrderItem', 'orderItem_id');
+    }
+
 }

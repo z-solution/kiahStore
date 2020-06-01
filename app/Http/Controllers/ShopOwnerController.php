@@ -7,6 +7,7 @@ use App\Model\Order;
 use App\Model\User;
 use App\Model\Inventory;
 use App\Model\Shop;
+use App\Model\OrderItem;
 use Auth;
 use Hash;
 
@@ -14,10 +15,10 @@ class ShopOwnerController extends Controller
 {
     public function index(){
 
-        $orderCount = Order::where('shop_id', Auth::user()->id)
-                            ->whereBetween('created_at', [now()->subDays(30), now()]);
+        $orderCount = Order::where('shop_id', Auth::user()->owner_shop_id)
+                            ->whereBetween('created_at', [now()->subDays(30), now()]);            
         $customerCount = User::where('customer_shop_id', Auth::user()->owner_shop_id )->count();
-        $salesCount = Order::where('shop_id', Auth::user()->id)
+        $salesCount = Order::where('shop_id', Auth::user()->owner_shop_id)
                             ->whereBetween('created_at', [now()->subDays(30), now()])->sum('total_price');
 
     	return view('shopOwner.index', compact(['orderCount', 'customerCount', 'salesCount']));
@@ -25,24 +26,30 @@ class ShopOwnerController extends Controller
 
     public function display(){
         
-        $products = Inventory::all();
+        $products = Inventory::where('shop_id', Auth::user()->owner_shop_id);
+        // dd($products->get());
 
         return view('shopOwner.product', compact('products'));
     }
 
     public function list(){
-        $orders = Order::all();
-        // dd($orders);
+        $orders = Order::where('shop_id', Auth::user()->owner_shop_id)
+                        ->whereBetween('created_at', [now()->subDays(30), now()]);
+        // dd($orders->get());
 
         return view('shopOwner.order', compact('orders'));
     }
 
 
     public function show($id){
-        $orders = Order::all();
+        $orderItems = OrderItem::where('order_id', Auth::user()->owner_shop_id);
+
+        // dd($orderItems->get());
 
         $order = Order::find($id);
-        return view('shopOwner.orderDetails', compact('order', 'orders', 'id'));
+        // dd($order);
+
+        return view('shopOwner.orderDetails', compact('order', 'orderItems', 'id'));
     }
 
 

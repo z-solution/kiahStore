@@ -77,10 +77,17 @@ Route::group(
         
         Route::get('/product', 'ShopOwnerController@display')->middleware('shopOwnerAuth')->name('product');
 
+        Route::get('/addProduct', function () {
+            return view('/shopOwner/addProduct');
+        })->name('addProduct')->middleware('shopOwnerAuth');
+
+        Route::post('/addProduct', 'ShopOwnerController@store')->middleware('shopOwnerAuth')->name('addProduct');
+
+        Route::delete('/product/{id}', 'ShopOwnerController@destroy')->middleware('shopOwnerAuth')->name('deleteProduct');
+
         Route::get('/productDetails/{id}', 'ShopOwnerController@edit')->middleware('shopOwnerAuth')->name('productDetails');
 
         Route::patch('/productDetails/{id}', 'ShopOwnerController@update')->middleware('shopOwnerAuth')->name('productDetails');
-
 
 
 
@@ -89,27 +96,21 @@ Route::group(
         Route::get('/orderDetails/{id}', 'ShopOwnerController@show')->middleware('shopOwnerAuth')->name('orderDetails');
 
 
+
         Route::get('/coupon', function () {
             return view('/shopOwner/coupon');
-        })->name('coupon')->middleware('shopOwnerAuth');
+        })->middleware('shopOwnerAuth')->name('coupon');
 
         Route::get('/createCoupon', function () {
             return view('/shopOwner/createCoupon');
-        })->name('createCoupon')->middleware('shopOwnerAuth');
+        })->middleware('shopOwnerAuth')->name('createCoupon');
 
 
         Route::get('/couponCRUD', function () {
             return view('/shopOwner/couponCRUD');
-        })->name('couponCRUD')->middleware('shopOwnerAuth');
+        })->middleware('shopOwnerAuth')->name('couponCRUD');
 
-        Route::get('/addProduct', function () {
-            return view('/shopOwner/addProduct');
-        })->name('addProduct')->middleware('shopOwnerAuth');
-
-        Route::post('/addProduct', 'ShopOwnerController@store')->middleware('shopOwnerAuth')->name('addProduct');
-
-        Route::delete('/product/{id}', 'ShopOwnerController@destroy')->middleware('shopOwnerAuth')->name('product');
-
+        
 
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');

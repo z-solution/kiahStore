@@ -13,14 +13,11 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($orders as $order)
+            @foreach($orders->get() as $order)
               <tr>
-                @if ($order->inventory)
-                 <td> <img src="#" class="rounded mx-auto d-block" />{{$order->inventory->name}}</td>
-                 @else
-                 <td>{{$order->id}}</td>
-                @endif
-                <td>Dontknow now</td>
+                
+                 <td> <img src="#" class="rounded mx-auto d-block" />{{$order->id}}</td>
+                <td>{{$order->customer->name}}</td>
                 <td>{{$order->total_price}}</td>
                 <td>{{$order->status}}</td>
                 <td> <a href="{{route('main-siteorderDetails',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>

@@ -21,9 +21,4 @@ class Inventory extends Model
     {
         return $this->hasMany('App\Model\InventoryVariant');
     }
-
-    public function orders(){
-
-        return $this->hasMany('App\Model\Order');
-    }
 }
