@@ -61,7 +61,6 @@ class ShopOwnerController extends Controller
         $inventory->save();
         if ($request->hasFile('image-file')) {
             $path = $request->file('image-file')->store('public');
-            dd($path);
         }
         return redirect('/product')->with('success', 'New product added');
     }

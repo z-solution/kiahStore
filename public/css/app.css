@@ -10957,3 +10957,8 @@ footer {
   height: 40px;
 }
 
+.container.shop-site .product-image {
+  max-width: 253px;
+  max-height: 253px;
+}
+
