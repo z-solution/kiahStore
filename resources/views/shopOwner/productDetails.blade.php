@@ -12,7 +12,7 @@
                         <input type="hidden" name="_method" value="PATCH" />
                         
                         <div class="form-group mb-4">
-                            <img src="#" class="rounded mx-auto d-block" id="product-image" />
+                          <img src="{{$product->getFirstAttachmentFilename()}}" class="rounded mx-auto d-block" id="product-image" />
                         </div>
                          <div class="form-group">
                             <label for="user-name">Product Name</label>

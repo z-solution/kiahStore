@@ -22,6 +22,7 @@ services:
         - "kiahstore"
     volumes:
       - ./public:/var/www/public
+      - ./storage:/var/www/storage
 
   reverse_proxy:
     build: ./nginx

@@ -23,7 +23,7 @@
             <tbody>
               @foreach($products as $product)
               <tr class="product-row">
-                <td> <img id="product-image" src="img/default_product.png" class="rounded mx-auto d-inline-block" /> {{$product->name}} </td>
+                <td> <img id="product-image" src="{{$product->getFirstAttachmentFilename()}}" class="rounded mx-auto d-inline-block" /> {{$product->name}} </td>
                 <td>{{$product->quantity}}</td>
 
                 @if($product->status == 1)

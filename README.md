@@ -56,7 +56,7 @@ docker-compose exec kiahstore composer install
 
 docker-compose exec kiahstore php artisan make:model attachment -m
 
-docker-compose exec kiahstore php artisan migrate
+docker-compose exec kiahstore php artisan migrate:rollback
 
 docker-compose exec kiahstore php artisan route
 

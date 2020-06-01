@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,5 +22,13 @@ class Attachment extends Model
     public function inventory()
     {
         return $this->belongsTo('App\Model\Inventory');
+    }
+
+    /**
+     * Get the shop for this attachment.
+     */
+    public function shop()
+    {
+        return $this->belongsTo('App\Model\Shop');
     }
 }

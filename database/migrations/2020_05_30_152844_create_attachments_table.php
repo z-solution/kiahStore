@@ -17,12 +17,14 @@ class CreateAttachmentsTable extends Migration
             $table->id();
             $table->integer('inventory_id');
             $table->integer('user_id');
+            $table->integer('shop_id');
             $table->string('type');
             $table->string('filename');
             $table->softDeletes();
             $table->timestamps();
             $table->index(['inventory_id', 'type']);
             $table->index(['user_id', 'type']);
+            $table->index(['shop_id']);
         });
     }
 
