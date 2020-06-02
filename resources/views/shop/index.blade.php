@@ -37,7 +37,8 @@
 
         <section class="text-center my-5">
           <!-- Grid row -->
-              <div class="row">
+          <h1>Latest Product</h1>
+            <div class="row">
                 @foreach($items as $item)
                   <!-- Grid column -->
                   <a href="{{route('shop-siteitemDetails',[$item->id ])}}">
