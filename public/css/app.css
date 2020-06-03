@@ -10962,3 +10962,30 @@ footer {
   max-height: 253px;
 }
 
+.delete-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.delete-image-container .delete-image-text {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  background: #000;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.delete-image-container:hover .delete-image-text {
+  visibility: visible;
+}
+
+.alert p {
+  margin: 0;
+}
+

@@ -77,11 +77,13 @@ Route::group(
         
         Route::get('/product', 'ShopOwnerController@display')->middleware('shopOwnerAuth')->name('product');
 
-        Route::get('/productDetails/{id}', 'ShopOwnerController@edit')->middleware('shopOwnerAuth')->name('productDetails');
+        Route::get('/productDetails/{id}', 'ShopOwnerController@getProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
 
-        Route::patch('/productDetails/{id}', 'ShopOwnerController@update')->middleware('shopOwnerAuth')->name('productDetails');
-
-
+        Route::patch('/productDetails/{id}', 'ShopOwnerController@patchProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
+        Route::post('/productDetails/{id}/upload-image', 'ShopOwnerController@postAddProductImage')->middleware('shopOwnerAuth')->name('productUploadImage');
+        Route::delete('/productDetails/{id}/image/{attachmentId}', 'ShopOwnerController@deleteProductImage')->middleware('shopOwnerAuth')->name('deleteProductImage');
+        
+        
         Route::get('/order', function () {
             return view('/shopOwner/order');
         })->name('order')->middleware('shopOwnerAuth');
@@ -104,7 +106,7 @@ Route::group(
             return view('/shopOwner/addProduct');
         })->name('addProduct')->middleware('shopOwnerAuth');
 
-        Route::post('/addProduct', 'ShopOwnerController@store')->middleware('shopOwnerAuth')->name('addProduct');
+        Route::post('/addProduct', 'ShopOwnerController@postAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
 
 
         // Authentication Routes...
