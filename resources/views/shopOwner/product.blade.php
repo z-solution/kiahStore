@@ -21,6 +21,7 @@
               </tr>
             </thead>
             <tbody>
+
               @foreach($products as $product)
               <tr class="product-row">
                 <td> <img id="product-image" src="{{$product->getFirstAttachmentFilename()}}" class="rounded mx-auto d-inline-block" /> {{$product->name}} </td>
@@ -37,10 +38,10 @@
                 <td>
                   <a href="{{route('main-siteproductDetails',[ app('request')->route('subdomain') ?? '', $product->id ])}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a>
 
-                    <form method="POST" class="delete_form" action="#">
-                    {{csrf_field()}}
-                     <input type="hidden" name="_method" value="DELETE" />
-                    <button type="submit" class="btn btn-danger ml-2"><i class="fa fa-trash"></i> Delete</button>
+                    <form action="{{route('main-sitedeleteProduct', [ app('request')->route('subdomain') ?? '', $product->id ])}}" method="POST" class="delete_form" >
+                      {{csrf_field()}}
+                      <input type="hidden" name="_method" value="DELETE" />
+                      <button type="submit" class="btn btn-danger ml-2"><i class="fa fa-trash"></i> Delete</button>
                     </form>
                 </td>
               </tr>
@@ -92,7 +93,7 @@
               });
               setTimeout(function(){
                 $("div.alert").remove();
-            }, 3000 ); // 3 secs
+              }, 3000 ); // 3 secs
           });
 
   </script>

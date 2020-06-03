@@ -36,7 +36,8 @@
                         </div>
                     @endforeach
                     <form method="POST"
-                        action="{{ route('main-siteproductUploadImage',[ app('request')->route('subdomain') ?? '', $product->id ]) }}">
+                        action="{{ route('main-siteproductUploadImage',[ app('request')->route('subdomain') ?? '', $product->id ]) }}"
+                        enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <label for="upload-image" class="btn">
                             <div class="btn btn-info"> Add Image </div>

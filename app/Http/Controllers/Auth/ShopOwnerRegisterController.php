@@ -130,6 +130,11 @@ class ShopOwnerRegisterController extends Controller
             'shopName' => [
                 'required', 'string',
                 Rule::unique('shops', 'name'),
+                function ($attribute, $value, $fail) {
+                    if (array_search($value, ['admin','bjoe','test']) !== false) {
+                        $fail('The shop name has already been taken.');
+                    }
+                },
             ],
         ]);
     }

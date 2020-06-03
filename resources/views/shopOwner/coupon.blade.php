@@ -3,32 +3,32 @@
 @section('content')
     <div class="container">
       <div class="card">
-        <div class="card-header mb-2">Coupon Page</div>
+          @if(\Session::has('success'))
+              <div class="alert alert-success">
+                 <p>{{\Session::get('success') }}</p>
+              </div>
+          @endif
+        <div class="card-header mb-2">Coupon Page
+          <a href="{{route('main-sitecreateCoupon', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Coupon</a>
+        </div>
         <table id="example" class="table table-bordered table-sm mt-4">
           <thead class="text-center thead thead-dark">
             <tr>
-              <th>Order list</th>
-              <th>Customer</th>
-              <th>Total</th>
-              <th>Status</th>
+              <th>Coupon Code</th>
+              <th>Coupon Value</th>
+              <th>Expiration Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> <img src="#" class="rounded mx-auto d-block" /> product1 </td>
-              <td>Bjoe Cool</td>
-              <td>MYR 500</td>
-              <td>Pending</td>
-              <td> <a href="{{route('main-sitecouponCRUD', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
-            </tr>
-            <tr>
-              <td> <img src="#" class="rounded mx-auto d-block" /> product2 </td>
-              <td>Zahir Boom</td>
-              <td>MYR 400</td>
-              <td>Pending</td>
-              <td> <a href="#" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
-            </tr>
+            @foreach($coupons as $coupon)
+              <tr>
+                <td>{{$coupon->code}}</td>
+                <td>{{$coupon->value}}</td>
+                <td>{{$coupon->expiration_date}}</td>
+                <td> <a href="{{route('main-sitecouponCRUD', [app('request')->route('subdomain') ?? '', $coupon->id] )}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
@@ -74,6 +74,9 @@
                       return false;
                   }
               });
+              setTimeout(function(){
+                $("div.alert").remove();
+              }, 3000 ); // 3 secs
           });
   </script>
 @endsection

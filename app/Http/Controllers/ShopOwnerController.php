@@ -8,6 +8,7 @@ use App\Model\User;
 use App\Model\Inventory;
 use App\Model\Attachment;
 use App\Model\Shop;
+use App\Model\OrderItem;
 use Auth;
 use Hash;
 
@@ -15,21 +16,44 @@ class ShopOwnerController extends Controller
 {
     public function index(){
 
-        $orderCount = Order::where('shop_id', Auth::user()->id)
-                            ->whereBetween('created_at', [now()->subDays(30), now()]);
+        $orderCount = Order::where('shop_id', Auth::user()->owner_shop_id)
+                            ->whereBetween('created_at', [now()->subDays(30), now()]);            
         $customerCount = User::where('customer_shop_id', Auth::user()->owner_shop_id )->count();
-        $salesCount = Order::where('shop_id', Auth::user()->id)
+        $salesCount = Order::where('shop_id', Auth::user()->owner_shop_id)
                             ->whereBetween('created_at', [now()->subDays(30), now()])->sum('total_price');
 
     	return view('shopOwner.index', compact(['orderCount', 'customerCount', 'salesCount']));
     }
 
     public function display(){
+        //$products = Inventory::where('shop_id', Auth::user()->owner_shop_id);
+        // dd($products->get());
         
         $products = Inventory::with('attachment')->get();
 
         return view('shopOwner.product', compact('products'));
     }
+
+    public function list(){
+        $orders = Order::where('shop_id', Auth::user()->owner_shop_id)
+                        ->whereBetween('created_at', [now()->subDays(30), now()]);
+        // dd($orders->get());
+
+        return view('shopOwner.order', compact('orders'));
+    }
+
+
+    public function show($id){
+        $orderItems = OrderItem::where('order_id', Auth::user()->owner_shop_id);
+
+        // dd($orderItems->get());
+
+        $order = Order::find($id);
+        // dd($order);
+
+        return view('shopOwner.orderDetails', compact('order', 'orderItems', 'id'));
+    }
+
 
 	/**
      * Store a newly created resource in storage
@@ -114,7 +138,7 @@ class ShopOwnerController extends Controller
             $attachment->save();
             return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('success', 'Image has been save');
         }
-        return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('Error', 'Image is not uploaded');
+        return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('error', 'Image is not uploaded');
     }
 
     public function deleteProductImage(Request $request, $id, $attachmentId)
@@ -130,6 +154,18 @@ class ShopOwnerController extends Controller
             $attachment->delete();
             return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('success', 'Image is deleted');
 
+          }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
 
+        $product = Inventory::find($id);
+         
+        $product->delete();
+        return redirect('/product')->with('success', 'Data Deleted');
     }
 }

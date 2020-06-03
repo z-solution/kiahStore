@@ -80,34 +80,36 @@ Route::group(
         Route::get('/productDetails/{id}', 'ShopOwnerController@getProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
 
         Route::patch('/productDetails/{id}', 'ShopOwnerController@patchProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
+        
         Route::post('/productDetails/{id}/upload-image', 'ShopOwnerController@postAddProductImage')->middleware('shopOwnerAuth')->name('productUploadImage');
+
         Route::delete('/productDetails/{id}/image/{attachmentId}', 'ShopOwnerController@deleteProductImage')->middleware('shopOwnerAuth')->name('deleteProductImage');
         
-        
-        Route::get('/order', function () {
-            return view('/shopOwner/order');
-        })->name('order')->middleware('shopOwnerAuth');
-
-        Route::get('/coupon', function () {
-            return view('/shopOwner/coupon');
-        })->name('coupon')->middleware('shopOwnerAuth');
-
-        
-
-        Route::get('/orderDetails', function () {
-            return view('/shopOwner/orderDetails');
-        })->name('orderDetails')->middleware('shopOwnerAuth');
-
-        Route::get('/couponCRUD', function () {
-            return view('/shopOwner/couponCRUD');
-        })->name('couponCRUD')->middleware('shopOwnerAuth');
-
         Route::get('/addProduct', function () {
             return view('/shopOwner/addProduct');
         })->name('addProduct')->middleware('shopOwnerAuth');
 
         Route::post('/addProduct', 'ShopOwnerController@postAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
 
+        Route::delete('/product/{id}', 'ShopOwnerController@destroy')->middleware('shopOwnerAuth')->name('deleteProduct');
+
+        Route::get('/order', 'ShopOwnerController@list')->middleware('shopOwnerAuth')->name('order');
+
+        Route::get('/orderDetails/{id}', 'ShopOwnerController@show')->middleware('shopOwnerAuth')->name('orderDetails');
+
+        Route::get('/coupon', 'CouponController@index')->middleware('shopOwnerAuth')->name('coupon');
+
+        Route::get('/createCoupon', function () {
+            return view('/shopOwner/createCoupon');
+        })->middleware('shopOwnerAuth')->name('createCoupon');
+
+        Route::post('/createCoupon', 'CouponController@store')->middleware('shopOwnerAuth')->name('createCoupon');
+
+
+        Route::get('/couponCRUD/{id}', 'CouponController@edit')->middleware('shopOwnerAuth')->name('couponCRUD');
+
+        Route::patch('/couponCRUD/{id}', 'CouponController@update')->middleware('shopOwnerAuth')->name('couponCRUD');
+        
 
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');
@@ -137,7 +139,7 @@ Route::group(
     ],
     function () {
         // Shop frontend
-        Route::get('/', 'ShopSiteController@index')->name('home')->name('dashboard');
+        Route::get('/', 'ShopSiteController@index')->name('index');
         Route::get('/itemDetails/{id}', 'ShopSiteController@displayDetails')->name('itemDetails');
 
         Route::get('/profile', function () {

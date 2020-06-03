@@ -8,52 +8,41 @@
               <div class="card-body">
                 <div class="mb-4">
                   <h4><u> Order Details </u></h4>
-                  <h5>Order Id: 12</h5>
-                  <h5>Date: 22 April 2020</h5>
-                  <h5># of items: 3</h5>
+                  <h5>Order Id: {{$order->id}}</h5>
+                  <h5>Date: {{$order->created_at}}</h5>
+                  <h5># of items: {{$orderItems->sum('quantity') }}</h5>
                 </div> 
-
                 <div>
                   <h4><u> Payment Address </u></h4>
-                  <p>No 5, Jalan Selasih 5,
-                      Teman Selasih Fasa 1,
-                      68100 Batu Caves,
-                      Selangor</p>
+                  <p>{{$order->blling_address_id}}</p>
                 </div> 
 
                 <div>
                   <h4><u> Shipping Address </u></h4>
-                  <p>No 5, Jalan Selasih 5,
-                      Teman Selasih Fasa 1,
-                      68100 Batu Caves,
-                      Selangor</p>
+                  <p>{{$order->shipping_address_id}}</p>
                 </div>
 
                 <table class="table table-bordered table-sm mt-4">
                     <thead class="text-center thead thead-dark">
                       <tr>
-                        <th>Product</th>
+                        <th>Product ID</th>
                         <th>Quantity</th>
                         <th>Unit price</th>
                         <th>Total</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td> product1 </td>
-                        <td>3</td>
-                        <td>MYR 50.00</td>
-                        <td>MYR 150.00</td>
-                      </tr>
-                      <tr>
-                        <td> product2 </td>
-                        <td>2</td>
-                        <td>MYR 50.00</td>
-                        <td>MYR 100.00</td>
-                      </tr>
+                      @foreach($orderItems->get() as $item)
+                        <tr>
+                          <td>{{$item->id}}</td>
+                          <td>{{$item->quantity}}</td>
+                          <td>MYR {{$item->price}}</td>
+                          <td>MYR {{ number_format($item->quantity * $item->price) }} </td>
+                        </tr>
+                      @endforeach 
                       <tr>
                         <td colspan="3" class="text-right"><b>Sub total</b></td>
-                        <td>MYR 250.00</td>
+                        <td>MYR {{$order->total_price}} </td>
                       </tr>
                       <tr>
                         <td colspan="3" class="text-right"><b>Shipping Rate</b></td>
@@ -61,8 +50,8 @@
                       </tr>
                       <tr>
                         <td colspan="3" class="text-right"><b>Total</b></td>
-                        <td> MYR 260.00</td>
-                      </tr>
+                        <td> MYR {{ number_format($order->total_price + 10) }} </td>
+                      </tr> 
                     </tbody>
                   </table>
                 </div>

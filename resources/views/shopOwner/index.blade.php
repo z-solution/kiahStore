@@ -30,22 +30,31 @@
           </div>
         </div>
 
-        <table id="example" class="table table-bordered table-sm mt-4">
-          <thead class="thead thead-dark">
-            <tr>
-              <th>Latest Orders</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-            @foreach($orderCount->get() as $order)
-              <tr>
-                <td> {{$order}} </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-
+        <div class="card">
+            <div class="card-header text-center">
+              <b>Latest Orders</b>
+            </div>
+            <div class="card-body text-center">
+              <table id="example" class="table table-bordered table-sm mt-4">
+                <thead class="thead thead-dark">
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Order Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($orderCount->get() as $order)
+                    <tr>
+                      <td>{{$order->id}}</td>
+                      <td>{{$order->customer->name}}</td>
+                      <td>{{$order->status}}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
     </div>
 @endsection 
 @section('scripts')
