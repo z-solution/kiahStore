@@ -25,6 +25,8 @@ class ShopOwnerController extends Controller
     }
 
     public function display(){
+        //$products = Inventory::where('shop_id', Auth::user()->owner_shop_id);
+        // dd($products->get());
         
         $products = Inventory::where('shop_id', Auth::user()->owner_shop_id);
         // dd($products->get());

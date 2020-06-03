@@ -97,19 +97,18 @@ Route::group(
 
 
 
-        Route::get('/coupon', function () {
-            return view('/shopOwner/coupon');
-        })->middleware('shopOwnerAuth')->name('coupon');
+        Route::get('/coupon', 'CouponController@index')->middleware('shopOwnerAuth')->name('coupon');
 
         Route::get('/createCoupon', function () {
             return view('/shopOwner/createCoupon');
         })->middleware('shopOwnerAuth')->name('createCoupon');
 
+        Route::post('/createCoupon', 'CouponController@store')->middleware('shopOwnerAuth')->name('createCoupon');
 
-        Route::get('/couponCRUD', function () {
-            return view('/shopOwner/couponCRUD');
-        })->middleware('shopOwnerAuth')->name('couponCRUD');
 
+        Route::get('/couponCRUD/{id}', 'CouponController@edit')->middleware('shopOwnerAuth')->name('couponCRUD');
+
+        Route::patch('/couponCRUD/{id}', 'CouponController@update')->middleware('shopOwnerAuth')->name('couponCRUD');
         
 
         // Authentication Routes...

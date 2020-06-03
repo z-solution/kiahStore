@@ -92,7 +92,7 @@
               });
               setTimeout(function(){
                 $("div.alert").remove();
-            }, 3000 ); // 3 secs
+              }, 3000 ); // 3 secs
           });
 
   </script>
