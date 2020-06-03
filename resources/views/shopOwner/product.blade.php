@@ -1,7 +1,7 @@
 @extends('layouts.shopOwnerLayout')
 
 @section('content')
-    <div class="container">
+    <div class="container product">
       <div class="card">
             @if(\Session::has('success'))
                 <div class="alert alert-success">
@@ -21,9 +21,10 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($products->get() as $product)
-              <tr>
-                <td> <img src="#" class="rounded mx-auto d-block" /> {{$product->name}} </td>
+
+              @foreach($products as $product)
+              <tr class="product-row">
+                <td> <img id="product-image" src="{{$product->getFirstAttachmentFilename()}}" class="rounded mx-auto d-inline-block" /> {{$product->name}} </td>
                 <td>{{$product->quantity}}</td>
 
                 @if($product->status == 1)

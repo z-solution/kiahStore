@@ -71,6 +71,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Model\Order');
     }
 
+    /**
+     * Get the attachment image for the user.
+     */
+    public function attachment()
+    {
+        return $this->hasMany('App\Model\Attachment');
+    }
+
     static public function createShopOwner(array $data)
     {
         $data['type'] = User::SHOPOWNERTYPE;

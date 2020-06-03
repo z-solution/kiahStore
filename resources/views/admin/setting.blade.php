@@ -21,7 +21,7 @@
       <tr>
         <td>Maintainer mood for all shop</td>
         <td>
-          @if ($shopMaintainerMood->value == 'true')
+          @if ($shopMaintainerMood && $shopMaintainerMood->value == 'true')
           Enable
           @else
           Disable
@@ -31,7 +31,7 @@
           <form method="POST" class="post_form" action="{{route('main-admin-sitepost-setting', [app('request')->route('subdomain') ?? ''])}}">
             {{csrf_field()}}
             <input type="hidden" name="_method" value="POST" />
-            <input type="hidden" name="name" value="{{$shopMaintainerMood->name}}" />
+            <input type="hidden" name="name" value="{{$systemShopMaintainerMood}}" />
             <input type="hidden" name="desc_name" value="Maintainer mood for all shop" />
             <input type="hidden" name="value" value="true" />
             <input type="hidden" name="desc_value" value="enable" />
@@ -40,7 +40,7 @@
           <form method="POST" class="post_form" action="{{route('main-admin-sitepost-setting', [app('request')->route('subdomain') ?? ''])}}">
             {{csrf_field()}}
             <input type="hidden" name="_method" value="POST" />
-            <input type="hidden" name="name" value="{{$shopMaintainerMood->name}}" />
+            <input type="hidden" name="name" value="{{$systemShopMaintainerMood}}" />
             <input type="hidden" name="desc_name" value="Maintainer mood for all shop" />
             <input type="hidden" name="value" value="false" />
             <input type="hidden" name="desc_value" value="disable" />

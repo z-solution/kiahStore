@@ -42,6 +42,14 @@ class Shop extends Model
     }
 
     /**
+     * Get the attachment for the shop.
+     */
+    public function attachments()
+    {
+        return $this->hasMany('App\Model\Attachment');
+    }
+
+    /**
      * Get the customers for the shop.
      */
     public function userAsCustomers()
