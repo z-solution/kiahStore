@@ -61,7 +61,7 @@ class ShopOwnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postAddProduct(Request $request)
     {
          $this->validate($request, [
             'product_name' => 'required',
@@ -97,13 +97,13 @@ class ShopOwnerController extends Controller
         return redirect('/product')->with('success', 'New product added');
     }
 
-    public function edit($id){
+    public function getProductDetail($id){
 
         $product = Inventory::find($id);
         return view('shopOwner.productDetails', compact('product', 'id'));
     }
      
-    public function update(Request $request, $id)
+    public function patchProductDetail(Request $request, $id)
     {
         $this->validate($request, [
             'product_name'    => 'required',
@@ -125,6 +125,36 @@ class ShopOwnerController extends Controller
         return redirect('/product')->with('success', 'Data updated');
     }
 
+    public function postAddProductImage(Request $request, $id)
+    {
+        if ($request->hasFile('image-file')) {
+            $path = $request->file('image-file')->store('public');
+            $attachment = new Attachment();
+            $attachment->inventory_id = $id;
+            $attachment->user_id = Auth::user()->id;
+            $attachment->shop_id = Auth::user()->owner_shop_id;
+            $attachment->type = 'image';
+            $attachment->filename = str_replace("public/","storage/",$path);
+            $attachment->save();
+            return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('success', 'Image has been save');
+        }
+        return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('error', 'Image is not uploaded');
+    }
+
+    public function deleteProductImage(Request $request, $id, $attachmentId)
+    {
+        $attachment = Attachment::where([
+            ['id', '=',$attachmentId],
+            ['inventory_id', '=',$id],
+            ['shop_id', '=',Auth::user()->owner_shop_id],
+            ])->first();
+            if($attachment === null) {
+                return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('error', 'Image does not exist');
+            }
+            $attachment->delete();
+            return redirect()->route('main-siteproductDetails', [ app('request')->route('subdomain') ?? '', $id ])->with('success', 'Image is deleted');
+
+          }
     /**
      * Remove the specified resource from storage.
      *

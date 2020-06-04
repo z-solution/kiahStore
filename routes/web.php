@@ -77,25 +77,25 @@ Route::group(
         
         Route::get('/product', 'ShopOwnerController@display')->middleware('shopOwnerAuth')->name('product');
 
+        Route::get('/productDetails/{id}', 'ShopOwnerController@getProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
+
+        Route::patch('/productDetails/{id}', 'ShopOwnerController@patchProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
+        
+        Route::post('/productDetails/{id}/upload-image', 'ShopOwnerController@postAddProductImage')->middleware('shopOwnerAuth')->name('productUploadImage');
+
+        Route::delete('/productDetails/{id}/image/{attachmentId}', 'ShopOwnerController@deleteProductImage')->middleware('shopOwnerAuth')->name('deleteProductImage');
+        
         Route::get('/addProduct', function () {
             return view('/shopOwner/addProduct');
         })->name('addProduct')->middleware('shopOwnerAuth');
 
-        Route::post('/addProduct', 'ShopOwnerController@store')->middleware('shopOwnerAuth')->name('addProduct');
+        Route::post('/addProduct', 'ShopOwnerController@postAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
 
         Route::delete('/product/{id}', 'ShopOwnerController@destroy')->middleware('shopOwnerAuth')->name('deleteProduct');
-
-        Route::get('/productDetails/{id}', 'ShopOwnerController@edit')->middleware('shopOwnerAuth')->name('productDetails');
-
-        Route::patch('/productDetails/{id}', 'ShopOwnerController@update')->middleware('shopOwnerAuth')->name('productDetails');
-
-
 
         Route::get('/order', 'ShopOwnerController@list')->middleware('shopOwnerAuth')->name('order');
 
         Route::get('/orderDetails/{id}', 'ShopOwnerController@show')->middleware('shopOwnerAuth')->name('orderDetails');
-
-
 
         Route::get('/coupon', 'CouponController@index')->middleware('shopOwnerAuth')->name('coupon');
 
