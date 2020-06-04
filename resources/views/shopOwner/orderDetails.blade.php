@@ -14,12 +14,22 @@
                 </div> 
                 <div>
                   <h4><u> Payment Address </u></h4>
-                  <p>{{$order->blling_address_id}}</p>
+                   @foreach($address as $add)
+                       <p>{{ $add->name}} {{ $add->street_address1}}<br/>
+                       {{ $add->street_address2}} <br/>
+                       {{ $add->zip_code}} {{ $add->city}}<br/>
+                       {{ $add->state}} </p>
+                   @endforeach
                 </div> 
 
                 <div>
                   <h4><u> Shipping Address </u></h4>
-                  <p>{{$order->shipping_address_id}}</p>
+                    @foreach($address as $add)
+                         <p>{{ $add->name}} {{ $add->street_address1}}<br/>
+                         {{ $add->street_address2}} <br/>
+                         {{ $add->zip_code}} {{ $add->city}}<br/>
+                         {{ $add->state}} </p>
+                     @endforeach
                 </div>
 
                 <table class="table table-bordered table-sm mt-4">
@@ -32,6 +42,7 @@
                       </tr>
                     </thead>
                     <tbody>
+                      
                       @foreach($orderItems->get() as $item)
                         <tr>
                           <td>{{$item->id}}</td>

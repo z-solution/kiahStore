@@ -8,6 +8,7 @@ use App\Model\User;
 use App\Model\Inventory;
 use App\Model\Attachment;
 use App\Model\Shop;
+use App\Model\Address;
 use App\Model\OrderItem;
 use Auth;
 use Hash;
@@ -46,12 +47,12 @@ class ShopOwnerController extends Controller
     public function show($id){
         $orderItems = OrderItem::where('order_id', Auth::user()->owner_shop_id);
 
-        // dd($orderItems->get());
-
         $order = Order::find($id);
+        $address = Address::where('order_id', $id)->get();
         // dd($order);
+        // dd($address);
 
-        return view('shopOwner.orderDetails', compact('order', 'orderItems', 'id'));
+        return view('shopOwner.orderDetails', compact('order', 'orderItems', 'address', 'id'));
     }
 
 
