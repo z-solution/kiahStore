@@ -10,16 +10,16 @@ use Hash;
 
 class ShopSiteController extends Controller {
 
-    public function index(){
-
-    	$items = Inventory::with('attachment')->get();
+    public function index(Request $request){
+        $shop = $request->middlewareShop;
+    	$items = Inventory::with('attachment')->where('shop_id', $shop->id)->get();
 
         return view('shop.index', compact('items'));
     }
 
-    public function displayDetails($id){
-
-    	$product = Inventory::find($id); 
+    public function displayDetails(Request $request, $id){
+        $shop = $request->middlewareShop;
+    	$product = Inventory::with('attachment')->where('shop_id', $shop->id)->find($id);
     	return view('shop.itemDetails', compact('product', 'id'));
     }
 }
