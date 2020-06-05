@@ -14,13 +14,19 @@
                 </div> 
                 <div>
                   <h4><u> Payment Address </u></h4>
-                  <p>{{$order->blling_address_id}}</p>
+                     <p>{{ $order->billingAddress()->get()->first()->name}} {{ $order->billingAddress()->get()->first()->street_address1}}<br/>
+                     {{ $order->billingAddress()->get()->first()->street_address2}} <br/>
+                     {{ $order->billingAddress()->get()->first()->zip_code}} {{ $order->billingAddress()->get()->first()->city}}<br/>
+                     {{ $order->billingAddress()->get()->first()->state}} </p>
                 </div> 
 
-                <div>
+                 <div>
                   <h4><u> Shipping Address </u></h4>
-                  <p>{{$order->shipping_address_id}}</p>
-                </div>
+                      <p>{{ $order->shippingAddress()->get()->first()->name}}{{$order->shippingAddress()->get()->first()->street_address1}}<br/>
+                       {{ $order->shippingAddress()->get()->first()->street_address2}} <br/>
+                       {{ $order->shippingAddress()->get()->first()->zip_code}} {{ $order->shippingAddress()->get()->first()->city}}<br/>
+                       {{ $order->shippingAddress()->get()->first()->state}} </p>
+                </div> 
 
                 <table class="table table-bordered table-sm mt-4">
                     <thead class="text-center thead thead-dark">
@@ -32,6 +38,7 @@
                       </tr>
                     </thead>
                     <tbody>
+                      
                       @foreach($orderItems->get() as $item)
                         <tr>
                           <td>{{$item->id}}</td>

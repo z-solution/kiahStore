@@ -11,7 +11,7 @@ class Order extends Model
      */
     public function billingAddress()
     {
-        return $this->belongsTo('App\Model\Address', 'billing_address_id');
+        return $this->belongsTo('App\Model\Address', 'blling_address_id');
     }
 
     /**
