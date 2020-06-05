@@ -14,23 +14,19 @@
                 </div> 
                 <div>
                   <h4><u> Payment Address </u></h4>
-                   @foreach($address as $add)
-                       <p>{{ $add->name}} {{ $add->street_address1}}<br/>
-                       {{ $add->street_address2}} <br/>
-                       {{ $add->zip_code}} {{ $add->city}}<br/>
-                       {{ $add->state}} </p>
-                   @endforeach
+                     <p>{{ $order->billingAddress()->get()->first()->name}} {{ $order->billingAddress()->get()->first()->street_address1}}<br/>
+                     {{ $order->billingAddress()->get()->first()->street_address2}} <br/>
+                     {{ $order->billingAddress()->get()->first()->zip_code}} {{ $order->billingAddress()->get()->first()->city}}<br/>
+                     {{ $order->billingAddress()->get()->first()->state}} </p>
                 </div> 
 
-                <div>
+                 <div>
                   <h4><u> Shipping Address </u></h4>
-                    @foreach($address as $add)
-                         <p>{{ $add->name}} {{ $add->street_address1}}<br/>
-                         {{ $add->street_address2}} <br/>
-                         {{ $add->zip_code}} {{ $add->city}}<br/>
-                         {{ $add->state}} </p>
-                     @endforeach
-                </div>
+                      <p>{{ $order->shippingAddress()->get()->first()->name}}{{$order->shippingAddress()->get()->first()->street_address1}}<br/>
+                       {{ $order->shippingAddress()->get()->first()->street_address2}} <br/>
+                       {{ $order->shippingAddress()->get()->first()->zip_code}} {{ $order->shippingAddress()->get()->first()->city}}<br/>
+                       {{ $order->shippingAddress()->get()->first()->state}} </p>
+                </div> 
 
                 <table class="table table-bordered table-sm mt-4">
                     <thead class="text-center thead thead-dark">

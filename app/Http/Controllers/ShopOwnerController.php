@@ -48,11 +48,10 @@ class ShopOwnerController extends Controller
         $orderItems = OrderItem::where('order_id', Auth::user()->owner_shop_id);
 
         $order = Order::find($id);
-        $address = Address::where('order_id', $id)->get();
-        // dd($order);
-        // dd($address);
+       
+        // dd($order->billingAddress()->get()->first()->name);
 
-        return view('shopOwner.orderDetails', compact('order', 'orderItems', 'address', 'id'));
+        return view('shopOwner.orderDetails', compact('order', 'orderItems','id'));
     }
 
 
