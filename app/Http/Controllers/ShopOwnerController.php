@@ -9,6 +9,7 @@ use App\Model\Inventory;
 use App\Model\Attachment;
 use App\Model\Shop;
 use App\Model\Address;
+use App\Model\InventoryVariant;
 use App\Model\OrderItem;
 use Auth;
 use Hash;
@@ -67,14 +68,17 @@ class ShopOwnerController extends Controller
      */
     public function postAddProduct(Request $request)
     {
+
          $this->validate($request, [
             'product_name' => 'required',
             'description'  => 'required',
             'price'        => 'required',
             'quantity'     => 'required',
             'dimension'    => 'required',
-            'status'       => 'required'
+            'status'       => 'required',
+            'variant'      => 'required'
         ]);
+
 
         $inventory = new Inventory();
 
@@ -85,9 +89,14 @@ class ShopOwnerController extends Controller
         $inventory->quantity    = request('quantity');
         $inventory->status      = request('status');
         $inventory->dimension   = request('dimension');
-        
-
         $inventory->save();
+        
+        foreach(request('variant') as $variant) {
+            $inventoryVariant = new InventoryVariant();
+            $inventoryVariant->inventory_id = $inventory->id;
+            $inventoryVariant->name = $variant;
+            $inventoryVariant->save();
+        }
         if ($request->hasFile('image-file')) {
             $path = $request->file('image-file')->store('public');
             $attachment = new Attachment();

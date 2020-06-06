@@ -39,7 +39,6 @@ footer {
   cursor: zoom-in;
   max-width: 458px;
   max-height: 450px;
-
 }
 
 .gallery-wrap .img-small-wrap .item-gallery {
@@ -109,5 +108,18 @@ footer {
 .alert {
   p {
     margin: 0;
+  }
+}
+#add-variant-list {
+  li {
+    div {
+      &.remove-btn {
+        display: inline-block;
+        text-decoration: underline;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+      }
+    }
   }
 }
