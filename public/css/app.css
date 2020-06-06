@@ -10912,12 +10912,12 @@ footer {
 }
 
 .gallery-wrap .img-big-wrap img {
-  height: 450px;
+  height: 458px;
   width: auto;
   display: inline-block;
   cursor: zoom-in;
   max-width: 458px;
-  max-height: 450px;
+  max-height: 458px;
 }
 
 .gallery-wrap .img-small-wrap .item-gallery {
