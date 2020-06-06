@@ -7,12 +7,9 @@ use App\Model\Order;
 use App\Model\User;
 use App\Model\Inventory;
 use App\Model\Attachment;
-use App\Model\Shop;
-use App\Model\Address;
 use App\Model\InventoryVariant;
 use App\Model\OrderItem;
 use Auth;
-use Hash;
 
 class ShopOwnerController extends Controller
 {
@@ -28,9 +25,6 @@ class ShopOwnerController extends Controller
     }
 
     public function display(){
-        //$products = Inventory::where('shop_id', Auth::user()->owner_shop_id);
-        // dd($products->get());
-        
         $products = Inventory::with('attachment')->get();
 
         return view('shopOwner.product', compact('products'));
@@ -39,11 +33,8 @@ class ShopOwnerController extends Controller
     public function list(){
         $orders = Order::where('shop_id', Auth::user()->owner_shop_id)
                         ->whereBetween('created_at', [now()->subDays(30), now()]);
-        // dd($orders->get());
-
         return view('shopOwner.order', compact('orders'));
     }
-
 
     public function show($id){
         $orderItems = OrderItem::where('order_id', Auth::user()->owner_shop_id);
@@ -112,7 +103,8 @@ class ShopOwnerController extends Controller
 
     public function getProductDetail($id){
 
-        $product = Inventory::find($id);
+        $product = Inventory::with('inventoryVariant')->find($id);
+        // dd($product->inventoryVariant()->get());
         return view('shopOwner.productDetails', compact('product', 'id'));
     }
      

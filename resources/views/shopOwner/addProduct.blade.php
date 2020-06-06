@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label for="user-name">Product Name</label>
                             <input type="text" class="form-control @error('product_name') is-invalid @enderror"
-                                name="product_name" placeholder="Product name">
+                                name="product_name" placeholder="Product name" value="{{ old('product_name') }}">
                             @error('product_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label for="user-email">Description</label>
                             <input type="text" class="form-control @error('description') is-invalid @enderror"
-                                name="description" placeholder="Description">
+                                name="description" placeholder="Description" value="{{ old('description') }}">
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label for="user-email">Price</label>
                             <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
-                                placeholder="Enter the price">
+                                placeholder="Enter the price" value="{{ old('price') }}">
                             @error('price')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label for="user-email">Quantity</label>
                             <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                name="quantity" placeholder="Enter the quantity">
+                                name="quantity" placeholder="Enter the quantity" value="{{ old('quantity') }}">
                             @error('quantity')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label for="user-email">Dimension</label>
                             <input type="string" class="form-control @error('dimension') is-invalid @enderror"
-                                name="dimension" placeholder="Enter the dimension. e.g. 100x100x100">
+                                name="dimension" placeholder="Enter the dimension. e.g. 100x100x100" value="{{ old('dimension') }}">
                             @error('dimension')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -81,7 +81,8 @@
                             <ul id="add-variant-list">
                                 @if(old('variant'))
                                     @foreach(old('variant') as $variant)
-                                        <li>{{ $variant }}  <div class="remove-btn"> Remove</div><input type="hidden" name="variant[]" value="{{ $variant }}">
+                                        <li>{{ $variant }} <div class="remove-btn"> Remove</div><input type="hidden"
+                                                name="variant[]" value="{{ $variant }}">
                                         </li>
                                     @endforeach
                                 @endif
@@ -133,7 +134,7 @@
             $('#add-variant').val('');
         })
         $('#add-variant-list').on('click', '.remove-btn', (ele) => {
-          $(ele.currentTarget).parent().remove();
+            $(ele.currentTarget).parent().remove();
         })
     });
 
