@@ -8,15 +8,19 @@
                 <article class="gallery-wrap">
                     <div class="img-big-wrap">
                         <div>
-                            <img id="product-image-main-display" src="/{{ $product->attachment[0]->filename }}">
+                            <img id="product-image-main-display" src="{{ $product->getFirstAttachmentFilename() }}">
                         </div>
                     </div> <!-- slider-product.// -->
                     <div class="img-small-wrap">
-                        @foreach($product->attachment as $attachment)
+                        @forelse ($product->attachment as $attachment)
                             <div class="item-gallery">
                                 <img class="product-image" src="/{{ $attachment->filename }}">
                             </div>
-                        @endforeach
+                        @empty  
+                        <div class="item-gallery">
+                            <img class="product-image" src="{{ $product->getFirstAttachmentFilename() }}">
+                        </div>
+                        @endforelse
                     </div> <!-- slider-nav.// -->
                 </article> <!-- gallery-wrap .end// -->
             </aside>
