@@ -3,9 +3,11 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class InventoryVariant extends Model
 {
+    use SoftDeletes;
     /**
      * Get the inventory for this inventory variant.
      */

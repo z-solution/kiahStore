@@ -94,17 +94,9 @@
                         <div class="form-group">
                             <label for="product">Product Status:</label>
                             <select class="form-control" name="status">
-                                @if($product->status == 1)
-                                    <option>Available</option>
-                                @elseif($product->status == 0)
-                                    <option>Out of Stock</option>
-                                @else
-                                    <option>Pending</option>
-                                @endif
-
-                                <option value="1">Available</option>
-                                <option value="0">Out of Stock</option>
-                                <option value="2">Pending</option>
+                                <option value="1" @if($product->status == 1) selected @endif> Available</option>
+                                <option value="0" @if($product->status == 0) selected @endif>Out of Stock</option>
+                                <option value="2" @if($product->status == 2) selected @endif>Pending</option>
                             </select>
                         </div>
 
@@ -144,4 +136,24 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $('#add-variant-btn').click(() => {
+            let data = $('#add-variant').val();
+            $('#add-variant-list').append(
+                `<li>${data} <div class="remove-btn"> Remove</div><input type="hidden" name="variant[]" value="${data}"></li>`
+            )
+            $('#add-variant').val('');
+        })
+        $('#add-variant-list').on('click', '.remove-btn', (ele) => {
+            $(ele.currentTarget).parent().remove();
+        })
+    });
+
+</script>
 @endsection
