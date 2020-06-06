@@ -85,9 +85,7 @@ Route::group(
 
         Route::delete('/productDetails/{id}/image/{attachmentId}', 'ShopOwnerController@deleteProductImage')->middleware('shopOwnerAuth')->name('deleteProductImage');
         
-        Route::get('/addProduct', function () {
-            return view('/shopOwner/addProduct');
-        })->name('addProduct')->middleware('shopOwnerAuth');
+        Route::get('/addProduct', 'ShopOwnerController@getAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
 
         Route::post('/addProduct', 'ShopOwnerController@postAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
 

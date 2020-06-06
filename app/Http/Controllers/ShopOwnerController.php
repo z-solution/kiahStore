@@ -54,6 +54,10 @@ class ShopOwnerController extends Controller
         return view('shopOwner.orderDetails', compact('order', 'orderItems','id'));
     }
 
+    public function getAddProduct() {
+        $defaultImage = Inventory::getDefaultImage();
+        return view('/shopOwner/addProduct', compact('defaultImage'));
+    }
 
 	/**
      * Store a newly created resource in storage

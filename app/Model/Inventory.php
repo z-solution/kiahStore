@@ -37,7 +37,9 @@ class Inventory extends Model
         if($this->attachment && count($this->attachment)) {
             return '/' . $this->attachment[0]->filename;
         }
+        return Inventory::getDefaultImage();
+    }
+    static function getDefaultImage() {
         return '/img/default_product.png';
     }
-
 }
