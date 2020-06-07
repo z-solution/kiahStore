@@ -33,13 +33,12 @@ footer {
 // added css for product details
 
 .gallery-wrap .img-big-wrap img {
-  height: 450px;
+  height: 458px;
   width: auto;
   display: inline-block;
   cursor: zoom-in;
   max-width: 458px;
-  max-height: 450px;
-
+  max-height: 458px;
 }
 
 .gallery-wrap .img-small-wrap .item-gallery {
@@ -109,5 +108,18 @@ footer {
 .alert {
   p {
     margin: 0;
+  }
+}
+#add-variant-list {
+  li {
+    div {
+      &.remove-btn {
+        display: inline-block;
+        text-decoration: underline;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+      }
+    }
   }
 }
