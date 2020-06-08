@@ -29,6 +29,11 @@ class ShopSiteController extends Controller
 
     public function postAddToCart(Request $request)
     {
+        $this->validate($request, [
+            'quantity'    => 'required',
+            'product-id'  => 'required',
+            'variant-id'  => 'required'
+        ]);
         $user = Auth::user();
         $shop = $request->middlewareShop;
         $quantity = $request->input('quantity');
