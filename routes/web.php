@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Model\Shop;
+use App\Model\System;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -129,13 +131,12 @@ Route::group(
 | browser product, buy product
 |
 */
-
 Route::group(
     [
         'middleware' => 'shopSite',
         'as' => 'shop-site'
     ],
-    function () {
+    function ($request) {
         // Shop frontend
         Route::get('/', 'ShopSiteController@index')->name('index');
         Route::get('/itemDetails/{id}', 'ShopSiteController@displayDetails')->name('itemDetails');
@@ -161,15 +162,3 @@ Route::group(
 | This will used as a based for shop when the shop still not approve or in maintainer mood.
 |
 */
-
-Route::group(
-    [
-        'middleware' => 'shopSiteNotApproved',
-        'as' => 'shop-site'
-    ],
-    function () {
-        Route::get('/{any}', function () {
-            return 'no shop 404';
-        })->where('any', '.*');
-    }
-);
