@@ -62,7 +62,7 @@
                 <label for="user-password">Store Name</label>
                 <div>
                   <div class="input-group @error('shopName') is-invalid @enderror">
-                    <input type="text" class="form-control  @error('shopName') is-invalid @enderror" name="shopName" placeholder="Enter Store Name password" value="{{ old('shopName') }}">
+                    <input type="text" class="form-control  @error('shopName') is-invalid @enderror" name="shopName" placeholder="Enter Store Name" value="{{ old('shopName') }}">
                     <div class="input-group-prepend">
                       <div class="input-group-text">.kiahStore.com</div>
                     </div>
