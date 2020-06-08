@@ -10962,6 +10962,8 @@ footer {
 .container.shop-site .product-image {
   max-width: 253px;
   max-height: 253px;
+  width: 253px;
+  height: 253px;
 }
 
 .delete-image-container {
