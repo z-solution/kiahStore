@@ -130,3 +130,14 @@ footer {
   background-image: url("/img/404-page.png");
   background-size: contain;
 }
+
+.shop-site {
+  &.navbar-top {
+    .user-navbar-btn {
+      display: inline;
+    }
+    .user-cart {
+      color: #fff;
+    }
+  }
+}

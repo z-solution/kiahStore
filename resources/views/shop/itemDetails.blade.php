@@ -64,8 +64,14 @@
                         </div> <!-- col.// -->
                     </div> <!-- row.// -->
                     <hr>
-                    <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+                    
+                    @guest
+                    <span>Please login to make a purchase</span>
+                    @else
+                    {{-- <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a> --}}
                     <a href="#" class="btn btn-lg btn-outline-primary text-uppercase">Add to cart </a>
+                    @endguest
+
                 </article> <!-- card-body.// -->
             </aside> <!-- col.// -->
         </div> <!-- row.// -->

@@ -11007,3 +11007,11 @@ footer {
   background-size: contain;
 }
 
+.shop-site.navbar-top .user-navbar-btn {
+  display: inline;
+}
+
+.shop-site.navbar-top .user-cart {
+  color: #fff;
+}
+
