@@ -11015,3 +11015,7 @@ footer {
   color: #fff;
 }
 
+.item-detail .quantity-left.limited {
+  color: #dd6401;
+}
+

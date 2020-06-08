@@ -141,3 +141,10 @@ footer {
     }
   }
 }
+.item-detail {
+  .quantity-left {
+    &.limited {
+      color: rgb(221, 100, 1);
+    }
+  }
+}
