@@ -42,7 +42,7 @@
                 @foreach($items as $item)
                   <!-- Grid column -->
                   <a href="{{route('shop-siteitemDetails',[$item->id ])}}">
-                    <div class="col-lg-3 col-md-6 mb-lg-0 mb-2">
+                    <div class="col-lg-3 col-md-6 mb-2">
                       <!-- Card -->
                         <div class="card align-items-center">
                             <!-- Card image -->

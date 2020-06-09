@@ -139,7 +139,9 @@ Route::group(
     function ($request) {
         // Shop frontend
         Route::get('/', 'ShopSiteController@index')->name('index');
-        Route::get('/itemDetails/{id}', 'ShopSiteController@displayDetails')->name('itemDetails');
+        Route::get('/item-details/{id}', 'ShopSiteController@displayDetails')->name('itemDetails');
+        Route::post('/add-to-cart', 'ShopSiteController@postAddToCart')->name('addToCart');
+
 
         Route::get('/profile', function () {
             return 'Customer profile';

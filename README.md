@@ -58,6 +58,8 @@ docker-compose exec kiahstore php artisan make:model attachment -m
 
 docker-compose exec kiahstore php artisan migrate:rollback
 
+docker-compose exec kiahstore php artisan make:migration add_quantitiy_to_cart_item --table=cart_items
+
 docker-compose exec kiahstore php artisan route
 
 docker-compose exec kiahstore $yourCommandHere

@@ -83,6 +83,8 @@ footer {
   .product-image {
     max-width: 253px;
     max-height: 253px;
+    width: 253px;
+    height: 253px;
   }
 }
 .delete-image-container {
@@ -127,4 +129,22 @@ footer {
   min-height: 600px;
   background-image: url("/img/404-page.png");
   background-size: contain;
+}
+
+.shop-site {
+  &.navbar-top {
+    .user-navbar-btn {
+      display: inline;
+    }
+    .user-cart {
+      color: #fff;
+    }
+  }
+}
+.item-detail {
+  .quantity-left {
+    &.limited {
+      color: rgb(221, 100, 1);
+    }
+  }
 }
