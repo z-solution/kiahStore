@@ -11053,3 +11053,14 @@ footer {
   padding: 10px;
 }
 
+.search-input {
+  width: 450px;
+  margin: 0 10px;
+}
+
+.product-list .card {
+  position: relative;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
