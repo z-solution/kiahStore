@@ -6,13 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    const UNPAID = 0;
-    const PAID = 1;
-    const PAIDFAIL = 2;
-    const SHIPPING = 3;
-    const COMPLETE = 4;
-    const CANCEL = 5;
-    const REFUND = 6;
+    const UNPAID = 0; //dont show
+    const PAID = 1; // cancel refund
+    const PAIDFAIL = 2;  // nothing
+    const PROCESSING = 3; // cancel refund 
+    const SHIPPING = 4; // Track
+    const COMPLETE = 5; // nothing
+    const CANCEL = 6; // dont show
+    const REFUNDREQUEST = 7; // nothing
+    const REFUNDED = 8; // nothing
+    const STATUSNAME = [
+        'unpaid',
+        'paid',
+        'paidfail',
+        'processing',
+        'shipping',
+        'complete',
+        'cancel',
+        'refund request',
+        'refunded'
+    ];
     /**
      * Get the billing address for this order.
      */

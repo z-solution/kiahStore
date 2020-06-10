@@ -74,19 +74,19 @@ Route::group(
             return view('welcome');
         });
 
-    
+
         Route::get('/home', 'ShopOwnerController@index')->middleware('shopOwnerAuth')->name('home');
-        
+
         Route::get('/product', 'ShopOwnerController@display')->middleware('shopOwnerAuth')->name('product');
 
         Route::get('/productDetails/{id}', 'ShopOwnerController@getProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
 
         Route::patch('/productDetails/{id}', 'ShopOwnerController@patchProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
-        
+
         Route::post('/productDetails/{id}/upload-image', 'ShopOwnerController@postAddProductImage')->middleware('shopOwnerAuth')->name('productUploadImage');
 
         Route::delete('/productDetails/{id}/image/{attachmentId}', 'ShopOwnerController@deleteProductImage')->middleware('shopOwnerAuth')->name('deleteProductImage');
-        
+
         Route::get('/addProduct', 'ShopOwnerController@getAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
 
         Route::post('/addProduct', 'ShopOwnerController@postAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
@@ -109,7 +109,7 @@ Route::group(
         Route::get('/couponCRUD/{id}', 'CouponController@edit')->middleware('shopOwnerAuth')->name('couponCRUD');
 
         Route::patch('/couponCRUD/{id}', 'CouponController@update')->middleware('shopOwnerAuth')->name('couponCRUD');
-        
+
 
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');
@@ -148,10 +148,14 @@ Route::group(
         Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
         Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
 
-        
+
+        Route::get('/manage-order', 'ShopSiteController@getManageOrder')->middleware('customerAuth')->name('manageOrder');
+        Route::get('/manage-order/{id}/cancel', 'ShopSiteController@getManageOrderCancel')->middleware('customerAuth')->name('manageOrderCancel');
+        Route::get('/manage-order/{id}/refund', 'ShopSiteController@getManageOrderRefund')->middleware('customerAuth')->name('manageOrderRefund');
+        Route::get('/manage-order/{id}/track', 'ShopSiteController@getManageOrderTrack')->middleware('customerAuth')->name('manageOrderTrack');
         Route::get('/profile', function () {
             return 'Customer profile';
-        })->name('customerProfile')->middleware('customerAuth');
+        })->middleware('customerAuth')->name('customerProfile');
 
 
         Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
