@@ -22,4 +22,12 @@ class CartItem extends Model
         return $this->belongsTo('App\Model\InventoryVariant');
     }
 
+    /**
+     * Get the inventory variant for this cart item.
+     */
+    public function inventory()
+    {
+        return $this->belongsTo('App\Model\Inventory');
+    }
+
 }

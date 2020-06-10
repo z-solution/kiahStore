@@ -140,9 +140,15 @@ Route::group(
         // Shop frontend
         Route::get('/', 'ShopSiteController@index')->name('index');
         Route::get('/item-details/{id}', 'ShopSiteController@displayDetails')->name('itemDetails');
+        Route::get('/cart', 'ShopSiteController@getCart')->middleware('customerAuth')->name('cart');
         Route::post('/add-to-cart', 'ShopSiteController@postAddToCart')->name('addToCart');
+        Route::post('/remove-cart-item', 'ShopSiteController@postRemoveCartItem')->name('removeCartItem');
+        Route::get('/checkout', 'ShopSiteController@getCheckout')->middleware('customerAuth')->name('checkout');
+        Route::post('/checkout-confirm', 'ShopSiteController@postCheckoutConfirm')->middleware('customerAuth')->name('checkoutConfirm');
+        Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
+        Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
 
-
+        
         Route::get('/profile', function () {
             return 'Customer profile';
         })->name('customerProfile')->middleware('customerAuth');

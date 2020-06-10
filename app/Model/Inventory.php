@@ -21,6 +21,14 @@ class Inventory extends Model
     {
         return $this->hasMany('App\Model\InventoryVariant');
     }
+    
+    /**
+     * Get the inventory variant for the inventory.
+     */
+    public function cartItem()
+    {
+        return $this->hasMany('App\Model\CartItem');
+    }
 
     /**
      * Get the attachment image for the inventory.
