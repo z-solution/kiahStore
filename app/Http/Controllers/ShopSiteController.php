@@ -126,7 +126,7 @@ class ShopSiteController extends Controller
             $totalPrice += $item->inventory()->first()->price * $item->quantity;
         }
         $coupon = $cart->coupon()->first();
-        if($coupon) {
+        if ($coupon) {
             $totalPrice -= $coupon->value;
         }
         return view('shop.checkout', compact('user', 'cart', 'cartItems', 'totalPrice', 'coupon'));
@@ -172,7 +172,7 @@ class ShopSiteController extends Controller
         foreach ($cartItems as $item) {
             $totalPrice += $item->inventory()->first()->price * $item->quantity;
         }
-        if($coupon) {
+        if ($coupon) {
             $totalPrice -= $coupon->value;
         }
         $order = new Order();
@@ -329,5 +329,32 @@ class ShopSiteController extends Controller
             ->route(
                 'shop-sitecheckout'
             )->with('success', 'Coupon remove');
+    }
+
+    public function getProductList(Request $request)
+    {
+
+        $shop = $request->middlewareShop;
+        $q = $request->input('q');
+        $sort = $request->input('sort') ?: 'nameasc';
+        $itemsq = Inventory::with('attachment')
+            ->where([
+                ['shop_id', '=', $shop->id],
+                ['name', 'like', '%' . $q . '%']
+            ]);
+        if ($sort == 'nameasc') {
+            $itemsq->orderBy('name', 'asc');
+        }
+        if ($sort == 'namedesc') {
+            $itemsq->orderBy('name', 'desc');
+        }
+        if ($sort == 'priceasc') {
+            $itemsq->orderBy('price', 'asc');
+        }
+        if ($sort == 'pricedesc') {
+            $itemsq->orderBy('price', 'desc');
+        }
+        $items = $itemsq->get();
+        return view('shop.productList', compact('q', 'items', 'sort'));
     }
 }

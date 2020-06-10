@@ -147,10 +147,6 @@ Route::group(
         Route::post('/checkout-confirm', 'ShopSiteController@postCheckoutConfirm')->middleware('customerAuth')->name('checkoutConfirm');
         Route::post('/add-coupon', 'ShopSiteController@postAddCoupon')->middleware('customerAuth')->name('addCoupon');
         Route::delete('/add-coupon', 'ShopSiteController@postDeleteCoupon')->middleware('customerAuth')->name('deleteCoupon');
-        Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
-        Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
-
-
         Route::get('/manage-order', 'ShopSiteController@getManageOrder')->middleware('customerAuth')->name('manageOrder');
         Route::get('/manage-order/{id}/cancel', 'ShopSiteController@getManageOrderCancel')->middleware('customerAuth')->name('manageOrderCancel');
         Route::get('/manage-order/{id}/refund', 'ShopSiteController@getManageOrderRefund')->middleware('customerAuth')->name('manageOrderRefund');
@@ -159,7 +155,11 @@ Route::group(
             return 'Customer profile';
         })->middleware('customerAuth')->name('customerProfile');
 
-
+        Route::get('/product-list', 'ShopSiteController@getProductList')->middleware('customerAuth')->name('productList');
+        
+        Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
+        Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
+      
         Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');
         Route::post('logout', 'Auth\CustomerLoginController@logout')->name('logout');

@@ -26,11 +26,15 @@
     <div id="app">
         <nav class="shop-site navbar-top navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #800000">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"> Shop Name </a>
+                <a class="navbar-brand" href="{{ url('/') }}"> Kiah Store </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <form id="logout-form" action="{{ route('shop-siteproductList', app('request')->route('subdomain') ?? '') }}" method="get">
+                    <input type="text" placeholder="Search term" name="q" class="search-input">
+                    <button>Search</button>
+                </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <!-- Right Side Of Navbar -->

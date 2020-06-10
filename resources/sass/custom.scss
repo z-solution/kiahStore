@@ -130,7 +130,6 @@ footer {
   background-image: url("/img/404-page.png");
   background-size: contain;
 }
-
 .shop-site {
   &.navbar-top {
     .user-navbar-btn {
@@ -171,12 +170,22 @@ footer {
     }
   }
 }
-
 .checkout {
   .card {
     padding: 10px;
     .billing-address {
       padding: 10px;
     }
+  }
+}
+.search-input {
+  width: 450px;
+  margin: 0 10px;
+}
+.product-list {
+  .card {
+    position: relative;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
   }
 }
