@@ -241,4 +241,39 @@ class ShopSiteController extends Controller
         return redirect()
             ->route('shop-siteindex');
     }
+
+    public function getManageOrder(Request $request)
+    {
+        $shop = $request->middlewareShop;
+        $orders = Auth::user()->orders()->get();
+        $orderStatus = Order::STATUSNAME;
+        return view('shop.order', compact('orders', 'orderStatus'));
+    }
+    
+    public function getManageOrderCancel(Request $request, $id)
+    {
+        $order = Order::find($id)->first();
+        $order->status = Order::CANCEL;
+        $order->save();
+        return redirect()
+            ->route(
+                'shop-sitemanageOrder'
+            )->with('success', 'Order has been cancel');
+    }
+    
+    public function getManageOrderRefund(Request $request, $id)
+    {
+        $order = Order::find($id)->first();
+        $order->status = Order::REFUNDREQUEST;
+        $order->save();
+        return redirect()
+            ->route(
+                'shop-sitemanageOrder'
+            )->with('success', 'Order has been cancel');
+    }
+    
+    public function getManageOrderTrack(Request $request, $id)
+    {
+        return "Show where order is";
+    }
 }

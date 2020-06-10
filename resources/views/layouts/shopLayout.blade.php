@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,7 +32,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -41,11 +41,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('shop-sitelogin') }}">{{ __('Login') }}</a>
                         </li>
-                         @if (Route::has('shop-siteregister'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('shop-siteregister') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('shop-siteregister'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('shop-siteregister') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
                         <li class="nav-item dropdown">
                             <a href="{{ route('shop-sitecart', app('request')->route('subdomain') ?? '') }}" class="user-navbar-btn user-cart"><i class="fa fa-shopping-cart"></i> Cart</a>
@@ -54,6 +54,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('shop-sitemanageOrder', app('request')->route('subdomain') ?? '') }}">
+                                    {{ __('Manage Order') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('shop-sitelogout', app('request')->route('subdomain') ?? '') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
