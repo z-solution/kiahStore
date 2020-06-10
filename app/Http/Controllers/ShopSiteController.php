@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Address;
 use App\Model\Cart;
 use App\Model\CartItem;
+use App\Model\Coupon;
 use App\Model\Inventory;
 use App\Model\Order;
 use App\Model\OrderItem;
@@ -124,7 +125,11 @@ class ShopSiteController extends Controller
         foreach ($cartItems as $item) {
             $totalPrice += $item->inventory()->first()->price * $item->quantity;
         }
-        return view('shop.checkout', compact('user', 'cart', 'cartItems', 'totalPrice'));
+        $coupon = $cart->coupon()->first();
+        if($coupon) {
+            $totalPrice -= $coupon->value;
+        }
+        return view('shop.checkout', compact('user', 'cart', 'cartItems', 'totalPrice', 'coupon'));
     }
 
     public function postRemoveCartItem(Request $request)
@@ -162,9 +167,13 @@ class ShopSiteController extends Controller
             ['shop_id', '=', $shop->id]
         ])->first();
         $cartItems = $cart->cartItems()->get();
+        $coupon = $cart->coupon()->first();
         $totalPrice = 0;
         foreach ($cartItems as $item) {
             $totalPrice += $item->inventory()->first()->price * $item->quantity;
+        }
+        if($coupon) {
+            $totalPrice -= $coupon->value;
         }
         $order = new Order();
         $order->user_id = $user->id;
@@ -234,6 +243,11 @@ class ShopSiteController extends Controller
         $order = Order::find($orderId)->first();
         if ($status == '1') {
             $order->status = Order::PAID;
+            foreach ($order->orderItem()->get() as $item) {
+                $inventory = $item->inventoryVariant()->first()->inventory()->first();
+                $inventory->quantity -= $item->quantity;
+                $inventory->save();
+            }
         } else if ($status == '0') {
             $order->status = Order::PAIDFAIL;
         }
@@ -249,7 +263,7 @@ class ShopSiteController extends Controller
         $orderStatus = Order::STATUSNAME;
         return view('shop.order', compact('orders', 'orderStatus'));
     }
-    
+
     public function getManageOrderCancel(Request $request, $id)
     {
         $order = Order::find($id)->first();
@@ -260,7 +274,7 @@ class ShopSiteController extends Controller
                 'shop-sitemanageOrder'
             )->with('success', 'Order has been cancel');
     }
-    
+
     public function getManageOrderRefund(Request $request, $id)
     {
         $order = Order::find($id)->first();
@@ -271,9 +285,49 @@ class ShopSiteController extends Controller
                 'shop-sitemanageOrder'
             )->with('success', 'Order has been cancel');
     }
-    
+
     public function getManageOrderTrack(Request $request, $id)
     {
         return "Show where order is";
+    }
+
+    public function postAddCoupon(Request $request)
+    {
+        $user = Auth::user();
+        $shop = $request->middlewareShop;
+        $cartId = $request->input('cartId');
+        $cart = Cart::find($cartId)->first();
+        $couponCode = $request->input('coupon');
+        $coupon = Coupon::where([
+            ['shop_id', '=', $shop->id],
+            ['code', '=', $couponCode]
+        ])->first();
+        if ($coupon == null) {
+
+            return redirect()
+                ->route(
+                    'shop-sitecheckout'
+                )->with('error', 'Coupon not valid');
+        }
+        $cart->coupon_id = $coupon->id;
+        $cart->save();
+        return redirect()
+            ->route(
+                'shop-sitecheckout'
+            )->with('success', 'Coupon added');
+    }
+
+    public function postDeleteCoupon(Request $request)
+    {
+        $user = Auth::user();
+        $shop = $request->middlewareShop;
+        $cartId = $request->input('cartId');
+        $cart = Cart::find($cartId)->first();
+        $cart->coupon_id = 0;
+        $cart->save();
+        return redirect()
+            ->route(
+                'shop-sitecheckout'
+            )->with('success', 'Coupon remove');
     }
 }

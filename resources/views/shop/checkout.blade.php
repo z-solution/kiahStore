@@ -12,54 +12,77 @@
     </div>
     @endif
     <div class="card">
+        <h2>Checkout</h2>
+        <h5>Summary</h5>
+        <table>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Price
+                </td>
+                <td>
+                    Quantity
+                </td>
+                <td>
+                    Total
+                </td>
+            </tr>
+            @foreach($cartItems as $item)
+            <tr>
+                <td>
+                    {{$item->inventory()->first()->name}} ( {{$item->inventoryVariant()->first()->name}} )
+                </td>
+                <td> MYR {{ number_format($item->inventory()->first()->price, 2, '.', ',')}}
+                </td>
+                <td>
+                    {{$item->quantity}}
+                </td>
+                <td>
+                    MYR {{ number_format($item->inventory()->first()->price * $item->quantity, 2, '.', ',') }}
+                </td>
+            </tr>
+            @endforeach
+            <tr>
+                <td colspan="3">Item Total Price</td>
+                <td> MYR {{ number_format($totalPrice, 2, '.', ',') }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">Shipping</td>
+                <td> MYR {{ number_format(0, 2, '.', ',') }}</td>
+            </tr>
+            @if($coupon)
+            <tr>
+                <td colspan="3">Coupon</td>
+                <td> MYR -{{ number_format($coupon->value, 2, '.', ',') }}</td>
+            </tr>
+            @endif
+            <tr>
+                <td colspan="3">Grand Total</td>
+                <td> MYR {{ number_format($totalPrice, 2, '.', ',') }}</td>
+            </tr>
+        </table>
+        <h4>Coupon</h4>
+        @if(!$coupon)
+        <form method="POST" action="{{ route('shop-siteaddCoupon', app('request')->route('subdomain') ?? '') }}" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <input type="hidden" name="cartId" value="{{$cart->id}}">
+            <input type="text" class="form-control" name="coupon" placeholder="Coupon Code">
+            <button type="submit" class="btn btn-primary confirm-btn">Add Coupon</button>
+        </form>
+        @else
+        <form method="POST" action="{{ route('shop-sitedeleteCoupon', app('request')->route('subdomain') ?? '') }}" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <input type="hidden" name="_method" value="DELETE" />
+            <input type="hidden" name="cartId" value="{{$cart->id}}">
+            <button type="submit" class="btn btn-primary confirm-btn">Delete Coupon</button>
+        </form>
+        @endif
+        <h4> Billing Address </h4>
+
         <form method="POST" action="{{ route('shop-sitecheckoutConfirm', app('request')->route('subdomain') ?? '') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <h2>Checkout</h2>
-            <h5>Summary</h5>
-            <table>
-                <tr>
-                    <td>
-                        Name
-                    </td>
-                    <td>
-                        Price
-                    </td>
-                    <td>
-                        Quantity
-                    </td>
-                    <td>
-                        Total
-                    </td>
-                </tr>
-                @foreach($cartItems as $item)
-                <tr>
-                    <td>
-                        {{$item->inventory()->first()->name}} ( {{$item->inventoryVariant()->first()->name}} )
-                    </td>
-                    <td> MYR {{ number_format($item->inventory()->first()->price, 2, '.', ',')}}
-                    </td>
-                    <td>
-                        {{$item->quantity}}
-                    </td>
-                    <td>
-                        MYR {{ number_format($item->inventory()->first()->price * $item->quantity, 2, '.', ',') }}
-                    </td>
-                </tr>
-                @endforeach
-                <tr>
-                    <td colspan="3">Item Total Price</td>
-                    <td> MYR {{ number_format($totalPrice, 2, '.', ',') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Shipping</td>
-                    <td> MYR {{ number_format(0, 2, '.', ',') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Grand Total</td>
-                    <td> MYR {{ number_format($totalPrice, 2, '.', ',') }}</td>
-                </tr>
-            </table>
-            <h4> Billing Address </h4>
             <div class="billing-address">
                 <label for="billing-name">Name</label>
                 <input type="text" class="form-control @error('billing-name') is-invalid @enderror" name="billing-name" id="billing-name" placeholder="Enter the name" value="{{ old('name') }}" required autofocus>
@@ -165,7 +188,7 @@
             </div>
             <br>
 
-            <button type="submit" class="confirm-btn">Confirm</button>
+            <button type="submit" class="btn btn-primary confirm-btn">Confirm</button>
         </form>
 
     </div>

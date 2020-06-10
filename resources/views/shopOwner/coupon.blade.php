@@ -16,7 +16,6 @@
             <tr>
               <th>Coupon Code</th>
               <th>Coupon Value</th>
-              <th>Expiration Date</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -25,7 +24,6 @@
               <tr>
                 <td>{{$coupon->code}}</td>
                 <td>{{$coupon->value}}</td>
-                <td>{{$coupon->expiration_date}}</td>
                 <td> <a href="{{route('main-sitecouponCRUD', [app('request')->route('subdomain') ?? '', $coupon->id] )}}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Edit</a></td>
               </tr>
             @endforeach
