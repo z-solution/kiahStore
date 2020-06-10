@@ -155,7 +155,7 @@ Route::group(
             return 'Customer profile';
         })->middleware('customerAuth')->name('customerProfile');
 
-        Route::get('/product-list', 'ShopSiteController@getProductList')->middleware('customerAuth')->name('productList');
+        Route::get('/product-list', 'ShopSiteController@getProductList')->name('productList');
         
         Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
         Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
