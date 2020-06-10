@@ -54,11 +54,13 @@ By changing the host, we can test multiple domain/subdomain locally.
 ```
 docker-compose exec kiahstore composer install
 
+docker-compose exec kiahstore composer require doctrine/dbal
+
 docker-compose exec kiahstore php artisan make:model attachment -m
 
 docker-compose exec kiahstore php artisan migrate:rollback
 
-docker-compose exec kiahstore php artisan make:migration add_quantitiy_to_cart_item --table=cart_items
+docker-compose exec kiahstore php artisan make:migration rename_blling_address_id --table=orders
 
 docker-compose exec kiahstore php artisan route
 

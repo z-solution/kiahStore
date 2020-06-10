@@ -48,7 +48,7 @@
                             @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a href="#" class="user-navbar-btn user-cart"><i class="fa fa-shopping-cart"></i> Cart</a>
+                            <a href="{{ route('shop-sitecart', app('request')->route('subdomain') ?? '') }}" class="user-navbar-btn user-cart"><i class="fa fa-shopping-cart"></i> Cart</a>
                             <a id="navbarDropdown" class="user-navbar-btn nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>

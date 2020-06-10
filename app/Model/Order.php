@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    const UNPAID = 0;
+    const PAID = 1;
+    const PAIDFAIL = 2;
+    const SHIPPING = 3;
+    const COMPLETE = 4;
+    const CANCEL = 5;
+    const REFUND = 6;
     /**
      * Get the billing address for this order.
      */
     public function billingAddress()
     {
-        return $this->belongsTo('App\Model\Address', 'blling_address_id');
+        return $this->belongsTo('App\Model\Address', 'billing_address_id');
     }
 
     /**

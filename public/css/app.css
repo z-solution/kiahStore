@@ -11019,3 +11019,37 @@ footer {
   color: #dd6401;
 }
 
+.cart .card {
+  padding: 10px;
+}
+
+.cart .card .cart-list {
+  padding: 0;
+}
+
+.cart .card .cart-list .cart-item-list {
+  list-style: none;
+  position: relative;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.cart .card .cart-list .cart-item-list .remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.cart .card .cart-inventory-image {
+  height: 70px;
+  width: 70px;
+}
+
+.checkout .card {
+  padding: 10px;
+}
+
+.checkout .card .billing-address {
+  padding: 10px;
+}
+
