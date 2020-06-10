@@ -33,9 +33,6 @@
                         <a href="{{route('shop-sitemanageOrderCancel',[ $order->id ]) }}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Cancel</a>
                         <a href="{{route('shop-sitemanageOrderRefund',[ $order->id ]) }}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Refund</a>
                         @endif
-                        @if($order->status == 4)
-                        <a href="{{route('shop-sitemanageOrderTrack',[ $order->id ]) }}" class="btn btn-primary float-left"><i class="fa fa-edit"></i> Track</a>
-                        @endif
                     </td>
                 </tr>
                 @endforeach
