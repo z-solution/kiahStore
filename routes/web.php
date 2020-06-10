@@ -145,6 +145,8 @@ Route::group(
         Route::post('/remove-cart-item', 'ShopSiteController@postRemoveCartItem')->name('removeCartItem');
         Route::get('/checkout', 'ShopSiteController@getCheckout')->middleware('customerAuth')->name('checkout');
         Route::post('/checkout-confirm', 'ShopSiteController@postCheckoutConfirm')->middleware('customerAuth')->name('checkoutConfirm');
+        Route::post('/add-coupon', 'ShopSiteController@postAddCoupon')->middleware('customerAuth')->name('addCoupon');
+        Route::delete('/add-coupon', 'ShopSiteController@postDeleteCoupon')->middleware('customerAuth')->name('deleteCoupon');
         Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
         Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Coupon;
 
-// use Carbon\Carbon;
+use Auth;
 
 class CouponController extends Controller
 {
@@ -16,7 +16,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = Coupon::all();
+        $coupons = Coupon::where('shop_id', Auth::user()->owner_shop_id)->get();
 
         return view('shopOwner.coupon', compact('coupons'));
     }
@@ -38,26 +38,23 @@ class CouponController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         // dd($request->all());
 
         $this->validate($request, [
             'coupon_code'  => 'required',
             'coupon_value' => 'required',
-            'expiry_date' => 'required|date|date_format:Y-m-d',
         ]);
 
         $coupon = new Coupon();
 
+        $coupon->shop_id     = Auth::user()->owner_shop_id;
         $coupon->code               = request('coupon_code');
         $coupon->value              = request('coupon_value');
-        $coupon->expiration_date    = request('expiry_date');
-
 
         $coupon->save();
 
         return redirect('/coupon')->with('success', 'New coupon added');
-        
     }
 
     /**
@@ -95,18 +92,16 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $this->validate($request, [
+        $this->validate($request, [
             'coupon_code'    => 'required',
             'coupon_value'   => 'required',
-            'expiry_date'    => 'required|date|date_format:Y-m-d',
         ]);
 
         $coupon = Coupon::find($id);
-        
+
         $coupon->code                   = $request->get('coupon_code');
         $coupon->value                 = $request->get('coupon_value');
-        $coupon->expiration_date       = $request->get('expiry_date');
-    
+
         $coupon->save();
         return redirect('/coupon')->with('success', 'Data updated');
     }

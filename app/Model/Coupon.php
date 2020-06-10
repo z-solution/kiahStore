@@ -9,10 +9,6 @@ class Coupon extends Model
 
 	protected $table = 'coupons';
 
-    protected $dates = [
-        'expiration_date'
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
