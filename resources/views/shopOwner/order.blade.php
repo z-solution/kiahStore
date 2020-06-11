@@ -28,37 +28,18 @@
                   {{ csrf_field() }}
                   <input type="hidden" name="_method" value="PATCH" />
                     <select name="status">
-                          @if($order->status == 1)
-                              <option selected>Unpaid</option>
-                            @elseif($order->status == 0)
-                              <option selected>paid</option>
-                            @elseif($order->status == 2)
-                              <option selected>Payment failed</option>
-                            @elseif($order->status == 3)
-                              <option selected>Processing</option>
-                            @elseif($order->status == 4)
-                              <option selected>Shipping</option>
-                            @elseif($order->status == 5)
-                              <option selected>Delivered</option>
-                            @elseif($order->status == 6)
-                              <option selected>Canceled</option>
-                            @elseif($order->status == 7)
-                              <option selected>Refund request</option>
-                            @elseif($order->status == 8)
-                              <option selected>Refunded</option>
-                          @endif
-                          <option value="1">unpaid</option>
-                          <option value="0">paid</option>
-                          <option value="2">Payment failed</option>
-                          <option value="3">Processing</option>
-                          <option value="4">Shipping</option>
-                          <option value="5">Delivered</option>
-                          <option value="6">Canceled</option>
-                          <option value="7">Refund request</option>
-                          <option value="8">Refunded</option>
-                      </select>
+                      <option value="unpaid" @if($order->status == "unpaid") selected @endif>Unpaid</option>
+                      <option value="paid" @if($order->status == "paid") selected @endif>Paid</option>
+                       <option value="paymentFailed" @if($order->status == "paymentFailed") selected @endif>Payment failed</option>
+                      <option value="processing" @if($order->status == "processing") selected @endif>Processing</option>
+                      <option value="shipping" @if($order->status == "shipping") selected @endif>Shipping</option>
+                      <option value="delivered" @if($order->status == "delivered") selected @endif>Delivered</option>
+                      <option value="canceled" @if($order->status == "canceled") selected @endif>Canceled</option>
+                      <option value="refundRequest" @if($order->status == "refundRequest") selected @endif>Refund request</option>
+                      <option value="refunded" @if($order->status == "refunded") selected @endif>Refunded</option>
+                    </select>
                     
-                      <button type="submit" class="btn btn-success ml-2"> Update</button>
+                    <button type="submit" class="btn btn-success ml-2"> Update</button>
                   </form>
                 </td>
                 <td> <a href="{{route('main-siteorderDetails',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Details</a>
