@@ -21,7 +21,7 @@
             @foreach($orders->get() as $order)
               <tr>
                 
-                 <td> <img src="#" class="rounded mx-auto d-block" />{{$order->id}}</td>
+                 <td>{{$order->id}}</td>
                 <td>{{$order->customer->name}}</td>
                 <td>{{$order->total_price}}</td>
                 <td><form action="{{route('main-siteorderEdit',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary" method="POST">
