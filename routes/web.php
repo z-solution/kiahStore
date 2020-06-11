@@ -95,6 +95,10 @@ Route::group(
 
         Route::get('/order', 'ShopOwnerController@list')->middleware('shopOwnerAuth')->name('order');
 
+        Route::get('/orderEdit/{id}', 'ShopOwnerController@editOrder')->middleware('shopOwnerAuth')->name('orderEdit');
+
+        Route::patch('/orderEdit/{id}', 'ShopOwnerController@UpdateOrderStatus')->middleware('shopOwnerAuth')->name('orderEdit');
+
         Route::get('/orderDetails/{id}', 'ShopOwnerController@show')->middleware('shopOwnerAuth')->name('orderDetails');
 
         Route::get('/coupon', 'CouponController@index')->middleware('shopOwnerAuth')->name('coupon');
