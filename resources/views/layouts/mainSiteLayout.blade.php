@@ -64,8 +64,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}">
-                                    {{ __('Home') }}
+                            <a class="dropdown-item" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}">
+                                    {{ __('Dashboard') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('shop-sitemanageAccount', app('request')->route('subdomain') ?? '') }}">
+                                    {{ __('Manage Account') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

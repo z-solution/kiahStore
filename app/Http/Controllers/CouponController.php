@@ -22,6 +22,16 @@ class CouponController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCreateCoupon()
+    {
+        return view('/shopOwner/createCoupon');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -83,6 +93,13 @@ class CouponController extends Controller
         return view('shopOwner.couponCRUD', compact('coupon', 'id'));
     }
 
+    public function deleteCoupon (Request $request)
+    {
+        $couponId = $request->input('couponId');
+        $coupon = Coupon::find($couponId);
+        $coupon->delete();
+        return redirect('/coupon')->with('success', 'Coupon deleted');
+    }
     /**
      * Update the specified resource in storage.
      *
