@@ -155,9 +155,8 @@ Route::group(
         Route::get('/manage-order/{id}/cancel', 'ShopSiteController@getManageOrderCancel')->middleware('customerAuth')->name('manageOrderCancel');
         Route::get('/manage-order/{id}/refund', 'ShopSiteController@getManageOrderRefund')->middleware('customerAuth')->name('manageOrderRefund');
         Route::get('/manage-order/{id}/track', 'ShopSiteController@getManageOrderTrack')->middleware('customerAuth')->name('manageOrderTrack');
-        Route::get('/profile', function () {
-            return 'Customer profile';
-        })->middleware('customerAuth')->name('customerProfile');
+        Route::get('/manage-account', 'ShopSiteController@getManageAccount')->middleware('customerAuth')->name('manageAccount');
+        Route::post('/manage-account', 'ShopSiteController@postManageAccount')->middleware('customerAuth')->name('postManageAccount');
 
         Route::get('/product-list', 'ShopSiteController@getProductList')->name('productList');
         

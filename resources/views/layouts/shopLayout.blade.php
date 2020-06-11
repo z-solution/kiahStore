@@ -31,7 +31,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <form id="logout-form" action="{{ route('shop-siteproductList', app('request')->route('subdomain') ?? '') }}" method="get">
+                <form id="query" action="{{ route('shop-siteproductList', app('request')->route('subdomain') ?? '') }}" method="get">
                     <input type="text" placeholder="Search term" name="q" class="search-input">
                     <button>Search</button>
                 </form>
@@ -60,6 +60,9 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('shop-sitemanageOrder', app('request')->route('subdomain') ?? '') }}">
                                     {{ __('Manage Order') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('shop-sitemanageAccount', app('request')->route('subdomain') ?? '') }}">
+                                    {{ __('Manage Account') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('shop-sitelogout', app('request')->route('subdomain') ?? '') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

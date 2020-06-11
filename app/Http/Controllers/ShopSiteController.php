@@ -10,6 +10,8 @@ use App\Model\Inventory;
 use App\Model\Order;
 use App\Model\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 
 use Auth;
 
@@ -356,5 +358,37 @@ class ShopSiteController extends Controller
         }
         $items = $itemsq->get();
         return view('shop.productList', compact('q', 'items', 'sort'));
+    }
+
+    public function getManageAccount()
+    {
+        $user = Auth::user();
+
+        return view('shop.manageAccount', compact('user'));
+    }
+
+
+    public function postManageAccount(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $user = Auth::user();
+        $name = $request->input('name');
+        $password = $request->input('password');
+        $password_confirmation = $request->input('password_confirmation');
+
+        $user->name = $name;
+        if ($password != '') {
+            if ($password != $password_confirmation) {
+                throw ValidationException::withMessages(['password' => 'This value is incorrect']);
+            }
+            $user->password = Hash::make($password);
+        }
+        $user->save();
+        return redirect()
+            ->route(
+                'shop-sitemanageAccount'
+            )->with('success', 'Account updated');
     }
 }
