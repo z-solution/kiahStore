@@ -29,6 +29,13 @@ class Cart extends Model
     {
         return $this->hasMany('App\Model\CartItem');
     }
+    /**
+     * Get the coupon for this cart.
+     */
+    public function coupon()
+    {
+        return $this->belongsTo('App\Model\Coupon');
+    }
 }
 
 

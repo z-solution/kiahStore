@@ -34,6 +34,7 @@
             <button type="submit" class="btn btn-primary ml-2"><i class="fa fa-check"></i> Approve</button>
           </form>
           @endif
+          <a href="{{ route('main-admin-siteshop-ownerEdit', [app('request')->route('subdomain') ?? '', $shopOwner->id]) }}" class="btn btn-primary ml-2"><i class="fa fa-check"></i>Edit</a>
         </td>
       </tr>
       @endforeach

@@ -8,17 +8,23 @@
         <th>Id</th>
         <th>Email</th>
         <th>Name</th>
+        <th>Shop</th>
         <th>Register Date</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       
-    @foreach($customers as $shopOwner)
+    @foreach($customers as $customer)
       <tr>
-        <td>{{$shopOwner->id}}</td>
-        <td>{{$shopOwner->email}}</td>
-        <td>{{$shopOwner->name}}</td>
-        <td>{{$shopOwner->created_at}}</td>
+        <td>{{$customer->id}}</td>
+        <td>{{$customer->email}}</td>
+        <td>{{$customer->name}}</td>
+        <td>{{$customer->shopAsCustomer()->first()->name}}</td>
+        <td>{{$customer->created_at}}</td>
+        <td>
+          <a href="{{ route('main-admin-sitecustomerEdit', [app('request')->route('subdomain') ?? '', $customer->id]) }}" class="btn btn-primary ml-2"><i class="fa fa-check"></i>Edit</a>
+        </td>
       </tr>
       @endforeach
     </tbody>

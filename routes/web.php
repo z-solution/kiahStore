@@ -39,7 +39,11 @@ Route::group(
         Route::get('/dashboard', 'AdminSiteController@getDashboard')->middleware('adminAuth')->name('dashboard');
         Route::get('/shop-owner', 'AdminSiteController@getShowOwner')->middleware('adminAuth')->name('shop-owner');
         Route::post('/shop-owner/{id}/approve', 'AdminSiteController@postApprove')->middleware('adminAuth')->name('shop-owner-approve');
+        Route::get('/shop-owner/{id}', 'AdminSiteController@getShowOwnerEdit')->middleware('adminAuth')->name('shop-ownerEdit');
+        Route::post('/shop-owner/{id}', 'AdminSiteController@postShowOwnerEdit')->middleware('adminAuth')->name('postShopOwnerEdit');
         Route::get('/customer', 'AdminSiteController@getCustomer')->middleware('adminAuth')->name('customer');
+        Route::get('/customer/{id}', 'AdminSiteController@getcustomerEdit')->middleware('adminAuth')->name('customerEdit');
+        Route::post('/customer/{id}', 'AdminSiteController@postcustomerEdit')->middleware('adminAuth')->name('postCustomerEdit');
         Route::get('/setting', 'AdminSiteController@getSetting')->middleware('adminAuth')->name('setting');
         Route::post('/post', 'AdminSiteController@postSetting')->middleware('adminAuth')->name('post-setting');
 
@@ -74,19 +78,19 @@ Route::group(
             return view('welcome');
         });
 
-    
+
         Route::get('/home', 'ShopOwnerController@index')->middleware('shopOwnerAuth')->name('home');
-        
+
         Route::get('/product', 'ShopOwnerController@display')->middleware('shopOwnerAuth')->name('product');
 
         Route::get('/productDetails/{id}', 'ShopOwnerController@getProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
 
         Route::patch('/productDetails/{id}', 'ShopOwnerController@patchProductDetail')->middleware('shopOwnerAuth')->name('productDetails');
-        
+
         Route::post('/productDetails/{id}/upload-image', 'ShopOwnerController@postAddProductImage')->middleware('shopOwnerAuth')->name('productUploadImage');
 
         Route::delete('/productDetails/{id}/image/{attachmentId}', 'ShopOwnerController@deleteProductImage')->middleware('shopOwnerAuth')->name('deleteProductImage');
-        
+
         Route::get('/addProduct', 'ShopOwnerController@getAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
 
         Route::post('/addProduct', 'ShopOwnerController@postAddProduct')->middleware('shopOwnerAuth')->name('addProduct');
@@ -113,7 +117,7 @@ Route::group(
         Route::get('/couponCRUD/{id}', 'CouponController@edit')->middleware('shopOwnerAuth')->name('couponCRUD');
 
         Route::patch('/couponCRUD/{id}', 'CouponController@update')->middleware('shopOwnerAuth')->name('couponCRUD');
-        
+
 
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');
@@ -149,15 +153,21 @@ Route::group(
         Route::post('/remove-cart-item', 'ShopSiteController@postRemoveCartItem')->name('removeCartItem');
         Route::get('/checkout', 'ShopSiteController@getCheckout')->middleware('customerAuth')->name('checkout');
         Route::post('/checkout-confirm', 'ShopSiteController@postCheckoutConfirm')->middleware('customerAuth')->name('checkoutConfirm');
-        Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
-        Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
-
-        
+        Route::post('/add-coupon', 'ShopSiteController@postAddCoupon')->middleware('customerAuth')->name('addCoupon');
+        Route::delete('/add-coupon', 'ShopSiteController@postDeleteCoupon')->middleware('customerAuth')->name('deleteCoupon');
+        Route::get('/manage-order', 'ShopSiteController@getManageOrder')->middleware('customerAuth')->name('manageOrder');
+        Route::get('/manage-order/{id}/cancel', 'ShopSiteController@getManageOrderCancel')->middleware('customerAuth')->name('manageOrderCancel');
+        Route::get('/manage-order/{id}/refund', 'ShopSiteController@getManageOrderRefund')->middleware('customerAuth')->name('manageOrderRefund');
+        Route::get('/manage-order/{id}/track', 'ShopSiteController@getManageOrderTrack')->middleware('customerAuth')->name('manageOrderTrack');
         Route::get('/profile', function () {
             return 'Customer profile';
-        })->name('customerProfile')->middleware('customerAuth');
+        })->middleware('customerAuth')->name('customerProfile');
 
-
+        Route::get('/product-list', 'ShopSiteController@getProductList')->name('productList');
+        
+        Route::get('/fake-payment-mockup', 'ShopSiteController@getMockupPayment')->middleware('customerAuth')->name('paymentMockSite');
+        Route::post('/fake-payment-mockup', 'ShopSiteController@postMockupPayment')->middleware('customerAuth')->name('postPaymentMockSite');
+      
         Route::get('login', 'Auth\CustomerLoginController@customerLoginForm')->name('login');
         Route::post('login', 'Auth\CustomerLoginController@login');
         Route::post('logout', 'Auth\CustomerLoginController@logout')->name('logout');

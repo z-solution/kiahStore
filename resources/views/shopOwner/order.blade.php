@@ -70,46 +70,40 @@
     </div>
 @endsection
 @section('scripts')
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
-  <script>
-      jQuery(document).ready(function($) {
-          // Setup - add a text input to each footer cell
-          // $('#example thead tr').clone(true).appendTo( '#example thead' );
-          $('#example thead tr:eq(1) th').each( function (i) {
-              var title = $(this).text();
-              $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
+<script>
+  jQuery(document).ready(function($) {
+    // Setup - add a text input to each footer cell
+    // $('#example thead tr').clone(true).appendTo( '#example thead' );
+    $('#example thead tr:eq(1) th').each(function(i) {
+      var title = $(this).text();
+      $(this).html('<input type="text" placeholder="Search ' + title + '" />');
 
-              $( 'input', this ).on( 'keyup change', function () {
-                  if ( table.column(i).search() !== this.value ) {
-                      table
-                          .column(i)
-                          .search( this.value )
-                          .draw();
-                  }
-              } );
-          } );
-
-          var table = $('#example').DataTable( {
-              orderCellsTop: true,
-              fixedHeader: true
-          } );
+      $('input', this).on('keyup change', function() {
+        if (table.column(i).search() !== this.value) {
+          table
+            .column(i)
+            .search(this.value)
+            .draw();
+        }
       });
+    });
 
-  </script>
-  <script>
-          $(document).ready(function(){
+    var table = $('#example').DataTable({
+      orderCellsTop: true,
+      fixedHeader: true
+    });
+  });
+  $(document).ready(function() {
 
-              $('.delete_form').on('submit', function(){
-                  if(confirm('Are you sure you want to delete it?'))
-                  {
-                      return true;
-                  }else
-                  {
-                      return false;
-                  }
-              });
-          });
-  </script>
-@endsection 
-
+    $('.delete_form').on('submit', function() {
+      if (confirm('Are you sure you want to delete it?')) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  });
+</script>
+@endsection
