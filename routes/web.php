@@ -39,7 +39,11 @@ Route::group(
         Route::get('/dashboard', 'AdminSiteController@getDashboard')->middleware('adminAuth')->name('dashboard');
         Route::get('/shop-owner', 'AdminSiteController@getShowOwner')->middleware('adminAuth')->name('shop-owner');
         Route::post('/shop-owner/{id}/approve', 'AdminSiteController@postApprove')->middleware('adminAuth')->name('shop-owner-approve');
+        Route::get('/shop-owner/{id}', 'AdminSiteController@getShowOwnerEdit')->middleware('adminAuth')->name('shop-ownerEdit');
+        Route::post('/shop-owner/{id}', 'AdminSiteController@postShowOwnerEdit')->middleware('adminAuth')->name('postShopOwnerEdit');
         Route::get('/customer', 'AdminSiteController@getCustomer')->middleware('adminAuth')->name('customer');
+        Route::get('/customer/{id}', 'AdminSiteController@getcustomerEdit')->middleware('adminAuth')->name('customerEdit');
+        Route::post('/customer/{id}', 'AdminSiteController@postcustomerEdit')->middleware('adminAuth')->name('postCustomerEdit');
         Route::get('/setting', 'AdminSiteController@getSetting')->middleware('adminAuth')->name('setting');
         Route::post('/post', 'AdminSiteController@postSetting')->middleware('adminAuth')->name('post-setting');
 
