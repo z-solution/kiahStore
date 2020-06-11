@@ -25,6 +25,13 @@ class ShopOwnerController extends Controller
         return view('shopOwner.index', compact(['orderCount', 'customerCount', 'salesCount']));
     }
 
+    public function editOrder($id){
+
+        $data = Order::find($id);
+
+        return view('shopOwner.editOrder', compact('data', 'id'));
+    }
+
     public function display()
     {
         $products = Inventory::with('attachment')->get();
@@ -36,6 +43,8 @@ class ShopOwnerController extends Controller
     {
         $orders = Order::where('shop_id', Auth::user()->owner_shop_id)
             ->whereBetween('created_at', [now()->subDays(30), now()]);
+
+            
         return view('shopOwner.order', compact('orders'));
     }
 
@@ -197,5 +206,16 @@ class ShopOwnerController extends Controller
 
         $product->delete();
         return redirect('/product')->with('success', 'Data Deleted');
+    }
+
+    public function UpdateOrderStatus(Request $request, $id)
+    {
+
+        $order = Order::find($id);
+
+        $order->status = $request->get('status');
+        $order->save();
+
+        return redirect('/order')->with('success', 'Status updated');
     }
 }
