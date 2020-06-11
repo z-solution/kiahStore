@@ -10938,7 +10938,11 @@ html {
 }
 
 .container.shop-owner table th:nth-child(5) {
-  width: 140px;
+  width: 240px;
+}
+
+.container.shop-owner table td form {
+  display: inline;
 }
 
 .container.setting table th:nth-child(2) {
