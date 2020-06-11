@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm" id="navbar-color">
@@ -47,30 +49,32 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        
+
                         @guest
-                           
+
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}">
+                                    {{ __('Dashboard') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('shop-sitemanageAccount', app('request')->route('subdomain') ?? '') }}">
+                                    {{ __('Manage Account') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}" onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}">
-                                         {{ __('Home') }}
-                                     </a>
-                                    <a class="dropdown-item" href="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}"
-                                        onclick="event.preventDefault();
-                                                      document.getElementById('logout-form').submit();">
-                                         {{ __('Logout') }}
-                                     </a>
-
-                                    <form id="logout-form" action="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -86,10 +90,10 @@
 
     </div>
     <footer class="page-footer font-small" style="background-color: #000066">
-      <div class="footer-copyright text-dark text-center py-3">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/"> Store Name </a>
-      </div>
+        <div class="footer-copyright text-dark text-center py-3">© 2020 Copyright
+        </div>
     </footer>
     @yield('scripts')
 </body>
+
 </html>

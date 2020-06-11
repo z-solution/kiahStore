@@ -111,6 +111,11 @@ Route::group(
             return view('/shopOwner/createCoupon');
         })->middleware('shopOwnerAuth')->name('createCoupon');
 
+        Route::get('/manage-account', 'ShopOwnerController@getManageAccount')->middleware('shopOwnerAuth')->name('manageAccount');
+     
+        Route::post('/manage-account', 'ShopOwnerController@postManageAccount')->middleware('shopOwnerAuth')->name('postManageAccount');
+
+
         Route::post('/createCoupon', 'CouponController@store')->middleware('shopOwnerAuth')->name('createCoupon');
 
 

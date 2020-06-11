@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 
-use Illuminate\Http\Request;
 use App\Model\Order;
 use App\Model\User;
 use App\Model\Inventory;
 use App\Model\Attachment;
 use App\Model\InventoryVariant;
 use App\Model\OrderItem;
-use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 
 class ShopOwnerController extends Controller
 {
@@ -217,5 +219,38 @@ class ShopOwnerController extends Controller
         $order->save();
 
         return redirect('/order')->with('success', 'Status updated');
+    }
+
+    public function getManageAccount()
+    {
+        $user = Auth::user();
+
+        return view('shopOwner.manageAccount', compact('user'));
+    }
+
+
+    public function postManageAccount(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $user = Auth::user();
+        $name = $request->input('name');
+        $password = $request->input('password');
+        $password_confirmation = $request->input('password_confirmation');
+
+        $user->name = $name;
+        if ($password != '') {
+            if ($password != $password_confirmation) {
+                throw ValidationException::withMessages(['password' => 'This value is incorrect']);
+            }
+            $user->password = Hash::make($password);
+        }
+        $user->save();
+        return redirect()
+            ->route(
+                'main-sitemanageAccount',
+                [app('request')->route('subdomain') ?? '']
+            )->with('success', 'Account updated');
     }
 }
