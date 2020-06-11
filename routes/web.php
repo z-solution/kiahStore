@@ -106,22 +106,22 @@ Route::group(
         Route::get('/orderDetails/{id}', 'ShopOwnerController@show')->middleware('shopOwnerAuth')->name('orderDetails');
 
         Route::get('/coupon', 'CouponController@index')->middleware('shopOwnerAuth')->name('coupon');
-
-        Route::get('/createCoupon', function () {
-            return view('/shopOwner/createCoupon');
-        })->middleware('shopOwnerAuth')->name('createCoupon');
+        
+        Route::get('/createCoupon', 'CouponController@getCreateCoupon')->middleware('shopOwnerAuth')->name('createCoupon');
 
         Route::get('/manage-account', 'ShopOwnerController@getManageAccount')->middleware('shopOwnerAuth')->name('manageAccount');
      
         Route::post('/manage-account', 'ShopOwnerController@postManageAccount')->middleware('shopOwnerAuth')->name('postManageAccount');
 
-
         Route::post('/createCoupon', 'CouponController@store')->middleware('shopOwnerAuth')->name('createCoupon');
-
 
         Route::get('/couponCRUD/{id}', 'CouponController@edit')->middleware('shopOwnerAuth')->name('couponCRUD');
 
         Route::patch('/couponCRUD/{id}', 'CouponController@update')->middleware('shopOwnerAuth')->name('couponCRUD');
+        Route::delete('/couponCRUD', 'CouponController@deleteCoupon')->middleware('shopOwnerAuth')->name('deleteCouponCRUD');
+
+        Route::get('/log', 'ShopOwnerController@getLog')->middleware('shopOwnerAuth')->name('log');
+
 
 
         // Authentication Routes...

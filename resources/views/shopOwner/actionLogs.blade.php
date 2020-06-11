@@ -9,33 +9,19 @@
     </div>
     @endif
     <div class="card-header mb-2">Coupon Page
-      <a href="{{route('main-sitecreateCoupon', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Coupon</a>
     </div>
     <table id="example" class="table table-bordered table-sm mt-4">
       <thead class="text-center thead thead-dark">
         <tr>
-          <th>Coupon Code</th>
-          <th>Coupon Value</th>
-          <th>Actions</th>
+          <th>Date</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($coupons as $coupon)
+        @foreach($actionLogs as $log)
         <tr>
-          <td>{{$coupon->code}}</td>
-          <td>{{$coupon->value}}</td>
-          <td>
-            <a href="{{route('main-sitecouponCRUD', [app('request')->route('subdomain') ?? '', $coupon->id] )}}" class="btn btn-primary float-left">
-              <i class="fa fa-edit"></i> Edit
-            </a>
-
-            <form action="{{route('main-sitedeleteCouponCRUD', app('request')->route('subdomain') ?? '')}}" method="POST" class="delete_form">
-              {{csrf_field()}}
-              <input type="hidden" name="_method" value="DELETE" />
-              <input type="hidden" name="couponId" value="{{$coupon->id}}" />
-              <button type="submit" class="btn btn-danger ml-2"><i class="fa fa-trash"></i> Delete</button>
-            </form>
-          </td>
+          <td>{{$log->created_at}}</td>
+          <td>{{$log->getText()}}</td>
         </tr>
         @endforeach
       </tbody>
@@ -66,7 +52,8 @@
 
     var table = $('#example').DataTable({
       orderCellsTop: true,
-      fixedHeader: true
+      fixedHeader: true,
+      order: [0, 'desc']
     });
   });
 </script>

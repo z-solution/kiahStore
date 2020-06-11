@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\ActionLog;
 use App\Model\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -50,5 +51,10 @@ class ShopOwnerLoginController extends Controller
     public function __construct()
     {
         $this->middleware('shopOwnerGuest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        ActionLog::shopLogin($user->owner_shop_id, $user->id);
     }
 }

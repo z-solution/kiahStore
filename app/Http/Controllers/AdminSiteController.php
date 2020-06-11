@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\ActionLog;
 use App\Model\Shop;
 use App\Model\System;
 use App\Model\User;
 use Illuminate\Http\Request;
 
+use Auth;
 class AdminSiteController extends Controller
 {
     public function getDashboard()
@@ -51,7 +53,9 @@ class AdminSiteController extends Controller
 
     public function postApprove(Request $request, $subdomain, $id)
     {
+        $admin = Auth::user();
         Shop::approveShop($id);
+        ActionLog::shopApprove($id, $admin->id);
         return redirect('/shop-owner')->with('success', 'Shop has been approved');
     }
 
@@ -81,6 +85,7 @@ class AdminSiteController extends Controller
                 [app('request')->route('subdomain') ?? '', $id]
             )->with('success','Customer has been updated');
     }
+
     public function getSetting()
     {
         $shopMaintainerMood = System::where('name', System::SYSTEMSHOPMAINTAINERMOOD)->first();

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Model\ActionLog;
 use Auth;
 
 use App\Model\Order;
@@ -27,7 +29,8 @@ class ShopOwnerController extends Controller
         return view('shopOwner.index', compact(['orderCount', 'customerCount', 'salesCount']));
     }
 
-    public function editOrder($id){
+    public function editOrder($id)
+    {
 
         $data = Order::find($id);
 
@@ -46,7 +49,7 @@ class ShopOwnerController extends Controller
         $orders = Order::where('shop_id', Auth::user()->owner_shop_id)
             ->whereBetween('created_at', [now()->subDays(30), now()]);
 
-            
+
         return view('shopOwner.order', compact('orders'));
     }
 
@@ -114,6 +117,7 @@ class ShopOwnerController extends Controller
             $attachment->filename = str_replace("public/", "storage/", $path);
             $attachment->save();
         }
+        ActionLog::shopAddProduct(Auth::user()->owner_shop_id, Auth::user()->id, $inventory->id);
         return redirect('/product')->with('success', 'New product added');
     }
 
@@ -155,14 +159,15 @@ class ShopOwnerController extends Controller
                 $inventoryVariant->inventory_id = $product->id;
                 $inventoryVariant->name = $variant;
                 $inventoryVariant->save();
-            }
-            else {
+            } else {
                 unset($inventoryVariants[$key]);
             }
         }
-        foreach($inventoryVariants as $variantNeedDelete) {
+        foreach ($inventoryVariants as $variantNeedDelete) {
             InventoryVariant::findOrFail($variantNeedDelete['id'])->delete();
         }
+
+        ActionLog::shopUpdateProduct(Auth::user()->owner_shop_id, Auth::user()->id, $product->id);
         return redirect()->route('main-siteproductDetails', [app('request')->route('subdomain') ?? '', $id])->with('success', 'Data updated');
     }
 
@@ -195,6 +200,7 @@ class ShopOwnerController extends Controller
         $attachment->delete();
         return redirect()->route('main-siteproductDetails', [app('request')->route('subdomain') ?? '', $id])->with('success', 'Image is deleted');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -207,7 +213,9 @@ class ShopOwnerController extends Controller
         $product = Inventory::find($id);
 
         $product->delete();
-        return redirect('/product')->with('success', 'Data Deleted');
+
+        ActionLog::shopDeleteProduct(Auth::user()->owner_shop_id, Auth::user()->id, $product->id);
+        return redirect('/product')->with('success', 'Product Deleted');
     }
 
     public function UpdateOrderStatus(Request $request, $id)
@@ -227,7 +235,6 @@ class ShopOwnerController extends Controller
 
         return view('shopOwner.manageAccount', compact('user'));
     }
-
 
     public function postManageAccount(Request $request)
     {
@@ -252,5 +259,13 @@ class ShopOwnerController extends Controller
                 'main-sitemanageAccount',
                 [app('request')->route('subdomain') ?? '']
             )->with('success', 'Account updated');
+    }
+
+    public function getLog()
+    {
+        $actionLogs = ActionLog::where('shop_id', Auth::user()->owner_shop_id)
+            ->orderBy('created_at', 'desc')->get();
+
+        return view('shopOwner.actionLogs', compact('actionLogs'));
     }
 }
