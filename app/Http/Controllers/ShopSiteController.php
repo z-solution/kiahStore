@@ -240,7 +240,7 @@ class ShopSiteController extends Controller
         $shop = $request->middlewareShop;
         $orderId = $request->input('orderId');
         $status = $request->input('success');
-        $order = Order::find($orderId)->first();
+        $order = Order::find($orderId);
         if ($status == '1') {
             $order->status = Order::PAID;
             foreach ($order->orderItem()->get() as $item) {
@@ -266,7 +266,7 @@ class ShopSiteController extends Controller
 
     public function getManageOrderCancel(Request $request, $id)
     {
-        $order = Order::find($id)->first();
+        $order = Order::find($id);
         $order->status = Order::CANCEL;
         $order->save();
         return redirect()
@@ -277,7 +277,7 @@ class ShopSiteController extends Controller
 
     public function getManageOrderRefund(Request $request, $id)
     {
-        $order = Order::find($id)->first();
+        $order = Order::find($id);
         $order->status = Order::REFUNDREQUEST;
         $order->save();
         return redirect()
@@ -296,7 +296,7 @@ class ShopSiteController extends Controller
         $user = Auth::user();
         $shop = $request->middlewareShop;
         $cartId = $request->input('cartId');
-        $cart = Cart::find($cartId)->first();
+        $cart = Cart::find($cartId);
         $couponCode = $request->input('coupon');
         $coupon = Coupon::where([
             ['shop_id', '=', $shop->id],
@@ -322,7 +322,7 @@ class ShopSiteController extends Controller
         $user = Auth::user();
         $shop = $request->middlewareShop;
         $cartId = $request->input('cartId');
-        $cart = Cart::find($cartId)->first();
+        $cart = Cart::find($cartId);
         $cart->coupon_id = 0;
         $cart->save();
         return redirect()
