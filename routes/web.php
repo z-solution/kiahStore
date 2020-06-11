@@ -120,6 +120,10 @@ Route::group(
         Route::patch('/couponCRUD/{id}', 'CouponController@update')->middleware('shopOwnerAuth')->name('couponCRUD');
         Route::delete('/couponCRUD', 'CouponController@deleteCoupon')->middleware('shopOwnerAuth')->name('deleteCouponCRUD');
 
+        Route::get('/log', 'ShopOwnerController@getLog')->middleware('shopOwnerAuth')->name('log');
+
+
+
         // Authentication Routes...
         Route::get('login', 'Auth\ShopOwnerLoginController@showShopOwnerLoginForm')->name('login');
         Route::post('login', 'Auth\ShopOwnerLoginController@login');

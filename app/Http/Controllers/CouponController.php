@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\ActionLog;
 use Illuminate\Http\Request;
 use App\Model\Coupon;
 
@@ -63,7 +64,7 @@ class CouponController extends Controller
         $coupon->value              = request('coupon_value');
 
         $coupon->save();
-
+        ActionLog::shopAddCoupon(Auth::user()->owner_shop_id, Auth::user()->id, $coupon->id);
         return redirect('/coupon')->with('success', 'New coupon added');
     }
 
@@ -93,13 +94,15 @@ class CouponController extends Controller
         return view('shopOwner.couponCRUD', compact('coupon', 'id'));
     }
 
-    public function deleteCoupon (Request $request)
+    public function deleteCoupon(Request $request)
     {
         $couponId = $request->input('couponId');
         $coupon = Coupon::find($couponId);
         $coupon->delete();
+        ActionLog::shopDeleteCoupon(Auth::user()->owner_shop_id, Auth::user()->id, $coupon->id);
         return redirect('/coupon')->with('success', 'Coupon deleted');
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -120,6 +123,8 @@ class CouponController extends Controller
         $coupon->value                 = $request->get('coupon_value');
 
         $coupon->save();
+        
+        ActionLog::shopUpdateCoupon(Auth::user()->owner_shop_id, Auth::user()->id, $coupon->id);
         return redirect('/coupon')->with('success', 'Data updated');
     }
 

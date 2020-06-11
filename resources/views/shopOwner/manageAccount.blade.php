@@ -1,4 +1,4 @@
-@extends('layouts.shopLayout')
+@extends('layouts.shopOwnerLayout')
 
 @section('content')
 <div class="container product-list">

@@ -62,8 +62,11 @@
                                 <a class="dropdown-item" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}">
                                     {{ __('Dashboard') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('shop-sitemanageAccount', app('request')->route('subdomain') ?? '') }}">
+                                <a class="dropdown-item" href="{{ route('main-sitemanageAccount', app('request')->route('subdomain') ?? '') }}">
                                     {{ __('Manage Account') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('main-sitelog', app('request')->route('subdomain') ?? '') }}">
+                                    {{ __('Log') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('main-sitelogout', app('request')->route('subdomain') ?? '') }}" onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">

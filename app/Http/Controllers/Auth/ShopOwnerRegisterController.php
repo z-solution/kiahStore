@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\ActionLog;
 use App\Providers\RouteServiceProvider;
 use App\Model\User;
 use App\Model\Shop;
@@ -68,7 +69,9 @@ class ShopOwnerRegisterController extends Controller
         $user = $this->createShopOwner($data);
         event($shop);
         event(new Registered($user));
-
+        $actionLog = new ActionLog();
+        $actionLog->shop_id = $shop->id;
+        ActionLog::shopRegister($shop->id, $user->id);
         $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
