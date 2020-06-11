@@ -45,7 +45,7 @@ html {
             width: 30px;
         }
         // th:nth-child(2) {
-            // width: 150px;
+        // width: 150px;
         // }
         th:nth-child(3) {
             width: 100px;
@@ -54,7 +54,12 @@ html {
             width: 110px;
         }
         th:nth-child(5) {
-            width: 140px;
+            width: 240px;
+        }
+        td {
+            form {
+                display: inline;
+            }
         }
     }
 }
