@@ -49,7 +49,8 @@ class ShopOwnerController extends Controller
         $orders = Order::where('shop_id', Auth::user()->owner_shop_id)
             ->whereBetween('created_at', [now()->subDays(30), now()]);
 
-
+        // $orderStatus = Order::STATUSNAME;
+        // dd($orderStatus);
         return view('shopOwner.order', compact('orders'));
     }
 
