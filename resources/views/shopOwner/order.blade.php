@@ -24,9 +24,10 @@
                  <td>{{$order->id}}</td>
                 <td>{{$order->customer->name}}</td>
                 <td>{{$order->total_price}}</td>
-                <td><form action="{{route('main-siteorderEdit',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary" method="POST">
+                <td>
+                  <form action="{{route('main-siteorderEdit',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary" method="POST">
                   {{ csrf_field() }}
-                  <input type="hidden" name="_method" value="PATCH" />
+                    <input type="hidden" name="_method" value="PATCH" />
                     <select name="status">
                       <option value="unpaid" @if($order->status == "unpaid") selected @endif>Unpaid</option>
                       <option value="paid" @if($order->status == "paid") selected @endif>Paid</option>
@@ -42,7 +43,7 @@
                     <button type="submit" class="btn btn-success ml-2"> Update</button>
                   </form>
                 </td>
-                <td> <a href="{{route('main-siteorderDetails',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Details</a>
+                <td><a href="{{route('main-siteorderDetails',[ app('request')->route('subdomain') ?? '', $order->id ]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Details</a>
                 </td>
               </tr>
             @endforeach
