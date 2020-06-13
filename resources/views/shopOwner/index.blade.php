@@ -48,7 +48,26 @@
                     <tr>
                       <td>{{$order->id}}</td>
                       <td>{{$order->customer->name}}</td>
-                      <td>{{$order->status}}</td>
+                      
+                      @if($order->status == 0)
+                        <td>Unpaid</td>
+                      @elseif($order->status == 1)
+                        <td>Paid</td>
+                      @elseif($order->status == 2)
+                        <td>Paidfail</td>
+                      @elseif($order->status == 3)
+                        <td>Processing</td>
+                      @elseif($order->status == 4)
+                        <td>Shippiing</td>
+                      @elseif($order->status == 5)    
+                        <td>Complete</td>
+                      @elseif($order->status == 6)
+                        <td>Cancel</td>
+                      @elseif($order->status == 7)
+                        <td>RefundRequest</td>
+                      @elseif($order->status == 8)
+                        <td>Refunded</td>
+                      @endif
                     </tr>
                   @endforeach
                 </tbody>

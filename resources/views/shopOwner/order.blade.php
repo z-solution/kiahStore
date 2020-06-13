@@ -29,15 +29,15 @@
                   {{ csrf_field() }}
                     <input type="hidden" name="_method" value="PATCH" />
                     <select name="status">
-                      <option value="unpaid" @if($order->status == "unpaid") selected @endif>Unpaid</option>
-                      <option value="paid" @if($order->status == "paid") selected @endif>Paid</option>
-                       <option value="paymentFailed" @if($order->status == "paymentFailed") selected @endif>Payment failed</option>
-                      <option value="processing" @if($order->status == "processing") selected @endif>Processing</option>
-                      <option value="shipping" @if($order->status == "shipping") selected @endif>Shipping</option>
-                      <option value="delivered" @if($order->status == "delivered") selected @endif>Delivered</option>
-                      <option value="canceled" @if($order->status == "canceled") selected @endif>Canceled</option>
-                      <option value="refundRequest" @if($order->status == "refundRequest") selected @endif>Refund request</option>
-                      <option value="refunded" @if($order->status == "refunded") selected @endif>Refunded</option>
+                      <option value="0" @if($order->status == "0") selected @endif>Unpaid</option>
+                      <option value="1" @if($order->status == "1") selected @endif>Paid</option>
+                      <option value="2" @if($order->status == "2") selected @endif>Payment failed</option>
+                      <option value="3" @if($order->status == "3") selected @endif>Processing</option>
+                      <option value="4" @if($order->status == "4") selected @endif>Shipping</option>
+                      <option value="5" @if($order->status == "5") selected @endif>Delivered</option>
+                      <option value="6" @if($order->status == "6") selected @endif>Canceled</option>
+                      <option value="7" @if($order->status == "7") selected @endif>Refund request</option>
+                      <option value="8" @if($order->status == "8") selected @endif>Refunded</option>
                     </select>
                     
                     <button type="submit" class="btn btn-success ml-2"> Update</button>
