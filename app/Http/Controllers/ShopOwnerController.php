@@ -39,7 +39,7 @@ class ShopOwnerController extends Controller
 
     public function display()
     {
-        $products = Inventory::with('attachment')->get();
+        $products = Inventory::where('shop_id', Auth::user()->owner_shop_id)->with('attachment')->get();
 
         return view('shopOwner.product', compact('products'));
     }
@@ -55,9 +55,12 @@ class ShopOwnerController extends Controller
 
     public function show($id)
     {
-        $orderItems = OrderItem::where('order_id', Auth::user()->owner_shop_id);
-
         $order = Order::find($id);
+
+        $orderItems = OrderItem::where('order_id', $order->id);
+         
+
+        
 
         // dd($order->billingAddress()->get()->first()->name);
 

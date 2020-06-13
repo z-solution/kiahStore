@@ -11064,3 +11064,7 @@ footer {
   border-bottom: 1px solid #eee;
 }
 
+.card-img-top {
+  height: 230px;
+}
+

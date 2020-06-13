@@ -9,7 +9,7 @@
                 </div>
             @endif
           <div class="card-header mb-2">Product Page
-            <a href="{{route('main-siteaddProduct', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-right">Add New Product</a>
+            <a href="{{route('main-siteaddProduct', app('request')->route('subdomain') ?? '')}}" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Add Product</a>
           </div>
           <table id="example" class="table table-bordered table-sm mt-4">
             <thead class="text-center thead thead-dark">

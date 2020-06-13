@@ -71,6 +71,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Model\Order');
     }
 
+
     /**
      * Get the attachment image for the user.
      */
