@@ -19,7 +19,7 @@
     </thead>
     <tbody>
       <tr>
-        <td>Maintainer mood for all shop</td>
+        <td>Maintainer mode for all shop</td>
         <td>
           @if ($shopMaintainerMood && $shopMaintainerMood->value == 'true')
           Enable
@@ -32,7 +32,7 @@
             {{csrf_field()}}
             <input type="hidden" name="_method" value="POST" />
             <input type="hidden" name="name" value="{{$systemShopMaintainerMood}}" />
-            <input type="hidden" name="desc_name" value="Maintainer mood for all shop" />
+            <input type="hidden" name="desc_name" value="Maintainer mode for all shop" />
             <input type="hidden" name="value" value="true" />
             <input type="hidden" name="desc_value" value="enable" />
             <button type="submit" class="btn btn-primary ml-2"><i class="fa fa-check"></i> Enable</button>
@@ -41,7 +41,7 @@
             {{csrf_field()}}
             <input type="hidden" name="_method" value="POST" />
             <input type="hidden" name="name" value="{{$systemShopMaintainerMood}}" />
-            <input type="hidden" name="desc_name" value="Maintainer mood for all shop" />
+            <input type="hidden" name="desc_name" value="Maintainer mode for all shop" />
             <input type="hidden" name="value" value="false" />
             <input type="hidden" name="desc_value" value="disable" />
             <button type="submit" class="btn btn-danger ml-2"><i class="fa fa-times"></i> Disable</button>
