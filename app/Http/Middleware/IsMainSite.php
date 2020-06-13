@@ -17,8 +17,6 @@ class IsMainSite
     {
         $domain = $request->getHttpHost();
         if ($domain == config('app.domain') || $domain == 'www.' . config('app.domain')) {
-            var_dump($domain);
-            var_dump(config('app.domain'));
             return $next($request);
         }
     }
