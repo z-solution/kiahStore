@@ -9,6 +9,7 @@ use App\Model\User;
 use Illuminate\Http\Request;
 
 use Auth;
+
 class AdminSiteController extends Controller
 {
     public function getDashboard()
@@ -25,16 +26,18 @@ class AdminSiteController extends Controller
         $shopStatus = Shop::STATUS;
         return view('admin.shopOwner', compact('shopOwners', 'shopStatus'));
     }
-    
-    public function getShowOwnerEdit(Request $request, $www, $id) {
+
+    public function getShowOwnerEdit(Request $request, $www, $id)
+    {
         $shop = Shop::where('id', intval($id))->first();
         return view('admin.shopOwnerEdit', compact('shop'));
     }
 
-    public function postShowOwnerEdit(Request $request, $www, $id) {
+    public function postShowOwnerEdit(Request $request, $www, $id)
+    {
         $this->validate($request, [
             'shopName' => 'required',
-            'email' => 'required',
+            'email' => ['required', 'string', 'email'],
             'name' => 'required',
         ]);
         $shop = Shop::where('id', intval($id))->first();
@@ -48,7 +51,7 @@ class AdminSiteController extends Controller
             ->route(
                 'main-admin-siteshop-ownerEdit',
                 [app('request')->route('subdomain') ?? '', $id]
-            )->with('success','Shop has been updated');
+            )->with('success', 'Shop has been updated');
     }
 
     public function postApprove(Request $request, $subdomain, $id)
@@ -64,13 +67,15 @@ class AdminSiteController extends Controller
         $customers = User::getCustomer();
         return view('admin.customer', compact('customers'));
     }
-    
-    public function getCustomerEdit(Request $request, $www, $id) {
+
+    public function getCustomerEdit(Request $request, $www, $id)
+    {
         $customer = User::where('id', intval($id))->first();
         return view('admin.customerEdit', compact('customer'));
     }
 
-    public function postCustomerEdit(Request $request, $www, $id) {
+    public function postCustomerEdit(Request $request, $www, $id)
+    {
         $this->validate($request, [
             'email' => 'required',
             'name' => 'required',
@@ -83,20 +88,20 @@ class AdminSiteController extends Controller
             ->route(
                 'main-admin-sitecustomerEdit',
                 [app('request')->route('subdomain') ?? '', $id]
-            )->with('success','Customer has been updated');
+            )->with('success', 'Customer has been updated');
     }
 
     public function getSetting()
     {
         $shopMaintainerMood = System::where('name', System::SYSTEMSHOPMAINTAINERMOOD)->first();
         $systemShopMaintainerMood = System::SYSTEMSHOPMAINTAINERMOOD;
-        return view('admin.setting', compact( 'shopMaintainerMood', 'systemShopMaintainerMood'));
+        return view('admin.setting', compact('shopMaintainerMood', 'systemShopMaintainerMood'));
     }
 
     public function postSetting(Request $request)
     {
         $system = System::where('name', request('name'))->first();
-        if($system == null) {
+        if ($system == null) {
             $system = new System();
             $system->name = request('name');
         }
