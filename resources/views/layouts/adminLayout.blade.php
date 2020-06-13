@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('main-admin-siteshop-owner', app('request')->route('subdomain') ?? '')}}">Shop Owner</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main-admin-sitecustomer', app('request')->route('subdomain') ?? '')}}">User</a>
+                            <a class="nav-link" href="{{ route('main-admin-sitecustomer', app('request')->route('subdomain') ?? '')}}">Customer</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('main-admin-sitesetting', app('request')->route('subdomain') ?? '')}}">Setting</a>
