@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -26,9 +26,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #800000">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ Kiah Store }}
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">Kiah Store </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -64,7 +62,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}">
+                                <a class="dropdown-item" href="{{ route('main-sitehome', app('request')->route('subdomain') ?? '') }}">
                                     {{ __('Dashboard') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('main-sitemanageAccount', app('request')->route('subdomain') ?? '') }}">
