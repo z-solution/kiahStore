@@ -36,27 +36,24 @@
         <!--/.Carousel Wrapper-->
         <div class="card-deck mt-4">
           <div class="card">
-            <img class="card-img-top" src="{{ asset('img/f1.jpg') }}"  alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('img/easy-to-use.jpg') }}"  alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title font-weight-bold">Feature 1</h4>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h4 class="card-title font-weight-bold">Easy to use</h4>
+              <p class="card-text">Kiah store is design to be easy to use. With focus for the small business.</p>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('img/f2.jpg') }}"  alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('img/fast-approval.jpg') }}"  alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title font-weight-bold">Feature 2</h4>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content. just added extra text to make it the paragraph a bit longer and at the same time keep them all aligned.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h4 class="card-title font-weight-bold">Fast Approval</h4>
+              <p class="card-text">The approve process is fast and easy. Suitable for business without to much hassle to apply.</p>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('img/f3.png') }}"  alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('img/made-in-malaysia.jpg') }}"  alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title font-weight-bold">Feature 3</h4>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h4 class="card-title font-weight-bold">Made in Malaysia</h4>
+              <p class="card-text">Kiahstore is proud to be made in Malaysia. It was design for Malaysia culture.</p>
             </div>
           </div>
         </div>
