@@ -77,7 +77,7 @@ class AdminSiteController extends Controller
     public function postCustomerEdit(Request $request, $www, $id)
     {
         $this->validate($request, [
-            'email' => 'required',
+            'email' => ['required', 'string', 'email'],
             'name' => 'required',
         ]);
         $customer = User::where('id', intval($id))->first();
