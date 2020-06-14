@@ -25,7 +25,7 @@
         <td>{{$shopOwner->id}}</td>
         <td>{{$shopOwner->name}}</td>
         <td>{{ array_flip($shopStatus)[$shopOwner->status]}}</td>
-        <td>12 May 2020</td>
+        <td>{{$shopOwner->created_at}}</td>
         <td>
           @if($shopOwner->status == 0)
           <form method="POST" class="delete_form" action="{{route('main-admin-siteshop-owner-approve', [app('request')->route('subdomain') ?? '', $shopOwner->id])}}">
