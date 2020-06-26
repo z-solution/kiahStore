@@ -88,6 +88,7 @@ class User extends Authenticatable
     static public function createAdmin(array $data)
     {
         $data['type'] = User::ADMINTYPE;
+        return User::create($data);
     }
     
     static public function createCustomer(array $data)

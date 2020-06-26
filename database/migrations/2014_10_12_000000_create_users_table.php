@@ -1,7 +1,10 @@
 <?php
 
+use App\Model\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -22,9 +25,17 @@ class CreateUsersTable extends Migration
             $table->integer('owner_shop_id');
             $table->integer('customer_shop_id');
             $table->rememberToken();
-			$table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        return User::createAdmin([
+            'name' => "admin",
+            'email' => "admin@admin.com",
+            'password' => Hash::make("12341234"),
+            'owner_shop_id' => 0,
+            'customer_shop_id' => 0,
+        ]);
     }
 
     /**
